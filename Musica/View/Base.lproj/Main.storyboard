@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--AuthVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Musica" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="AuthVC" customModule="Musica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,6 +41,9 @@
                                                 <state key="normal" title="Se connecter par email">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="signInEmailBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rqG-cf-gg3"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OU" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYk-oo-Q2i">
                                                 <rect key="frame" x="163.5" y="170" width="27" height="50"/>
@@ -54,6 +57,9 @@
                                                 <state key="normal" title="Créer un nouveau compte">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="createAccBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="inT-Pv-k8B"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -81,10 +87,10 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="115.84821428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Create AccVC-->
         <scene sceneID="EaC-MX-ars">
             <objects>
-                <viewController id="YNY-DI-KW7" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateAccVC" id="YNY-DI-KW7" customClass="CreateAccVC" customModule="Musica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="93P-uC-OU9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,19 +105,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ekC-xE-aik">
-                                <rect key="frame" x="64" y="170.5" width="286.5" height="253"/>
+                                <rect key="frame" x="65" y="215.5" width="284" height="208"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="6AZ-U0-CHf">
-                                        <rect key="frame" x="0.0" y="0.0" width="286.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="284" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DND-47-BJh">
-                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="63" height="30"/>
                                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qof-gr-h8o">
-                                                <rect key="frame" x="96.5" y="0.0" width="190" height="30"/>
+                                                <rect key="frame" x="94" y="0.0" width="190" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="190" id="7wb-4M-TYW"/>
                                                 </constraints>
@@ -122,16 +128,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="f1O-EY-huU">
-                                        <rect key="frame" x="0.0" y="45" width="286.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="45" width="284" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mdp :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-7u-lK4">
-                                                <rect key="frame" x="0.0" y="0.0" width="57.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="30"/>
                                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6l9-hU-el0">
-                                                <rect key="frame" x="96.5" y="0.0" width="190" height="30"/>
+                                                <rect key="frame" x="94" y="0.0" width="190" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="190" id="Mcv-O9-NLj"/>
                                                 </constraints>
@@ -142,16 +148,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="Rns-Dk-UGH">
-                                        <rect key="frame" x="0.0" y="90" width="286.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="90" width="284" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eh1-Ip-ees">
-                                                <rect key="frame" x="0.0" y="0.0" width="57.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="30"/>
                                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="49P-Af-MvJ">
-                                                <rect key="frame" x="96.5" y="0.0" width="190" height="30"/>
+                                                <rect key="frame" x="94" y="0.0" width="190" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="190" id="JqS-fg-kNb"/>
                                                 </constraints>
@@ -161,37 +167,17 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="ygH-gf-uhP">
-                                        <rect key="frame" x="0.0" y="135" width="286.5" height="30"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prénom :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6e-6Y-zeD">
-                                                <rect key="frame" x="0.0" y="0.0" width="57.5" height="30"/>
-                                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C2t-4Z-q9l">
-                                                <rect key="frame" x="96.5" y="0.0" width="190" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="190" id="zh1-i3-LDu"/>
-                                                </constraints>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="Q1S-Ji-QOj">
-                                        <rect key="frame" x="0.0" y="180" width="286.5" height="28"/>
+                                        <rect key="frame" x="0.0" y="135" width="284" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sexe :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RW4-V1-u2M">
-                                                <rect key="frame" x="0.0" y="0.0" width="57.5" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="28"/>
                                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cTW-0r-mPU">
-                                                <rect key="frame" x="96.5" y="0.0" width="190" height="29"/>
+                                                <rect key="frame" x="94" y="0.0" width="190" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="190" id="nJk-mD-sfz"/>
                                                 </constraints>
@@ -204,16 +190,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="zN9-Mr-0OF">
-                                        <rect key="frame" x="0.0" y="223" width="286.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="178" width="284" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rnd-OR-6wh">
-                                                <rect key="frame" x="0.0" y="0.0" width="57.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="30"/>
                                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HsL-oe-hPt">
-                                                <rect key="frame" x="96.5" y="0.0" width="190" height="30"/>
+                                                <rect key="frame" x="94" y="0.0" width="190" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="190" id="tBG-cQ-Lg2"/>
                                                 </constraints>
@@ -231,6 +217,9 @@
                                 <state key="normal" title="C'est parti !">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="createAccPressed:" destination="YNY-DI-KW7" eventType="touchUpInside" id="JZp-Uh-NSV"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgH-XT-z7Z">
                                 <rect key="frame" x="65" y="479.5" width="49" height="18.5"/>
@@ -256,9 +245,27 @@
                                         <state key="normal" title="Chargez votre photo de profil">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="importProfilPic:" destination="YNY-DI-KW7" eventType="touchUpInside" id="fxs-xp-fwM"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82f-4y-PkV">
+                                <rect key="frame" x="10" y="54" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="MCJ-l4-XqJ"/>
+                                    <constraint firstAttribute="height" constant="25" id="iCG-MR-3w7"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="closeBtnPressed:" destination="YNY-DI-KW7" eventType="touchUpInside" id="y6T-4h-MCn"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fAe-Oc-cd0">
+                                <rect key="frame" x="132" y="830" width="150" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -269,10 +276,12 @@
                             <constraint firstItem="ekC-xE-aik" firstAttribute="centerX" secondItem="93P-uC-OU9" secondAttribute="centerX" id="Mta-bU-p9P"/>
                             <constraint firstItem="Y6T-T3-pRJ" firstAttribute="trailing" secondItem="t6t-Rg-txV" secondAttribute="trailing" constant="70" id="Rle-Uc-yz2"/>
                             <constraint firstItem="OgH-XT-z7Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ekC-xE-aik" secondAttribute="leading" id="SdK-wB-iGR"/>
+                            <constraint firstItem="82f-4y-PkV" firstAttribute="top" secondItem="Y6T-T3-pRJ" secondAttribute="top" constant="10" id="Uig-Gi-aMX"/>
                             <constraint firstItem="Y6T-T3-pRJ" firstAttribute="trailing" secondItem="LL2-wk-yZB" secondAttribute="trailing" id="ZgF-3j-RI6"/>
                             <constraint firstItem="Y6T-T3-pRJ" firstAttribute="bottom" secondItem="LL2-wk-yZB" secondAttribute="bottom" id="dfz-He-74P"/>
                             <constraint firstItem="Y6T-T3-pRJ" firstAttribute="bottom" secondItem="T6a-un-1zM" secondAttribute="bottom" constant="40" id="eD1-HF-W6Y"/>
                             <constraint firstItem="Y6T-T3-pRJ" firstAttribute="trailing" secondItem="T6a-un-1zM" secondAttribute="trailing" constant="100" id="epg-64-yo9"/>
+                            <constraint firstItem="82f-4y-PkV" firstAttribute="leading" secondItem="Y6T-T3-pRJ" secondAttribute="leading" constant="10" id="hDr-M1-Jgk"/>
                             <constraint firstAttribute="bottom" secondItem="OgH-XT-z7Z" secondAttribute="bottom" constant="398" id="i5K-4s-ix0"/>
                             <constraint firstItem="OgH-XT-z7Z" firstAttribute="top" secondItem="ekC-xE-aik" secondAttribute="bottom" constant="56" id="kqn-Z6-qA2"/>
                             <constraint firstItem="t6t-Rg-txV" firstAttribute="leading" secondItem="Y6T-T3-pRJ" secondAttribute="leading" constant="70" id="mb4-Oy-kly"/>
@@ -280,15 +289,25 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Y6T-T3-pRJ"/>
                     </view>
+                    <connections>
+                        <outlet property="ageTxtField" destination="HsL-oe-hPt" id="RTu-03-6fj"/>
+                        <outlet property="defaultProfileImg" destination="8KJ-iE-moX" id="slC-eb-2KO"/>
+                        <outlet property="emailTxtField" destination="Qof-gr-h8o" id="Dvp-2W-h6J"/>
+                        <outlet property="genderSegmentedControl" destination="cTW-0r-mPU" id="yLw-Th-0Bt"/>
+                        <outlet property="importProfilImg" destination="Cdi-ds-NMb" id="wVn-Iv-ubz"/>
+                        <outlet property="nameTxtField" destination="49P-Af-MvJ" id="IIt-KY-rdw"/>
+                        <outlet property="passwordTxtField" destination="6l9-hU-el0" id="QXY-5I-2Mg"/>
+                        <outlet property="progressBar" destination="fAe-Oc-cd0" id="K15-Xt-LvK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="782-3S-SUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="120.28985507246378" y="773.4375"/>
         </scene>
-        <!--View Controller-->
+        <!--LoginVC-->
         <scene sceneID="wbl-0c-GaA">
             <objects>
-                <viewController id="heg-GE-ICD" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="heg-GE-ICD" customClass="LoginVC" customModule="Musica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="13Q-yo-rOj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -327,6 +346,9 @@
                                 <state key="normal" title="Connexion">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="signInBtnPressed:" destination="heg-GE-ICD" eventType="touchUpInside" id="APm-Hv-A8c"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPW-Zo-eLE">
                                 <rect key="frame" x="10" y="54" width="25" height="25"/>
@@ -335,6 +357,9 @@
                                     <constraint firstAttribute="height" constant="25" id="LHr-vI-yRF"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="closeBtnPressed:" destination="heg-GE-ICD" eventType="touchUpInside" id="HAx-1l-THq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -353,25 +378,134 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ePm-4c-iNk"/>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="AQS-FT-Sa6" id="84E-ok-Zl9"/>
+                        <outlet property="passwordField" destination="fYS-BR-0lZ" id="Og8-SU-pMM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j0H-ZF-uu0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="799" y="116"/>
         </scene>
-        <!--View Controller-->
+        <!--My ProfileVC-->
         <scene sceneID="kJ4-tn-X2o">
             <objects>
-                <viewController id="enT-J4-iqp" sceneMemberID="viewController">
+                <viewController id="enT-J4-iqp" customClass="MyProfileVC" customModule="Musica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bx1-zz-4Lm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1dw-q8-hfz">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="B37-ZN-ZPu">
+                                <rect key="frame" x="135" y="346.5" width="144" height="141.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVT-lq-9l2">
+                                        <rect key="frame" x="50" y="0.0" width="44.5" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre Musical" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0s-vq-qG2">
+                                        <rect key="frame" x="2.5" y="57.5" width="139" height="26.5"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r62-HH-MkH">
+                                        <rect key="frame" x="53" y="114" width="38" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Su3-td-pWU">
+                                <rect key="frame" x="20" y="563" width="374" height="39"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
+                                <state key="normal" title="Click here to change image profile">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FiL-wQ-0hi">
+                                <rect key="frame" x="15" y="59" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="jLK-a5-hiX"/>
+                                    <constraint firstAttribute="width" constant="25" id="pax-JT-OZ3"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="QNy-jf-VaI">
+                                <rect key="frame" x="123" y="129" width="168" height="197.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v8a-T9-lMV">
+                                        <rect key="frame" x="14" y="0.0" width="140" height="140"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="140" id="Mnj-Cm-uUM"/>
+                                            <constraint firstAttribute="height" constant="140" id="dbr-cz-7UK"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adresse@mail.fr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-b5-iIt">
+                                        <rect key="frame" x="0.0" y="170" width="168" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lu-ci-ZtL">
+                                <rect key="frame" x="348" y="59" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="signOutBtnPressed:" destination="enT-J4-iqp" eventType="touchUpInside" id="m4I-fj-lc3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTK-iL-yth">
+                                <rect key="frame" x="15" y="59" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="btnDismissedPressed:" destination="enT-J4-iqp" eventType="touchUpInside" id="7pc-kC-XmF"/>
+                                    <action selector="signOutBtnPressed:" destination="enT-J4-iqp" eventType="touchUpInside" id="gpr-zh-LvG"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="u56-ET-xNd" firstAttribute="trailing" secondItem="QNy-jf-VaI" secondAttribute="trailing" constant="123" id="5YB-ws-Aw8"/>
+                            <constraint firstItem="u56-ET-xNd" firstAttribute="trailing" secondItem="Su3-td-pWU" secondAttribute="trailing" constant="20" id="7nf-81-AcK"/>
+                            <constraint firstItem="QNy-jf-VaI" firstAttribute="top" secondItem="u56-ET-xNd" secondAttribute="top" constant="85" id="AeB-m4-5UF"/>
+                            <constraint firstItem="1dw-q8-hfz" firstAttribute="leading" secondItem="u56-ET-xNd" secondAttribute="leading" id="DxK-0F-x9E"/>
+                            <constraint firstItem="u56-ET-xNd" firstAttribute="bottom" secondItem="Su3-td-pWU" secondAttribute="bottom" constant="260" id="EVQ-46-Gw5"/>
+                            <constraint firstItem="B37-ZN-ZPu" firstAttribute="top" secondItem="QNy-jf-VaI" secondAttribute="bottom" constant="20" id="EyA-rn-8uC"/>
+                            <constraint firstItem="FiL-wQ-0hi" firstAttribute="leading" secondItem="u56-ET-xNd" secondAttribute="leading" constant="15" id="FsN-Dx-DGd"/>
+                            <constraint firstItem="u56-ET-xNd" firstAttribute="trailing" secondItem="B37-ZN-ZPu" secondAttribute="trailing" constant="135" id="NWQ-13-DKd"/>
+                            <constraint firstItem="u56-ET-xNd" firstAttribute="bottom" secondItem="1dw-q8-hfz" secondAttribute="bottom" id="RaY-hi-bEh"/>
+                            <constraint firstItem="B37-ZN-ZPu" firstAttribute="centerX" secondItem="Bx1-zz-4Lm" secondAttribute="centerX" id="eC7-Gw-75Q"/>
+                            <constraint firstItem="FiL-wQ-0hi" firstAttribute="top" secondItem="u56-ET-xNd" secondAttribute="top" constant="15" id="eYu-ok-V4W"/>
+                            <constraint firstItem="QNy-jf-VaI" firstAttribute="leading" secondItem="u56-ET-xNd" secondAttribute="leading" constant="123" id="hy3-W4-JUm"/>
+                            <constraint firstItem="u56-ET-xNd" firstAttribute="trailing" secondItem="1dw-q8-hfz" secondAttribute="trailing" id="kc4-ME-ncW"/>
+                            <constraint firstItem="1dw-q8-hfz" firstAttribute="top" secondItem="u56-ET-xNd" secondAttribute="top" id="sWG-ff-32x"/>
+                            <constraint firstItem="QNy-jf-VaI" firstAttribute="centerX" secondItem="Bx1-zz-4Lm" secondAttribute="centerX" id="spT-zu-Zpa"/>
+                            <constraint firstItem="Su3-td-pWU" firstAttribute="leading" secondItem="u56-ET-xNd" secondAttribute="leading" constant="20" id="v5h-Av-LdJ"/>
+                            <constraint firstItem="B37-ZN-ZPu" firstAttribute="leading" secondItem="u56-ET-xNd" secondAttribute="leading" constant="135" id="vp2-xq-OPg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="u56-ET-xNd"/>
                     </view>
+                    <connections>
+                        <outlet property="ageAcc" destination="r62-HH-MkH" id="YXw-PV-Pic"/>
+                        <outlet property="emailAcc" destination="rgp-b5-iIt" id="bIO-dN-bVJ"/>
+                        <outlet property="musicStyle" destination="n0s-vq-qG2" id="vJe-8g-7ji"/>
+                        <outlet property="nameAcc" destination="fVT-lq-9l2" id="qEN-lC-Ois"/>
+                        <outlet property="profileImg" destination="v8a-T9-lMV" id="nvM-6O-gt9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mi0-cF-k6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="799" y="773"/>
+            <point key="canvasLocation" x="798.55072463768124" y="772.76785714285711"/>
         </scene>
     </scenes>
 </document>

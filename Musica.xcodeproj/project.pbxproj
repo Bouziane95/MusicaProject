@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		1E750D0F23840A2F00103DEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D0E23840A2F00103DEF /* AppDelegate.swift */; };
-		1E750D1123840A2F00103DEF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D1023840A2F00103DEF /* ViewController.swift */; };
 		1E750D1423840A2F00103DEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E750D1223840A2F00103DEF /* Main.storyboard */; };
 		1E750D1723840A2F00103DEF /* Musica.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D1523840A2F00103DEF /* Musica.xcdatamodeld */; };
 		1E750D1923840A3100103DEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E750D1823840A3100103DEF /* Assets.xcassets */; };
 		1E750D1C23840A3100103DEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E750D1A23840A3100103DEF /* LaunchScreen.storyboard */; };
 		1E750D2723840A3100103DEF /* MusicaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D2623840A3100103DEF /* MusicaTests.swift */; };
+		1E750D322384437B00103DEF /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D312384437B00103DEF /* AuthVC.swift */; };
+		1E750D342384443F00103DEF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E750D332384443F00103DEF /* GoogleService-Info.plist */; };
+		1E750D36238445DC00103DEF /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D35238445DC00103DEF /* DataServices.swift */; };
+		1E750D38238446DC00103DEF /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D37238446DC00103DEF /* AuthService.swift */; };
+		1E750D3A23844B2800103DEF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D3923844B2800103DEF /* LoginVC.swift */; };
+		1E750D3C23844D6300103DEF /* CreateAccVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D3B23844D6300103DEF /* CreateAccVC.swift */; };
+		1E750D3E2384587000103DEF /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D3D2384587000103DEF /* MyProfileVC.swift */; };
+		4CE6316B2262F83B3EBCD38F /* Pods_MusicaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EF5A3480767F8AB2F68A21D /* Pods_MusicaTests.framework */; };
+		B2185EFF9B0881BB6F0B15F8 /* Pods_Musica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78758EC49EC377A305CD925 /* Pods_Musica.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,9 +35,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0236D6A25CB6EA64DC202EA6 /* Pods-MusicaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicaTests.debug.xcconfig"; path = "Target Support Files/Pods-MusicaTests/Pods-MusicaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1E750D0B23840A2F00103DEF /* Musica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E750D0E23840A2F00103DEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1E750D1023840A2F00103DEF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1E750D1323840A2F00103DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E750D1623840A2F00103DEF /* Musica.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Musica.xcdatamodel; sourceTree = "<group>"; };
 		1E750D1823840A3100103DEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,6 +46,18 @@
 		1E750D2223840A3100103DEF /* MusicaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E750D2623840A3100103DEF /* MusicaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicaTests.swift; sourceTree = "<group>"; };
 		1E750D2823840A3100103DEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E750D312384437B00103DEF /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
+		1E750D332384443F00103DEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1E750D35238445DC00103DEF /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
+		1E750D37238446DC00103DEF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		1E750D3923844B2800103DEF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		1E750D3B23844D6300103DEF /* CreateAccVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccVC.swift; sourceTree = "<group>"; };
+		1E750D3D2384587000103DEF /* MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
+		3A7A8E34C020CBC951D4684F /* Pods-Musica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Musica.debug.xcconfig"; path = "Target Support Files/Pods-Musica/Pods-Musica.debug.xcconfig"; sourceTree = "<group>"; };
+		6FFC06072861D59733D204C4 /* Pods-MusicaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicaTests.release.xcconfig"; path = "Target Support Files/Pods-MusicaTests/Pods-MusicaTests.release.xcconfig"; sourceTree = "<group>"; };
+		7CFBE51E2DFC3ED7F7211DE5 /* Pods-Musica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Musica.release.xcconfig"; path = "Target Support Files/Pods-Musica/Pods-Musica.release.xcconfig"; sourceTree = "<group>"; };
+		9EF5A3480767F8AB2F68A21D /* Pods_MusicaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D78758EC49EC377A305CD925 /* Pods_Musica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Musica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2185EFF9B0881BB6F0B15F8 /* Pods_Musica.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CE6316B2262F83B3EBCD38F /* Pods_MusicaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +86,8 @@
 				1E750D0D23840A2F00103DEF /* Musica */,
 				1E750D2523840A3100103DEF /* MusicaTests */,
 				1E750D0C23840A2F00103DEF /* Products */,
+				432C6486F79B792B2AA08E3E /* Pods */,
+				DE31895413CAE2FC269D9FF2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,13 +103,12 @@
 		1E750D0D23840A2F00103DEF /* Musica */ = {
 			isa = PBXGroup;
 			children = (
-				1E750D0E23840A2F00103DEF /* AppDelegate.swift */,
-				1E750D1023840A2F00103DEF /* ViewController.swift */,
-				1E750D1223840A2F00103DEF /* Main.storyboard */,
-				1E750D1823840A3100103DEF /* Assets.xcassets */,
-				1E750D1A23840A3100103DEF /* LaunchScreen.storyboard */,
+				1E750D4223845B0A00103DEF /* Supporting files */,
+				1E750D3F23845AE800103DEF /* Model */,
+				1E750D4023845AEF00103DEF /* View */,
+				1E750D4123845B0100103DEF /* Controller */,
 				1E750D1D23840A3100103DEF /* Info.plist */,
-				1E750D1523840A2F00103DEF /* Musica.xcdatamodeld */,
+				1E750D332384443F00103DEF /* GoogleService-Info.plist */,
 			);
 			path = Musica;
 			sourceTree = "<group>";
@@ -99,6 +122,65 @@
 			path = MusicaTests;
 			sourceTree = "<group>";
 		};
+		1E750D3F23845AE800103DEF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1E750D1523840A2F00103DEF /* Musica.xcdatamodeld */,
+				1E750D312384437B00103DEF /* AuthVC.swift */,
+				1E750D35238445DC00103DEF /* DataServices.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1E750D4023845AEF00103DEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1E750D1223840A2F00103DEF /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1E750D4123845B0100103DEF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1E750D37238446DC00103DEF /* AuthService.swift */,
+				1E750D3923844B2800103DEF /* LoginVC.swift */,
+				1E750D3B23844D6300103DEF /* CreateAccVC.swift */,
+				1E750D3D2384587000103DEF /* MyProfileVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1E750D4223845B0A00103DEF /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				1E750D0E23840A2F00103DEF /* AppDelegate.swift */,
+				1E750D1823840A3100103DEF /* Assets.xcassets */,
+				1E750D1A23840A3100103DEF /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		432C6486F79B792B2AA08E3E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3A7A8E34C020CBC951D4684F /* Pods-Musica.debug.xcconfig */,
+				7CFBE51E2DFC3ED7F7211DE5 /* Pods-Musica.release.xcconfig */,
+				0236D6A25CB6EA64DC202EA6 /* Pods-MusicaTests.debug.xcconfig */,
+				6FFC06072861D59733D204C4 /* Pods-MusicaTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DE31895413CAE2FC269D9FF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D78758EC49EC377A305CD925 /* Pods_Musica.framework */,
+				9EF5A3480767F8AB2F68A21D /* Pods_MusicaTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +188,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E750D2B23840A3100103DEF /* Build configuration list for PBXNativeTarget "Musica" */;
 			buildPhases = (
+				0B6F0B175427D55F3F9E1929 /* [CP] Check Pods Manifest.lock */,
 				1E750D0723840A2F00103DEF /* Sources */,
 				1E750D0823840A2F00103DEF /* Frameworks */,
 				1E750D0923840A2F00103DEF /* Resources */,
+				F4ADE2F9E592A176E65A6F95 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,6 +207,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E750D2E23840A3100103DEF /* Build configuration list for PBXNativeTarget "MusicaTests" */;
 			buildPhases = (
+				D0780BC94A53542AC84178ED /* [CP] Check Pods Manifest.lock */,
 				1E750D1E23840A3100103DEF /* Sources */,
 				1E750D1F23840A3100103DEF /* Frameworks */,
 				1E750D2023840A3100103DEF /* Resources */,
@@ -181,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E750D1C23840A3100103DEF /* LaunchScreen.storyboard in Resources */,
+				1E750D342384443F00103DEF /* GoogleService-Info.plist in Resources */,
 				1E750D1923840A3100103DEF /* Assets.xcassets in Resources */,
 				1E750D1423840A2F00103DEF /* Main.storyboard in Resources */,
 			);
@@ -195,14 +281,94 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0B6F0B175427D55F3F9E1929 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Musica-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0780BC94A53542AC84178ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MusicaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4ADE2F9E592A176E65A6F95 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Musica/Pods-Musica-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Musica/Pods-Musica-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1E750D0723840A2F00103DEF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E750D1123840A2F00103DEF /* ViewController.swift in Sources */,
+				1E750D322384437B00103DEF /* AuthVC.swift in Sources */,
 				1E750D1723840A2F00103DEF /* Musica.xcdatamodeld in Sources */,
+				1E750D3C23844D6300103DEF /* CreateAccVC.swift in Sources */,
+				1E750D3A23844B2800103DEF /* LoginVC.swift in Sources */,
+				1E750D3E2384587000103DEF /* MyProfileVC.swift in Sources */,
+				1E750D38238446DC00103DEF /* AuthService.swift in Sources */,
 				1E750D0F23840A2F00103DEF /* AppDelegate.swift in Sources */,
+				1E750D36238445DC00103DEF /* DataServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +528,7 @@
 		};
 		1E750D2C23840A3100103DEF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A7A8E34C020CBC951D4684F /* Pods-Musica.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -380,6 +547,7 @@
 		};
 		1E750D2D23840A3100103DEF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CFBE51E2DFC3ED7F7211DE5 /* Pods-Musica.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -398,6 +566,7 @@
 		};
 		1E750D2F23840A3100103DEF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0236D6A25CB6EA64DC202EA6 /* Pods-MusicaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -419,6 +588,7 @@
 		};
 		1E750D3023840A3100103DEF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FFC06072861D59733D204C4 /* Pods-MusicaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
