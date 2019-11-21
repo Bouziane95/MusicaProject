@@ -20,6 +20,12 @@
 		1E750D3A23844B2800103DEF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D3923844B2800103DEF /* LoginVC.swift */; };
 		1E750D3C23844D6300103DEF /* CreateAccVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D3B23844D6300103DEF /* CreateAccVC.swift */; };
 		1E750D3E2384587000103DEF /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D3D2384587000103DEF /* MyProfileVC.swift */; };
+		1E7F9E4B2386CD830075826C /* ParamsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E4A2386CD830075826C /* ParamsVC.swift */; };
+		1E7F9E4D2386D0270075826C /* ChooseMusicStyleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E4C2386D0270075826C /* ChooseMusicStyleVC.swift */; };
+		1E7F9E4F2386D8970075826C /* ChooseMusicienStyleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E4E2386D8970075826C /* ChooseMusicienStyleVC.swift */; };
+		1E7F9E512386DEFA0075826C /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E502386DEFA0075826C /* CollectionVC.swift */; };
+		1E7F9E532386E03E0075826C /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E522386E03E0075826C /* CollectionCell.swift */; };
+		1E7F9E552386E5CD0075826C /* DetailUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E542386E5CD0075826C /* DetailUserVC.swift */; };
 		4CE6316B2262F83B3EBCD38F /* Pods_MusicaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EF5A3480767F8AB2F68A21D /* Pods_MusicaTests.framework */; };
 		B2185EFF9B0881BB6F0B15F8 /* Pods_Musica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78758EC49EC377A305CD925 /* Pods_Musica.framework */; };
 /* End PBXBuildFile section */
@@ -53,6 +59,12 @@
 		1E750D3923844B2800103DEF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		1E750D3B23844D6300103DEF /* CreateAccVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccVC.swift; sourceTree = "<group>"; };
 		1E750D3D2384587000103DEF /* MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
+		1E7F9E4A2386CD830075826C /* ParamsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParamsVC.swift; sourceTree = "<group>"; };
+		1E7F9E4C2386D0270075826C /* ChooseMusicStyleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusicStyleVC.swift; sourceTree = "<group>"; };
+		1E7F9E4E2386D8970075826C /* ChooseMusicienStyleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusicienStyleVC.swift; sourceTree = "<group>"; };
+		1E7F9E502386DEFA0075826C /* CollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
+		1E7F9E522386E03E0075826C /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		1E7F9E542386E5CD0075826C /* DetailUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserVC.swift; sourceTree = "<group>"; };
 		3A7A8E34C020CBC951D4684F /* Pods-Musica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Musica.debug.xcconfig"; path = "Target Support Files/Pods-Musica/Pods-Musica.debug.xcconfig"; sourceTree = "<group>"; };
 		6FFC06072861D59733D204C4 /* Pods-MusicaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicaTests.release.xcconfig"; path = "Target Support Files/Pods-MusicaTests/Pods-MusicaTests.release.xcconfig"; sourceTree = "<group>"; };
 		7CFBE51E2DFC3ED7F7211DE5 /* Pods-Musica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Musica.release.xcconfig"; path = "Target Support Files/Pods-Musica/Pods-Musica.release.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +159,12 @@
 				1E750D3923844B2800103DEF /* LoginVC.swift */,
 				1E750D3B23844D6300103DEF /* CreateAccVC.swift */,
 				1E750D3D2384587000103DEF /* MyProfileVC.swift */,
+				1E7F9E4A2386CD830075826C /* ParamsVC.swift */,
+				1E7F9E4C2386D0270075826C /* ChooseMusicStyleVC.swift */,
+				1E7F9E4E2386D8970075826C /* ChooseMusicienStyleVC.swift */,
+				1E7F9E502386DEFA0075826C /* CollectionVC.swift */,
+				1E7F9E522386E03E0075826C /* CollectionCell.swift */,
+				1E7F9E542386E5CD0075826C /* DetailUserVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -363,12 +381,18 @@
 			files = (
 				1E750D322384437B00103DEF /* AuthVC.swift in Sources */,
 				1E750D1723840A2F00103DEF /* Musica.xcdatamodeld in Sources */,
+				1E7F9E532386E03E0075826C /* CollectionCell.swift in Sources */,
 				1E750D3C23844D6300103DEF /* CreateAccVC.swift in Sources */,
 				1E750D3A23844B2800103DEF /* LoginVC.swift in Sources */,
 				1E750D3E2384587000103DEF /* MyProfileVC.swift in Sources */,
+				1E7F9E4F2386D8970075826C /* ChooseMusicienStyleVC.swift in Sources */,
 				1E750D38238446DC00103DEF /* AuthService.swift in Sources */,
 				1E750D0F23840A2F00103DEF /* AppDelegate.swift in Sources */,
+				1E7F9E4D2386D0270075826C /* ChooseMusicStyleVC.swift in Sources */,
 				1E750D36238445DC00103DEF /* DataServices.swift in Sources */,
+				1E7F9E512386DEFA0075826C /* CollectionVC.swift in Sources */,
+				1E7F9E552386E5CD0075826C /* DetailUserVC.swift in Sources */,
+				1E7F9E4B2386CD830075826C /* ParamsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
