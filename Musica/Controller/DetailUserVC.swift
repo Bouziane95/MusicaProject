@@ -12,19 +12,18 @@ class DetailUserVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        nameUser.text = name
+        imageProfile.image = UIImage(named: name)
+        musicStyleUser.text = musicStyle
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    var name = ""
+    var musicStyle = ""
+    
+    @IBOutlet weak var imageProfile: UIImageView!
+    @IBOutlet weak var nameUser: UILabel!
+    @IBOutlet weak var musicStyleUser: UILabel!
+    @IBOutlet weak var mySoundsBtn: UIButton!
+    
+   
 }

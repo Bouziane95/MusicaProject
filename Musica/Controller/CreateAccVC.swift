@@ -24,6 +24,7 @@ class CreateAccVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyBoardWhenTappedAround()
+        progressBar.isHidden = true
     }
     
     func hideKeyBoardWhenTappedAround() {

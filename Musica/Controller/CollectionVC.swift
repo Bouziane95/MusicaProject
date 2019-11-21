@@ -19,13 +19,13 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBAction func settingsBtnPressed(_ sender: Any) {
-        let searchingVC = storyboard?.instantiateViewController(withIdentifier: "SearchingVC")
-        present(searchingVC!, animated: true, completion: nil)
+        let profilVC = storyboard?.instantiateViewController(withIdentifier: "ProfileVC")
+        present(profilVC!, animated: true, completion: nil)
     }
     
     @IBAction func searchBtnPressed(_ sender: Any) {
-        let profileVC = storyboard?.instantiateViewController(withIdentifier: "ProfileVC")
-        present(profileVC!, animated: true, completion: nil)
+        let searchingVC = storyboard?.instantiateViewController(withIdentifier: "SearchingVC")
+        present(searchingVC!, animated: true, completion: nil)
     }
     
     
@@ -62,6 +62,9 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailUser") as? DetailUser
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailUserVC") as? DetailUserVC
+        detailVC?.name = users[indexPath.row]
+        detailVC?.musicStyle = musicianStyle[indexPath.row]
+        self.navigationController?.pushViewController(detailVC!, animated: true)
     }
 }
