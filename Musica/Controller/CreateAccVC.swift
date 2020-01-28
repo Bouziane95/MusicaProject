@@ -9,8 +9,9 @@
 import UIKit
 import FirebaseStorage
 import Photos
+import Firebase
 
-class CreateAccVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateAccVC: UIViewController {
     
     @IBOutlet weak var emailTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
@@ -19,12 +20,26 @@ class CreateAccVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
     @IBOutlet weak var ageTxtField: UITextField!
     @IBOutlet weak var defaultProfileImg: UIImageView!
-    @IBOutlet weak var importProfilImg: UIButton!
+    
+    
+    var imagePicker : UIImagePickerController!
+    var imageReference : StorageReference{
+        return Storage.storage().reference().child("imgProfiles")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyBoardWhenTappedAround()
         progressBar.isHidden = true
+        let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
+        defaultProfileImg.isUserInteractionEnabled = true
+        defaultProfileImg.addGestureRecognizer(imageTap)
+        defaultProfileImg.layer.cornerRadius = defaultProfileImg.bounds.height / 2
+        defaultProfileImg.clipsToBounds = true
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
     }
     
     func hideKeyBoardWhenTappedAround() {
@@ -37,30 +52,33 @@ class CreateAccVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
         view.endEditing(true)
     }
     
+    func uploadPhoto(){
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let storageRef = imageReference.child("\(uid)")
+        
+        guard let image = defaultProfileImg.image else {return}
+        guard let imageData = image.jpegData(compressionQuality: 1) else {return}
+        
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        
+        let uploadTask = storageRef.putData(imageData, metadata: metaData) { (metadata, error) in
+            print(metadata ?? "NO METADATA")
+            print(error ?? "NO ERROR")
+        }
+        uploadTask.observe(.progress) { (snapshot) in
+            print(snapshot.progress ?? "NO MORE PROGRESS")
+        }
+        uploadTask.resume()
+    }
     
     @IBAction func createAccPressed(_ sender: Any) {
         progressBar.isHidden = true
-        if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil{
-            let randomID = UUID.init().uuidString
-            let uploadRef = Storage.storage().reference(withPath: "imgProfiles/\(randomID).jpg")
-            guard let imageData = defaultProfileImg.image?.jpegData(compressionQuality: 0.75) else {return}
-            let uploadMetaData = StorageMetadata.init()
-            uploadMetaData.contentType = "image/jpeg"
-            let taskReference = uploadRef.putData(imageData, metadata: uploadMetaData) { (dowloadMetaData, error) in
-                if let error = error{
-                    print("\(error.localizedDescription)")
-                    return
-                }
-                print("\(dowloadMetaData)")
-            }
-            taskReference.observe(.progress) { [weak self](snapshot) in
-                guard let progressThere = snapshot.progress?.fractionCompleted else {return}
-                self?.progressBar.progress = Float(progressThere)
-                
-            }
-            
-            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!) { (success, registrationError) in
+        if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
+            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!) { (success, registrationError)
+                in
                 if success{
+                    self.uploadPhoto()
                     print("Succes registration")
                     let LoginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
                     self.present(LoginVc!, animated: true, completion: nil)
@@ -71,65 +89,25 @@ class CreateAccVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
         }
     }
     
-    func presentPhotoPickerController(){
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
-        myPickerController.allowsEditing = true
-        self.present(myPickerController, animated: true)
-    }
-    
-    func libraryAccessRestricted(){
-        let alert = UIAlertController(title: "Photo library access restricted", message: "Photo Library is rectricted and cannot be accessed", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default)
-        alert.addAction(okAction)
-        self.present(alert, animated: true)
-    }
-    
-    func restrictions(){
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-            PHPhotoLibrary.requestAuthorization { (status) in
-                switch status{
-                case .authorized :
-                    self.presentPhotoPickerController()
-                    
-                case .notDetermined :
-                    self.presentPhotoPickerController()
-                    
-                case .restricted :
-                    self.libraryAccessRestricted()
-                    
-                case .denied :
-                    let alert = UIAlertController(title: "Photo Library access denied", message: "Previously denied, please change your settings if you want to change this", preferredStyle: .alert)
-                    let goToSettingsAction = UIAlertAction(title: "Go to settings", style: .default) { (action) in
-                        DispatchQueue.main.async {
-                            let url = URL(string: UIApplication.openSettingsURLString)!
-                            UIApplication.shared.open(url, options: [:])
-                        }
-                    }
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-                    alert.addAction(goToSettingsAction)
-                    alert.addAction(cancelAction)
-                    self.present(alert, animated: true)
-                }
-            }
-        }
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-            defaultProfileImg.image = image
-        }
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func importProfilPic(_ sender: Any) {
-        restrictions()
-    }
-    
     @IBAction func closeBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+}
+
+extension CreateAccVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-
-
+    @objc func openImagePicker(_ sender: Any){
+              self.present(imagePicker, animated: true, completion: nil)
+          }
+          
+          func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+              picker.dismiss(animated: true, completion: nil)
+          }
+          
+          func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+              if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+                  self.defaultProfileImg.image = pickedImage
+              }
+              picker.dismiss(animated: true, completion: nil)
+          }
 }

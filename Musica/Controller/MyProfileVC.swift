@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import Photos
 
+
 class MyProfileVC: UIViewController {
 
     @IBOutlet weak var emailAcc: UILabel!
@@ -18,6 +19,10 @@ class MyProfileVC: UIViewController {
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var nameAcc: UILabel!
     
+    var imageReference : StorageReference{
+        return Storage.storage().reference().child("imgProfiles")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -25,21 +30,26 @@ class MyProfileVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.emailAcc.text = Auth.auth().currentUser?.email
-        fetchImageProfil()
+        downloadPhoto()
     }
     
-    func fetchImageProfil(){
-        let storageRef = Storage.storage().reference(withPath: "imgProfiles/153E93A1-9A60-4CC7-B8CA-D4EA4BB170FE.jpg")
-        storageRef.getData(maxSize: 4 * 1024 * 1024) { [weak self] (data, error) in
-            if let error = error {
-                print("\(error.localizedDescription)")
-                return
+    func downloadPhoto(){
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let downloadImageRef = imageReference.child("\(uid)")
+        let downloadTask = downloadImageRef.getData(maxSize: 1024 * 1024 * 12) { (data, error) in
+            if let data = data {
+                let image = UIImage(data: data)
+                self.profileImg.image = image
             }
-            if let data = data{
-                self?.profileImg.image = UIImage(data: data)
-            }
+            print(error ?? "NO ERROR")
         }
+        downloadTask.observe(.progress) { (snapshot) in
+            print(snapshot.progress ?? "NO PROGRESS NOW")
+        }
+        downloadTask.resume()
     }
+    
+    
     @IBAction func signOutBtnPressed(_ sender: Any) {
         let logoutPopUp = UIAlertController(title: "Déconnexion", message: "êtes-vous sûr de vouloir vous déconnecter ?", preferredStyle: .actionSheet)
         let cancelLogout = UIAlertAction(title: "Annuler", style: .cancel, handler: nil)
