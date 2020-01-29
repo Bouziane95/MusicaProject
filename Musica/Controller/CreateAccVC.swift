@@ -18,19 +18,21 @@ class CreateAccVC: UIViewController {
     @IBOutlet weak var nameTxtField: UITextField!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var ageTxtField: UITextField!
+    @IBOutlet weak var agePickerView: UIPickerView!
     @IBOutlet weak var defaultProfileImg: UIImageView!
-    
     
     var imagePicker : UIImagePickerController!
     var imageReference : StorageReference{
         return Storage.storage().reference().child("imgProfiles")
     }
+    var pickerData : [String] = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loopPickerData()
+        self.agePickerView.delegate = self
+        self.agePickerView.dataSource = self
         hideKeyBoardWhenTappedAround()
-        progressBar.isHidden = true
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
         defaultProfileImg.isUserInteractionEnabled = true
         defaultProfileImg.addGestureRecognizer(imageTap)
@@ -40,6 +42,14 @@ class CreateAccVC: UIViewController {
         imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
+    }
+    
+    func loopPickerData(){
+    for i in 18...99{
+        let b = String(i)
+        pickerData.append(b)
+        //print(pickerData)
+        }
     }
     
     func hideKeyBoardWhenTappedAround() {
@@ -73,9 +83,8 @@ class CreateAccVC: UIViewController {
     }
     
     @IBAction func createAccPressed(_ sender: Any) {
-        progressBar.isHidden = true
         if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
-            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!) { (success, registrationError)
+            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, name: self.nameTxtField.text!) { (success, registrationError)
                 in
                 if success{
                     self.uploadPhoto()
@@ -111,3 +120,23 @@ extension CreateAccVC: UIImagePickerControllerDelegate, UINavigationControllerDe
               picker.dismiss(animated: true, completion: nil)
           }
 }
+
+extension CreateAccVC: UIPickerViewDelegate, UIPickerViewDataSource{
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(string: pickerData[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+    }
+}
+

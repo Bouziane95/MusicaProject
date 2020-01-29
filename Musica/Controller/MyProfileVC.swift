@@ -30,7 +30,20 @@ class MyProfileVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.emailAcc.text = Auth.auth().currentUser?.email
-        downloadPhoto()
+        downloadName()
+        //downloadPhoto()
+    }
+    
+    func downloadName(){
+        let roofRef = Database.database().reference()
+        let query = roofRef.child("users").queryOrdered(byChild: "name")
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot]{
+                let value = child.value as? NSDictionary
+                let name = value?["name"] as? String ?? ""
+                self.nameAcc.text = name
+            }
+        }
     }
     
     func downloadPhoto(){
