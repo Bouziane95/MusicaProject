@@ -31,6 +31,7 @@ class MyProfileVC: UIViewController {
         super.viewWillAppear(animated)
         self.emailAcc.text = Auth.auth().currentUser?.email
         downloadName()
+        downloadAge()
         //downloadPhoto()
     }
     
@@ -42,6 +43,18 @@ class MyProfileVC: UIViewController {
                 let value = child.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
                 self.nameAcc.text = name
+            }
+        }
+    }
+    
+    func downloadAge(){
+        let roofRef = Database.database().reference()
+        let query = roofRef.child("users").queryOrdered(byChild: "age")
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot]{
+                let value = child.value as? NSDictionary
+                let age = value?["age"] as? String ?? ""
+                self.ageAcc.text = age
             }
         }
     }

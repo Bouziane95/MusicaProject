@@ -18,21 +18,30 @@ class CreateAccVC: UIViewController {
     @IBOutlet weak var nameTxtField: UITextField!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var agePickerView: UIPickerView!
     @IBOutlet weak var defaultProfileImg: UIImageView!
+    @IBOutlet weak var ageTxtField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     
     var imagePicker : UIImagePickerController!
     var imageReference : StorageReference{
         return Storage.storage().reference().child("imgProfiles")
     }
-    var pickerData : [String] = [String]()
+    
+    let rockMusicien = ["Guitariste" , "Batteur"]
+    let jazzMusicien = ["Contre-Bassiste"]
+    let hiphopMusicien = ["Break-Dance"]
+    var sectionData: [Int: [String]] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loopPickerData()
-        self.agePickerView.delegate = self
-        self.agePickerView.dataSource = self
+        ageTxtField.delegate = self
+        tapImage()
+        imagePicker.delegate = self
         hideKeyBoardWhenTappedAround()
+        sectionData = [0 : rockMusicien, 1 : jazzMusicien, 2 : hiphopMusicien]
+    }
+    
+    func tapImage(){
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
         defaultProfileImg.isUserInteractionEnabled = true
         defaultProfileImg.addGestureRecognizer(imageTap)
@@ -41,15 +50,6 @@ class CreateAccVC: UIViewController {
         imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
-        imagePicker.delegate = self
-    }
-    
-    func loopPickerData(){
-    for i in 18...99{
-        let b = String(i)
-        pickerData.append(b)
-        //print(pickerData)
-        }
     }
     
     func hideKeyBoardWhenTappedAround() {
@@ -82,9 +82,21 @@ class CreateAccVC: UIViewController {
         uploadTask.resume()
     }
     
+    func displayAlertMessage(msg: String){
+          let alert = UIAlertController(title: "We need more informations", message: msg, preferredStyle: .alert)
+          let okAction = UIAlertAction(title: "Ok",style: .default, handler: nil)
+          alert.addAction(okAction)
+          self.present(alert, animated: true, completion: nil)
+      }
+    
+    @IBAction func setMusicStyle(_ sender: Any) {
+        let SetMusicStyleVC = storyboard?.instantiateViewController(withIdentifier: "SetMusicStyleVC")
+        present(SetMusicStyleVC!, animated: true, completion: nil)
+    }
+    
     @IBAction func createAccPressed(_ sender: Any) {
         if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
-            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, name: self.nameTxtField.text!) { (success, registrationError)
+            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, name: self.nameTxtField.text!, age: self.ageTxtField.text!) { (success, registrationError)
                 in
                 if success{
                     self.uploadPhoto()
@@ -92,6 +104,7 @@ class CreateAccVC: UIViewController {
                     let LoginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
                     self.present(LoginVc!, animated: true, completion: nil)
                 } else {
+                    self.displayAlertMessage(msg: "\(registrationError!.localizedDescription)")
                     print(String(describing: registrationError?.localizedDescription))
                 }
             }
@@ -121,22 +134,67 @@ extension CreateAccVC: UIImagePickerControllerDelegate, UINavigationControllerDe
           }
 }
 
-extension CreateAccVC: UIPickerViewDelegate, UIPickerViewDataSource{
+extension CreateAccVC: UITextFieldDelegate{
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        var startString = ""
+
+        if textField.text != nil {
+            startString += textField.text!
+        }
+
+        startString += string
+
+        let limitNumber = Int(startString)
+
+        if limitNumber! > 99  {
+            return false
+        } else {
+            return true
+        }
+    }
+}
+
+extension CreateAccVC: UITableViewDataSource, UITableViewDelegate{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (sectionData[section]?.count)!
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "musicCell", for: indexPath)
+        cell.textLabel?.text = sectionData[indexPath.section]![indexPath.row]
+        cell.textLabel?.font = UIFont(name: "Avenir Next", size: 17)
+        cell.textLabel?.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        return cell
     }
     
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: pickerData[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var headerTitle : String?
+        
+        if section == 0 {
+            headerTitle = "Rock"
+        }
+        if section == 1 {
+            headerTitle = "Jazz"
+        }
+        if section == 2 {
+            headerTitle = "Hip-Hop"
+        }
+        return headerTitle
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark{
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

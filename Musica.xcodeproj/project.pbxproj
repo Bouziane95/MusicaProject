@@ -104,6 +104,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E22970B23E3392200D00DEE /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				1E750D312384437B00103DEF /* AuthVC.swift */,
+				1E750D3923844B2800103DEF /* LoginVC.swift */,
+				1E750D3B23844D6300103DEF /* CreateAccVC.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		1E22970C23E3394800D00DEE /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				1E750D3D2384587000103DEF /* MyProfileVC.swift */,
+				1E7F9E4A2386CD830075826C /* ParamsVC.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		1E22970D23E339AA00D00DEE /* Searching */ = {
+			isa = PBXGroup;
+			children = (
+				1E7F9E4C2386D0270075826C /* ChooseMusicStyleVC.swift */,
+				1E7F9E4E2386D8970075826C /* ChooseMusicienStyleVC.swift */,
+				1E7F9E502386DEFA0075826C /* CollectionVC.swift */,
+				1E7F9E522386E03E0075826C /* CollectionCell.swift */,
+			);
+			path = Searching;
+			sourceTree = "<group>";
+		};
+		1E22970E23E339F100D00DEE /* MusicienProfile */ = {
+			isa = PBXGroup;
+			children = (
+				1E7F9E542386E5CD0075826C /* DetailUserVC.swift */,
+				1E7F9E562386EC8C0075826C /* SoundVC.swift */,
+				1E76163623AA4D7A0064C9D7 /* MusicSampleVC.swift */,
+				1E76163823AA4DAB0064C9D7 /* MusicSampleCell.swift */,
+			);
+			path = MusicienProfile;
+			sourceTree = "<group>";
+		};
 		1E750D0223840A2F00103DEF = {
 			isa = PBXGroup;
 			children = (
@@ -170,19 +211,10 @@
 		1E750D4123845B0100103DEF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1E750D312384437B00103DEF /* AuthVC.swift */,
-				1E750D3923844B2800103DEF /* LoginVC.swift */,
-				1E750D3B23844D6300103DEF /* CreateAccVC.swift */,
-				1E750D3D2384587000103DEF /* MyProfileVC.swift */,
-				1E7F9E4A2386CD830075826C /* ParamsVC.swift */,
-				1E7F9E4C2386D0270075826C /* ChooseMusicStyleVC.swift */,
-				1E7F9E4E2386D8970075826C /* ChooseMusicienStyleVC.swift */,
-				1E7F9E502386DEFA0075826C /* CollectionVC.swift */,
-				1E7F9E522386E03E0075826C /* CollectionCell.swift */,
-				1E7F9E542386E5CD0075826C /* DetailUserVC.swift */,
-				1E7F9E562386EC8C0075826C /* SoundVC.swift */,
-				1E76163623AA4D7A0064C9D7 /* MusicSampleVC.swift */,
-				1E76163823AA4DAB0064C9D7 /* MusicSampleCell.swift */,
+				1E22970B23E3392200D00DEE /* Authentication */,
+				1E22970C23E3394800D00DEE /* UserProfile */,
+				1E22970D23E339AA00D00DEE /* Searching */,
+				1E22970E23E339F100D00DEE /* MusicienProfile */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
