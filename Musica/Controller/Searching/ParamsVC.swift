@@ -26,7 +26,7 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     }
     
     @IBAction func chooseMusicStyle(_ sender: Any) {
-        let chooseMusicStyleVC = storyboard?.instantiateViewController(withIdentifier: "chooseMusicStyleVC")
+        let chooseMusicStyleVC = storyboard?.instantiateViewController(withIdentifier: "ChooseMusicienVC")
         present(chooseMusicStyleVC!, animated: true, completion: nil)
     }
     
@@ -42,11 +42,12 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
+                  tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+              } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+              }
+              tableView.deselectRow(at: indexPath, animated: true)
+          }
     }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        tableView.cellForRow(at: indexPath)?.accessoryType = .none
-    }
-    
-}
+

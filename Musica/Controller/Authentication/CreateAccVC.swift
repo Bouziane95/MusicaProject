@@ -31,6 +31,7 @@ class CreateAccVC: UIViewController {
     let jazzMusicien = ["Contre-Bassiste"]
     let hiphopMusicien = ["Break-Dance"]
     var sectionData: [Int: [String]] = [:]
+    var musicStyle = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +97,7 @@ class CreateAccVC: UIViewController {
     
     @IBAction func createAccPressed(_ sender: Any) {
         if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
-            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, name: self.nameTxtField.text!, age: self.ageTxtField.text!) { (success, registrationError)
+            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle) { (success, registrationError)
                 in
                 if success{
                     self.uploadPhoto()
