@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -15,6 +16,10 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    var imageReference : StorageReference{
+           return Storage.storage().reference().child("imgProfiles")
+       }
+    var arrayName = [String]()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -56,7 +61,32 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "musicaCell", for: indexPath) as! CollectionCell
-        cell.userNameLbl.text = users[indexPath.row]
+        
+        let roofRef = Database.database().reference()
+        let query = roofRef.child("users").queryOrdered(byChild: "name")
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot]{
+                let value = child.value as? NSDictionary
+                let name = value?["name"] as? String ?? ""
+                self.arrayName.append(name)
+                cell.userNameLbl.text = self.arrayName[indexPath.row]
+            }
+        }
+        
+//        let uid = Auth.auth().currentUser?.uid
+//        let downloadImageRef = imageReference.child("\(uid)")
+//        let downloadTask = downloadImageRef.getData(maxSize: 1024 * 1024 * 12) { (data, error) in
+//            if let data = data {
+//                let image = UIImage(data: data)
+//                cell.profilUsersImage.image = image
+//            }
+//            print(error ?? "NO ERROR")
+//        }
+//        downloadTask.observe(.progress) { (snapshot) in
+//            print(snapshot.progress ?? "NO PROGRESS NOW")
+//        }
+//        downloadTask.resume()
+        
         cell.profilUsersImage.image = userImage[indexPath.row]
         return cell
     }

@@ -26,4 +26,9 @@ class DetailUserVC: UIViewController {
     @IBOutlet weak var mySoundsBtn: UIButton!
     
    
+    @IBAction func sendMsgBtnPressed(_ sender: Any) {
+        let ChatVC = storyboard?.instantiateViewController(withIdentifier: "ChatVC")
+        present(ChatVC!, animated: true, completion: nil)
+    }
+
 }

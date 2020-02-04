@@ -42,6 +42,7 @@ class MyProfileVC: UIViewController {
             for child in snapshot.children.allObjects as! [DataSnapshot]{
                 let value = child.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
+                print(name)
                 self.nameAcc.text = name
             }
         }
@@ -54,6 +55,7 @@ class MyProfileVC: UIViewController {
             for child in snapshot.children.allObjects as! [DataSnapshot]{
                 let value = child.value as? NSDictionary
                 let age = value?["age"] as? String ?? ""
+                print(age)
                 self.ageAcc.text = age
             }
         }
