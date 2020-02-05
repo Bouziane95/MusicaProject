@@ -11,6 +11,7 @@ import FirebaseStorage
 import Photos
 import Firebase
 
+
 class CreateAccVC: UIViewController {
     
     @IBOutlet weak var emailTxtField: UITextField!
@@ -32,6 +33,7 @@ class CreateAccVC: UIViewController {
     let hiphopMusicien = ["Break-Dance"]
     var sectionData: [Int: [String]] = [:]
     var musicStyle = [String]()
+    var profilImg : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,28 +65,45 @@ class CreateAccVC: UIViewController {
         view.endEditing(true)
     }
     
-    func uploadPhoto(){
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        let storageRef = imageReference.child("\(uid)")
-        
-        guard let image = defaultProfileImg.image else {return}
-        guard let imageData = image.jpegData(compressionQuality: 1) else {return}
-        
-        let metaData = StorageMetadata()
-        metaData.contentType = "image/jpg"
-        
-        let uploadTask = storageRef.putData(imageData, metadata: metaData) { (metadata, error) in
-            print(metadata ?? "NO METADATA")
-            print(error ?? "NO ERROR")
-        }
-        uploadTask.observe(.progress) { (snapshot) in
-            print(snapshot.progress ?? "NO MORE PROGRESS")
-        }
-        uploadTask.resume()
-    }
+//    func uploadPhoto(){
+//        guard let uid = Auth.auth().currentUser?.uid else {return}
+//        let storageRef = imageReference.child("\(uid)")
+//
+//        guard let image = defaultProfileImg.image else {return}
+//        guard let imageData = image.jpegData(compressionQuality: 1) else {return}
+//
+//        let metaData = StorageMetadata()
+//        metaData.contentType = "image/jpg"
+//
+//        let uploadTask = storageRef.putData(imageData, metadata: metaData) { (metadata, error) in
+//            print(metadata ?? "NO METADATA")
+//            print(error ?? "NO ERROR")
+//        }
+//        uploadTask.observe(.progress) { (snapshot) in
+//            print(snapshot.progress ?? "NO MORE PROGRESS")
+//        }
+//        uploadTask.resume()
+//    }
     
-    func displayAlertMessage(msg: String){
-          let alert = UIAlertController(title: "We need more informations", message: msg, preferredStyle: .alert)
+    func uploadPhoto(){
+        let storageRef = Storage.storage().reference().child("profileImg")
+        if let uploadData = self.defaultProfileImg.image?.pngData(){
+            
+            storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                storageRef.downloadURL { (<#URL?#>, <#Error?#>) in
+                    <#code#>
+                }
+            }
+        }
+        
+    }
+
+    func displayAlertMessage(title: String, msg: String){
+          let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
           let okAction = UIAlertAction(title: "Ok",style: .default, handler: nil)
           alert.addAction(okAction)
           self.present(alert, animated: true, completion: nil)
@@ -97,7 +116,7 @@ class CreateAccVC: UIViewController {
     
     @IBAction func createAccPressed(_ sender: Any) {
         if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
-            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle) { (success, registrationError)
+            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, name: self.nameTxtField.text!, age: self.ageTxtField.text!, profileImage: <#String#>, musicStyle: musicStyle) { (success, registrationError)
                 in
                 if success{
                     self.uploadPhoto()
@@ -105,7 +124,7 @@ class CreateAccVC: UIViewController {
                     let LoginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
                     self.present(LoginVc!, animated: true, completion: nil)
                 } else {
-                    self.displayAlertMessage(msg: "\(registrationError!.localizedDescription)")
+                    self.displayAlertMessage(title: "Error",msg: "\(registrationError!.localizedDescription)")
                     print(String(describing: registrationError?.localizedDescription))
                 }
             }

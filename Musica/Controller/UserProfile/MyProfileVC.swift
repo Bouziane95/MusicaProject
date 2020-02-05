@@ -29,35 +29,17 @@ class MyProfileVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.emailAcc.text = Auth.auth().currentUser?.email
-        downloadName()
-        downloadAge()
-        //downloadPhoto()
+        downloadUserData()
     }
     
-    func downloadName(){
-        let roofRef = Database.database().reference()
-        let query = roofRef.child("users").queryOrdered(byChild: "name")
-        query.observeSingleEvent(of: .value) { (snapshot) in
-            for child in snapshot.children.allObjects as! [DataSnapshot]{
-                let value = child.value as? NSDictionary
-                let name = value?["name"] as? String ?? ""
-                print(name)
-                self.nameAcc.text = name
-            }
-        }
-    }
-    
-    func downloadAge(){
-        let roofRef = Database.database().reference()
-        let query = roofRef.child("users").queryOrdered(byChild: "age")
-        query.observeSingleEvent(of: .value) { (snapshot) in
-            for child in snapshot.children.allObjects as! [DataSnapshot]{
-                let value = child.value as? NSDictionary
-                let age = value?["age"] as? String ?? ""
-                print(age)
-                self.ageAcc.text = age
-            }
+    func downloadUserData(){
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            guard let dict = snapshot.value as? [String: Any] else {return}
+            let user = CurrentUser(uid: uid, dictionnary: dict)
+            self.emailAcc.text = user.email
+            self.nameAcc.text = user.name
+            self.ageAcc.text = user.age
         }
     }
     

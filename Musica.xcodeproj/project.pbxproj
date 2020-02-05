@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E11870C23E9AB150079A29D /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11870B23E9AB150079A29D /* CurrentUser.swift */; };
 		1E178E2823E0B7130057638E /* Purple_Haze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E178E2723E0B7130057638E /* Purple_Haze.mp3 */; };
 		1E750D0F23840A2F00103DEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D0E23840A2F00103DEF /* AppDelegate.swift */; };
 		1E750D1423840A2F00103DEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E750D1223840A2F00103DEF /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		0236D6A25CB6EA64DC202EA6 /* Pods-MusicaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicaTests.debug.xcconfig"; path = "Target Support Files/Pods-MusicaTests/Pods-MusicaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1E11870B23E9AB150079A29D /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		1E178E2723E0B7130057638E /* Purple_Haze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Purple_Haze.mp3; sourceTree = "<group>"; };
 		1E750D0B23840A2F00103DEF /* Musica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E750D0E23840A2F00103DEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				1E750D35238445DC00103DEF /* DataServices.swift */,
 				1E750D37238446DC00103DEF /* AuthService.swift */,
 				1E9C7F9223E87A43006D9F99 /* Message.swift */,
+				1E11870B23E9AB150079A29D /* CurrentUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				1E7F9E552386E5CD0075826C /* DetailUserVC.swift in Sources */,
 				1E9C7F9323E87A43006D9F99 /* Message.swift in Sources */,
 				1E7F9E572386EC8C0075826C /* SoundVC.swift in Sources */,
+				1E11870C23E9AB150079A29D /* CurrentUser.swift in Sources */,
 				1E7F9E4B2386CD830075826C /* ParamsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
