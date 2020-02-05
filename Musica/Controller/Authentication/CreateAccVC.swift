@@ -11,7 +11,6 @@ import FirebaseStorage
 import Photos
 import Firebase
 
-
 class CreateAccVC: UIViewController {
     
     @IBOutlet weak var emailTxtField: UITextField!
@@ -25,15 +24,14 @@ class CreateAccVC: UIViewController {
     
     var imagePicker : UIImagePickerController!
     var imageReference : StorageReference{
-        return Storage.storage().reference().child("imgProfiles")
+        return Storage.storage().reference().child("profileImg")
     }
     
     let rockMusicien = ["Guitariste" , "Batteur"]
     let jazzMusicien = ["Contre-Bassiste"]
     let hiphopMusicien = ["Break-Dance"]
-    var sectionData: [Int: [String]] = [:]
+    let sections = ["Rock", "Jazz", "Hip-Hop"]
     var musicStyle = [String]()
-    var profilImg : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +39,6 @@ class CreateAccVC: UIViewController {
         tapImage()
         imagePicker.delegate = self
         hideKeyBoardWhenTappedAround()
-        sectionData = [0 : rockMusicien, 1 : jazzMusicien, 2 : hiphopMusicien]
     }
     
     func tapImage(){
@@ -65,58 +62,31 @@ class CreateAccVC: UIViewController {
         view.endEditing(true)
     }
     
-//    func uploadPhoto(){
-//        guard let uid = Auth.auth().currentUser?.uid else {return}
-//        let storageRef = imageReference.child("\(uid)")
-//
-//        guard let image = defaultProfileImg.image else {return}
-//        guard let imageData = image.jpegData(compressionQuality: 1) else {return}
-//
-//        let metaData = StorageMetadata()
-//        metaData.contentType = "image/jpg"
-//
-//        let uploadTask = storageRef.putData(imageData, metadata: metaData) { (metadata, error) in
-//            print(metadata ?? "NO METADATA")
-//            print(error ?? "NO ERROR")
-//        }
-//        uploadTask.observe(.progress) { (snapshot) in
-//            print(snapshot.progress ?? "NO MORE PROGRESS")
-//        }
-//        uploadTask.resume()
-//    }
-    
     func uploadPhoto(){
-        let storageRef = Storage.storage().reference().child("profileImg")
+        let storageRef = imageReference
         if let uploadData = self.defaultProfileImg.image?.pngData(){
             
             storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                 if error != nil {
-                    print(error)
+                    print(error!)
                     return
                 }
-                storageRef.downloadURL { (<#URL?#>, <#Error?#>) in
-                    <#code#>
+                storageRef.downloadURL { (url, error) in
+                    if error != nil {
+                        print(error!)
+                        return
+                    }
+                    let urlString = url!.absoluteString
+                    let userData = ["profileImg" : urlString]
+                    DataServices.instance.createDBUsers(unikID: Auth.auth().currentUser!.uid, userData: userData)
                 }
             }
         }
-        
-    }
-
-    func displayAlertMessage(title: String, msg: String){
-          let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-          let okAction = UIAlertAction(title: "Ok",style: .default, handler: nil)
-          alert.addAction(okAction)
-          self.present(alert, animated: true, completion: nil)
-      }
-    
-    @IBAction func setMusicStyle(_ sender: Any) {
-        let SetMusicStyleVC = storyboard?.instantiateViewController(withIdentifier: "SetMusicStyleVC")
-        present(SetMusicStyleVC!, animated: true, completion: nil)
     }
     
     @IBAction func createAccPressed(_ sender: Any) {
         if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
-            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, name: self.nameTxtField.text!, age: self.ageTxtField.text!, profileImage: <#String#>, musicStyle: musicStyle) { (success, registrationError)
+            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle) { (success, registrationError)
                 in
                 if success{
                     self.uploadPhoto()
@@ -129,6 +99,18 @@ class CreateAccVC: UIViewController {
                 }
             }
         }
+    }
+
+    func displayAlertMessage(title: String, msg: String){
+          let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+          let okAction = UIAlertAction(title: "Ok",style: .default, handler: nil)
+          alert.addAction(okAction)
+          self.present(alert, animated: true, completion: nil)
+      }
+    
+    @IBAction func setMusicStyle(_ sender: Any) {
+        let SetMusicStyleVC = storyboard?.instantiateViewController(withIdentifier: "SetMusicStyleVC")
+        present(SetMusicStyleVC!, animated: true, completion: nil)
     }
     
     @IBAction func closeBtnPressed(_ sender: Any) {
@@ -182,30 +164,40 @@ extension CreateAccVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (sectionData[section]?.count)!
+        switch section {
+        case 0 :
+            return rockMusicien.count
+        case 1 :
+            return jazzMusicien.count
+        case 2 :
+            return hiphopMusicien.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "musicCell", for: indexPath)
-        cell.textLabel?.text = sectionData[indexPath.section]![indexPath.row]
+        switch indexPath.section{
+        case 0 :
+            cell.textLabel?.text = rockMusicien[indexPath.row]
+            break
+        case 1 :
+            cell.textLabel?.text = jazzMusicien[indexPath.row]
+            break
+        case 2 :
+            cell.textLabel?.text = hiphopMusicien[indexPath.row]
+            break
+        default :
+            break
+        }
         cell.textLabel?.font = UIFont(name: "Avenir Next", size: 17)
         cell.textLabel?.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var headerTitle : String?
-        
-        if section == 0 {
-            headerTitle = "Rock"
-        }
-        if section == 1 {
-            headerTitle = "Jazz"
-        }
-        if section == 2 {
-            headerTitle = "Hip-Hop"
-        }
-        return headerTitle
+        return sections[section]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

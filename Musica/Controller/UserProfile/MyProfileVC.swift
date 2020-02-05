@@ -40,6 +40,13 @@ class MyProfileVC: UIViewController {
             self.emailAcc.text = user.email
             self.nameAcc.text = user.name
             self.ageAcc.text = user.age
+            
+            let imageUrlString = user.profileImageUrl
+            let imageUrl = URL(string: imageUrlString)
+            let imageData = try! Data(contentsOf: imageUrl!)
+            let imageProfil = UIImage(data: imageData)
+            
+            self.profileImg.image = imageProfil
         }
     }
     
