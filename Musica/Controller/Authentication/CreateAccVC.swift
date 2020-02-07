@@ -84,11 +84,17 @@ class CreateAccVC: UIViewController {
         }
     }
     
+    func registerMusicStyle(){
+        let userData = ["MusicStyle" : musicStyle]
+        DataServices.instance.createDBUsers(unikID: Auth.auth().currentUser!.uid, userData: userData)
+    }
+    
     @IBAction func createAccPressed(_ sender: Any) {
         if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
             AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle) { (success, registrationError)
                 in
                 if success{
+                    self.registerMusicStyle()
                     self.uploadPhoto()
                     print("Succes registration")
                     let LoginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
@@ -203,10 +209,41 @@ extension CreateAccVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark{
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+            switch indexPath.section{
+            case 0 :
+                musicStyle.remove(at: indexPath.row)
+                break
+            case 1 :
+                musicStyle.remove(at: indexPath.row)
+                break
+            case 2 :
+                musicStyle.remove(at: indexPath.row)
+                break
+            default :
+                break
+            }
         } else {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+            switch indexPath.section{
+            case 0 :
+                let newMusicStyle = rockMusicien[indexPath.row]
+                musicStyle.append(newMusicStyle)
+                break
+            case 1 :
+                let newMusicStyle = jazzMusicien[indexPath.row]
+                musicStyle.append(newMusicStyle)
+                break
+            case 2 :
+                let newMusicStyle = hiphopMusicien[indexPath.row]
+                musicStyle.append(newMusicStyle)
+                break
+            default :
+                break
+            }
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+
 

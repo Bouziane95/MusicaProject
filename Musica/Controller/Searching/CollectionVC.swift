@@ -16,10 +16,11 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-    var imageReference : StorageReference{
-           return Storage.storage().reference().child("imgProfiles")
+    var imageReference : DatabaseReference{
+           return Database.database().reference().child("profileImg")
        }
     var arrayName = [String]()
+    var arrayProfilImage = [String]()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -32,8 +33,6 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         let searchingVC = storyboard?.instantiateViewController(withIdentifier: "SearchingVC")
         present(searchingVC!, animated: true, completion: nil)
     }
-    
-    
     
     let users = ["Paul McCartney", "David Gilmour", "James Hetfield", "Phil Rudd", "Mick Jagger", "Jimi Hendrix", "Elvis Presley", "Michael Jackson", "Bob Marley", "Stevie Wonder", "James Brown", "Aretha Franklin"]
     
@@ -51,8 +50,7 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         UIImage(named: "James Brown")!,
         UIImage(named: "Aretha Franklin")!,
     ]
-    
-    
+
     let musicianStyle = ["Guitariste", "Guitariste", "Guitariste", "Batteur", "Guitariste", "Bassiste", "Chanteur", "Chanteur", "Chanteur", "Chanteur", "Chanteur", "Chanteuse"]
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -68,25 +66,22 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
             for child in snapshot.children.allObjects as! [DataSnapshot]{
                 let value = child.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
+                print(name)
                 self.arrayName.append(name)
                 cell.userNameLbl.text = self.arrayName[indexPath.row]
             }
         }
         
-//        let uid = Auth.auth().currentUser?.uid
-//        let downloadImageRef = imageReference.child("\(uid)")
-//        let downloadTask = downloadImageRef.getData(maxSize: 1024 * 1024 * 12) { (data, error) in
-//            if let data = data {
-//                let image = UIImage(data: data)
-//                cell.profilUsersImage.image = image
+//        let rootRefImg = Database.database().reference()
+//        let queryImg = rootRefImg.child("users").queryOrdered(byChild: "profileImg")
+//        queryImg.observeSingleEvent(of: .value) { (snapshot) in
+//            for child in snapshot.children.allObjects as! [DataSnapshot]{
+//                let value = child.value as? NSDictionary
+//                let urlProfilImg = value?["profileImg"] as? String ?? ""
+//                self.arrayProfilImage.append(urlProfilImg)
+//                print(self.arrayProfilImage)
 //            }
-//            print(error ?? "NO ERROR")
 //        }
-//        downloadTask.observe(.progress) { (snapshot) in
-//            print(snapshot.progress ?? "NO PROGRESS NOW")
-//        }
-//        downloadTask.resume()
-        
         cell.profilUsersImage.image = userImage[indexPath.row]
         return cell
     }

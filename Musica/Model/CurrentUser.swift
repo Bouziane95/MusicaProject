@@ -23,3 +23,15 @@ struct CurrentUser{
         self.profileImageUrl = dictionnary["profileImg"] as? String ?? ""
     }
 }
+
+struct Users{
+    let name: String
+    let age: String
+    let profileImageUrl: String
+    
+    init(dictionnary: [String: Any]) {
+        self.name = dictionnary["name"] as? String ?? ""
+        self.age = dictionnary["age"] as? String ?? ""
+        self.profileImageUrl = dictionnary["profileImg"] as? String ?? ""
+    }
+}
