@@ -46,7 +46,11 @@ class MyProfileVC: UIViewController {
             let imageData = try! Data(contentsOf: imageUrl!)
             let imageProfil = UIImage(data: imageData)
             
+            let userMusicStyleArray = user.userMusicStyle
+            let userMusicStyle = userMusicStyleArray.joined(separator: ",")
+            
             self.profileImg.image = imageProfil
+            self.musicStyle.text = userMusicStyle
         }
     }
     

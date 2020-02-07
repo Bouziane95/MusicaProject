@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YNY-DI-KW7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0ex-tn-Wi3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -629,7 +629,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="B37-ZN-ZPu">
-                                <rect key="frame" x="135" y="346.5" width="144" height="141.5"/>
+                                <rect key="frame" x="135" y="311.5" width="144" height="85"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVT-lq-9l2">
                                         <rect key="frame" x="50" y="0.0" width="44.5" height="27.5"/>
@@ -637,14 +637,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre Musical" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0s-vq-qG2">
-                                        <rect key="frame" x="2.5" y="57.5" width="139" height="26.5"/>
-                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r62-HH-MkH">
-                                        <rect key="frame" x="53" y="114" width="38" height="27.5"/>
+                                        <rect key="frame" x="53" y="57.5" width="38" height="27.5"/>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -660,7 +654,7 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="QNy-jf-VaI">
-                                <rect key="frame" x="100" y="129" width="214" height="197.5"/>
+                                <rect key="frame" x="100" y="94" width="214" height="197.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="v8a-T9-lMV">
                                         <rect key="frame" x="37" y="0.5" width="140" height="139"/>
@@ -704,17 +698,25 @@
                                     <action selector="signOutBtnPressed:" destination="enT-J4-iqp" eventType="touchUpInside" id="gpr-zh-LvG"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre Musical" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0s-vq-qG2">
+                                <rect key="frame" x="137.5" y="416.5" width="139" height="26.5"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vTK-iL-yth" firstAttribute="top" secondItem="u56-ET-xNd" secondAttribute="top" constant="10" id="20x-As-KTj"/>
                             <constraint firstItem="u56-ET-xNd" firstAttribute="trailing" secondItem="QNy-jf-VaI" secondAttribute="trailing" constant="100" id="5YB-ws-Aw8"/>
-                            <constraint firstItem="QNy-jf-VaI" firstAttribute="top" secondItem="u56-ET-xNd" secondAttribute="top" constant="85" id="AeB-m4-5UF"/>
+                            <constraint firstItem="QNy-jf-VaI" firstAttribute="top" secondItem="u56-ET-xNd" secondAttribute="top" constant="50" id="AeB-m4-5UF"/>
                             <constraint firstItem="B37-ZN-ZPu" firstAttribute="top" secondItem="QNy-jf-VaI" secondAttribute="bottom" constant="20" id="EyA-rn-8uC"/>
                             <constraint firstItem="FiL-wQ-0hi" firstAttribute="leading" secondItem="u56-ET-xNd" secondAttribute="leading" constant="15" id="FsN-Dx-DGd"/>
+                            <constraint firstItem="n0s-vq-qG2" firstAttribute="top" secondItem="B37-ZN-ZPu" secondAttribute="bottom" constant="20" id="Gue-u8-Uo8"/>
                             <constraint firstItem="3lu-ci-ZtL" firstAttribute="top" secondItem="u56-ET-xNd" secondAttribute="top" constant="10" id="IK5-Ap-OMS"/>
                             <constraint firstItem="u56-ET-xNd" firstAttribute="trailing" secondItem="B37-ZN-ZPu" secondAttribute="trailing" constant="135" id="NWQ-13-DKd"/>
                             <constraint firstItem="vTK-iL-yth" firstAttribute="leading" secondItem="u56-ET-xNd" secondAttribute="leading" constant="10" id="Z6C-lf-wFL"/>
+                            <constraint firstItem="n0s-vq-qG2" firstAttribute="centerX" secondItem="Bx1-zz-4Lm" secondAttribute="centerX" id="bZI-Jv-DcL"/>
                             <constraint firstItem="B37-ZN-ZPu" firstAttribute="centerX" secondItem="Bx1-zz-4Lm" secondAttribute="centerX" id="eC7-Gw-75Q"/>
                             <constraint firstItem="FiL-wQ-0hi" firstAttribute="top" secondItem="u56-ET-xNd" secondAttribute="top" constant="15" id="eYu-ok-V4W"/>
                             <constraint firstItem="QNy-jf-VaI" firstAttribute="leading" secondItem="u56-ET-xNd" secondAttribute="leading" constant="100" id="hy3-W4-JUm"/>
@@ -1142,7 +1144,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guitar" translatesAutoresizingMaskIntoConstraints="NO" id="iUo-1M-rMl">
-                                <rect key="frame" x="5" y="88" width="404" height="319"/>
+                                <rect key="frame" x="5" y="88" width="404" height="319.00000000000011"/>
                             </imageView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ztK-wv-AGX">
                                 <rect key="frame" x="20" y="415" width="374" height="2"/>

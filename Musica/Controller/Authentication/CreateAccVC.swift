@@ -84,17 +84,11 @@ class CreateAccVC: UIViewController {
         }
     }
     
-    func registerMusicStyle(){
-        let userData = ["MusicStyle" : musicStyle]
-        DataServices.instance.createDBUsers(unikID: Auth.auth().currentUser!.uid, userData: userData)
-    }
-    
     @IBAction func createAccPressed(_ sender: Any) {
         if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
             AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle) { (success, registrationError)
                 in
                 if success{
-                    self.registerMusicStyle()
                     self.uploadPhoto()
                     print("Succes registration")
                     let LoginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
