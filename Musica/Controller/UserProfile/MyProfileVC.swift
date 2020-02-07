@@ -18,6 +18,7 @@ class MyProfileVC: UIViewController {
     @IBOutlet weak var ageAcc: UILabel!
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var nameAcc: UILabel!
+    @IBOutlet weak var userGender: UILabel!
     
     var imageReference : StorageReference{
         return Storage.storage().reference().child("imgProfiles")
@@ -49,8 +50,12 @@ class MyProfileVC: UIViewController {
             let userMusicStyleArray = user.userMusicStyle
             let userMusicStyle = userMusicStyleArray.joined(separator: ",")
             
+            let userGenderArray = user.userGender
+            let userGenderString = userGenderArray.joined(separator: ",")
+            
             self.profileImg.image = imageProfil
             self.musicStyle.text = userMusicStyle
+            self.userGender.text = userGenderString
         }
     }
     
