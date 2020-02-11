@@ -19,6 +19,7 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     var imageReference : DatabaseReference{
            return Database.database().reference().child("profileImg")
        }
+    
     var arrayName = [String]()
     var arrayProfilImage = [String]()
     
@@ -54,23 +55,28 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     let musicianStyle = ["Guitariste", "Guitariste", "Guitariste", "Batteur", "Guitariste", "Bassiste", "Chanteur", "Chanteur", "Chanteur", "Chanteur", "Chanteur", "Chanteuse"]
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return users.count
+        //return arrayName.count
+        return 16
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "musicaCell", for: indexPath) as! CollectionCell
         
         let roofRef = Database.database().reference()
-        let query = roofRef.child("users").queryOrdered(byChild: "name")
-        query.observeSingleEvent(of: .value) { (snapshot) in
-            for child in snapshot.children.allObjects as! [DataSnapshot]{
-                let value = child.value as? NSDictionary
-                let name = value?["name"] as? String ?? ""
-                print(name)
-                self.arrayName.append(name)
-                cell.userNameLbl.text = self.arrayName[indexPath.row]
-            }
-        }
+               let query = roofRef.child("users").queryOrdered(byChild: "name")
+               query.observeSingleEvent(of: .value) { (snapshot) in
+                   for child in snapshot.children.allObjects as! [DataSnapshot]{
+                       let value = child.value as? NSDictionary
+                       let name = value?["name"] as? String ?? ""
+                    self.arrayName.append(name)
+                    print(self.arrayName)
+                    print(self.arrayName.count)
+                    cell.userNameLbl.text = self.arrayName[indexPath.row]
+                   }
+               }
+        
+        
+        //cell.userNameLbl.text = users[indexPath.row]
         
 //        let rootRefImg = Database.database().reference()
 //        let queryImg = rootRefImg.child("users").queryOrdered(byChild: "profileImg")
@@ -82,7 +88,7 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
 //                print(self.arrayProfilImage)
 //            }
 //        }
-        cell.profilUsersImage.image = userImage[indexPath.row]
+        //cell.profilUsersImage.image = userImage[indexPath.row]
         return cell
     }
     
