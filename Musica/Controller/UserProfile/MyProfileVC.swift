@@ -19,10 +19,7 @@ class MyProfileVC: UIViewController {
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var nameAcc: UILabel!
     @IBOutlet weak var userGender: UILabel!
-    
-    var imageReference : StorageReference{
-        return Storage.storage().reference().child("imgProfiles")
-    }
+    @IBOutlet weak var descriptionAcc: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +38,8 @@ class MyProfileVC: UIViewController {
             self.emailAcc.text = user.email
             self.nameAcc.text = user.name
             self.ageAcc.text = user.age
+            self.descriptionAcc.text = user.description
+            print(user.description)
             
             let imageUrlString = user.profileImageUrl
             let imageUrl = URL(string: imageUrlString)
@@ -48,7 +47,7 @@ class MyProfileVC: UIViewController {
             let imageProfil = UIImage(data: imageData)
             
             let userMusicStyleArray = user.userMusicStyle
-            let userMusicStyle = userMusicStyleArray.joined(separator: ",")
+            let userMusicStyle = userMusicStyleArray.joined(separator: ", ")
             
             let userGenderArray = user.userGender
             let userGenderString = userGenderArray.joined(separator: ",")
@@ -58,23 +57,6 @@ class MyProfileVC: UIViewController {
             self.userGender.text = userGenderString
         }
     }
-    
-    func downloadPhoto(){
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        let downloadImageRef = imageReference.child("\(uid)")
-        let downloadTask = downloadImageRef.getData(maxSize: 1024 * 1024 * 12) { (data, error) in
-            if let data = data {
-                let image = UIImage(data: data)
-                self.profileImg.image = image
-            }
-            print(error ?? "NO ERROR")
-        }
-        downloadTask.observe(.progress) { (snapshot) in
-            print(snapshot.progress ?? "NO PROGRESS NOW")
-        }
-        downloadTask.resume()
-    }
-    
     
     @IBAction func signOutBtnPressed(_ sender: Any) {
         let logoutPopUp = UIAlertController(title: "Déconnexion", message: "êtes-vous sûr de vouloir vous déconnecter ?", preferredStyle: .actionSheet)

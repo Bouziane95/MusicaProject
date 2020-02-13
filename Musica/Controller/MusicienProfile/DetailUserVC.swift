@@ -13,8 +13,8 @@ class DetailUserVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nameUser.text = name
-        imageProfile.image = UIImage(named: name)
-        musicStyleUser.text = musicStyle
+        //imageProfile.image = UIImage(named: name)
+        //musicStyleUser.text = musicStyle
     }
     
     var name = ""

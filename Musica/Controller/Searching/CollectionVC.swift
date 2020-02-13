@@ -15,13 +15,15 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        getNamesUser()
+        getImgUser()
     }
-    var imageReference : DatabaseReference{
-           return Database.database().reference().child("profileImg")
-       }
     
     var arrayName = [String]()
     var arrayProfilImage = [String]()
+    var imageReference : DatabaseReference{
+           return Database.database().reference().child("profileImg")
+       }
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -34,8 +36,6 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         let searchingVC = storyboard?.instantiateViewController(withIdentifier: "SearchingVC")
         present(searchingVC!, animated: true, completion: nil)
     }
-    
-    let users = ["Paul McCartney", "David Gilmour", "James Hetfield", "Phil Rudd", "Mick Jagger", "Jimi Hendrix", "Elvis Presley", "Michael Jackson", "Bob Marley", "Stevie Wonder", "James Brown", "Aretha Franklin"]
     
     let userImage: [UIImage] = [
         UIImage(named: "Paul McCartney")!,
@@ -54,48 +54,58 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
 
     let musicianStyle = ["Guitariste", "Guitariste", "Guitariste", "Batteur", "Guitariste", "Bassiste", "Chanteur", "Chanteur", "Chanteur", "Chanteur", "Chanteur", "Chanteuse"]
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return arrayName.count
-        return 16
+    func getNamesUser(){
+        let rootRef = Database.database().reference()
+        let query = rootRef.child("users").queryOrdered(byChild: "name")
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            let nameArray = snapshot.children.allObjects as! [DataSnapshot]
+            for child in nameArray{
+                let value = child.value as? NSDictionary
+                let child = value?["name"] as? String
+                self.arrayName.append(child!)
+            }
+            self.collectionView.reloadData()
+        }
     }
     
+    func getImgUser(){
+        let rootRef = Database.database().reference()
+        let query = rootRef.child("users").queryOrdered(byChild: "profileImg")
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            let nameArray = snapshot.children.allObjects as! [DataSnapshot]
+            for child in nameArray{
+                let value = child.value as? NSDictionary
+                let child = value?["profileImg"] as? String
+                self.arrayProfilImage.append(child!)
+            }
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return arrayName.count
+    }
+            
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "musicaCell", for: indexPath) as! CollectionCell
-        
-        let roofRef = Database.database().reference()
-               let query = roofRef.child("users").queryOrdered(byChild: "name")
-               query.observeSingleEvent(of: .value) { (snapshot) in
-                   for child in snapshot.children.allObjects as! [DataSnapshot]{
-                       let value = child.value as? NSDictionary
-                       let name = value?["name"] as? String ?? ""
-                    self.arrayName.append(name)
-                    print(self.arrayName)
-                    print(self.arrayName.count)
-                    cell.userNameLbl.text = self.arrayName[indexPath.row]
-                   }
-               }
-        
-        
-        //cell.userNameLbl.text = users[indexPath.row]
-        
-//        let rootRefImg = Database.database().reference()
-//        let queryImg = rootRefImg.child("users").queryOrdered(byChild: "profileImg")
-//        queryImg.observeSingleEvent(of: .value) { (snapshot) in
-//            for child in snapshot.children.allObjects as! [DataSnapshot]{
-//                let value = child.value as? NSDictionary
-//                let urlProfilImg = value?["profileImg"] as? String ?? ""
-//                self.arrayProfilImage.append(urlProfilImg)
-//                print(self.arrayProfilImage)
-//            }
-//        }
+        cell.userNameLbl.text = arrayName[indexPath.row]
         //cell.profilUsersImage.image = userImage[indexPath.row]
         return cell
     }
     
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailUserVC") as? DetailUserVC
+//        detailVC?.name = arrayName[indexPath.row]
+//        detailVC?.musicStyle = musicianStyle[indexPath.row]
+//        self.navigationController?.pushViewController(detailVC!, animated: true)
+//    }
+    
+   
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailUserVC") as? DetailUserVC
-        detailVC?.name = users[indexPath.row]
-        detailVC?.musicStyle = musicianStyle[indexPath.row]
-        self.navigationController?.pushViewController(detailVC!, animated: true)
+        //performSegue(withIdentifier: "show", sender: self)
+        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailUserVC") as? DetailUserVC else {return}
+        present(detailVC, animated: true, completion: nil)
+        detailVC.name = arrayName[indexPath.row]
     }
 }

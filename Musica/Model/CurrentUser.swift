@@ -16,6 +16,7 @@ struct CurrentUser{
     let profileImageUrl: String
     let userMusicStyle : [String]
     let userGender : [String]
+    let description : String
     
     
     init(uid: String, dictionnary: [String: Any]) {
@@ -26,6 +27,7 @@ struct CurrentUser{
         self.profileImageUrl = dictionnary["profileImg"] as? String ?? ""
         self.userMusicStyle = dictionnary["musicStyle"] as? [String] ?? [""]
         self.userGender = dictionnary["sex"] as? [String] ?? [""]
+        self.description = dictionnary["description"] as? String ?? ""
     }
 }
 

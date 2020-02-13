@@ -16,7 +16,7 @@ class CreateAccVC: UIViewController {
     @IBOutlet weak var emailTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
     @IBOutlet weak var nameTxtField: UITextField!
-    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var userDescription: UITextView!
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
     @IBOutlet weak var defaultProfileImg: UIImageView!
     @IBOutlet weak var ageTxtField: UITextField!
@@ -27,7 +27,7 @@ class CreateAccVC: UIViewController {
         return Storage.storage().reference().child("profileImg")
     }
     
-    let rockMusicien = ["Guitariste" , "Batteur"]
+    let rockMusicien = ["Guitariste", "Batteur"]
     let jazzMusicien = ["Contre-Bassiste"]
     let hiphopMusicien = ["Break-Dance"]
     let sections = ["Rock", "Jazz", "Hip-Hop"]
@@ -36,10 +36,13 @@ class CreateAccVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userDescription.delegate = self
         ageTxtField.delegate = self
         tapImage()
         imagePicker.delegate = self
         hideKeyBoardWhenTappedAround()
+        userDescription.text = "Une brève description de vous, ce que vous aimez... de quel instrument vous jouez... vos disponibilités..."
+        userDescription.textColor = UIColor.lightGray
     }
     
     func tapImage(){
@@ -107,7 +110,7 @@ class CreateAccVC: UIViewController {
     
     @IBAction func createAccPressed(_ sender: Any) {
         if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
-            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, gender: genderArray, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle) { (success, registrationError)
+            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, gender: genderArray, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle, userDescription: self.userDescription.text!) { (success, registrationError)
                 in
                 if success{
                     self.uploadPhoto()
@@ -255,5 +258,21 @@ extension CreateAccVC: UITableViewDataSource, UITableViewDelegate{
     }
 }
 
+extension CreateAccVC : UITextViewDelegate{
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray{
+            textView.text = nil
+            textView.textColor = UIColor.white
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty{
+            textView.text = "Une brève description de vous, ce que vous aimez... de quel instrument vous jouez... vos disponibilités..."
+            textView.textColor = UIColor.lightGray
+        }
+    }
+}
 
 
