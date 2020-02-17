@@ -1035,6 +1035,7 @@
                     <navigationItem key="navigationItem" title="Musiciens" id="qHI-Vx-yiJ"/>
                     <connections>
                         <outlet property="collectionView" destination="cJT-Pk-EEj" id="v97-yE-tsf"/>
+                        <segue destination="IA6-S7-dRP" kind="show" identifier="showDetail" id="LaT-xW-VVM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ai-XD-Wa7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1056,7 +1057,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="CD0-ib-KW0">
-                                <rect key="frame" x="15" y="461" width="382" height="383"/>
+                                <rect key="frame" x="15" y="460.5" width="382" height="383.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Présentation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x31-LB-K1i">
                                         <rect key="frame" x="0.0" y="0.0" width="114.5" height="27.5"/>
@@ -1065,7 +1066,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IiY-oe-45p">
-                                        <rect key="frame" x="0.0" y="27.5" width="382" height="355.5"/>
+                                        <rect key="frame" x="0.0" y="27.5" width="382" height="356"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1078,10 +1079,10 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="5bB-aR-k4J">
-                                <rect key="frame" x="240" y="354" width="159" height="73"/>
+                                <rect key="frame" x="240" y="354" width="159" height="72.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AlO-Kb-bwx">
-                                        <rect key="frame" x="87" y="0.0" width="72" height="36"/>
+                                        <rect key="frame" x="87" y="0.0" width="72" height="35.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-MediumOblique" family="Avenir" pointSize="17"/>
                                         <state key="normal" title="Mes sons">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1091,7 +1092,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHD-Vc-8VC">
-                                        <rect key="frame" x="0.0" y="37" width="159" height="36"/>
+                                        <rect key="frame" x="0.0" y="36.5" width="159" height="36"/>
                                         <fontDescription key="fontDescription" name="Avenir-MediumOblique" family="Avenir" pointSize="17"/>
                                         <state key="normal" title="Envoyer un message">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1103,16 +1104,16 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="5NR-9v-3Ue">
-                                <rect key="frame" x="15" y="354" width="92.5" height="79"/>
+                                <rect key="frame" x="15" y="354" width="92.5" height="78.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="bQy-bI-mCu">
-                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="39"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="38.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music Style" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y68-qH-mhU">
-                                        <rect key="frame" x="0.0" y="54" width="92.5" height="25"/>
+                                        <rect key="frame" x="0.0" y="53.5" width="92.5" height="25"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1147,6 +1148,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profil du musicien" id="dKB-Ft-95C"/>
                     <connections>
+                        <outlet property="descriptionUser" destination="IiY-oe-45p" id="rc5-lg-Acn"/>
                         <outlet property="imageProfile" destination="EbN-Bu-vHz" id="Uhr-Oe-PlF"/>
                         <outlet property="musicStyleUser" destination="Y68-qH-mhU" id="ixS-5c-l5P"/>
                         <outlet property="nameUser" destination="bQy-bI-mCu" id="M9S-RO-hZ6"/>
@@ -1414,4 +1416,7 @@
         <image name="plus-10" width="24" height="24"/>
         <image name="settings" width="512" height="512"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="LaT-xW-VVM"/>
+    </inferredMetricsTieBreakers>
 </document>

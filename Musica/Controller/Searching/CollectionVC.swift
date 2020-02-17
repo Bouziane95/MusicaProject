@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 
 class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+   
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,13 +19,20 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         collectionView.dataSource = self
         getNamesUser()
         getImgUser()
+        //getMusicStyleUser()
+        getDescriptionUser()
     }
     
     var arrayName = [String]()
     var arrayProfilImage = [String]()
+    var musicStyleArray = [String]()
+    var arrayDescription = [String]()
     var imageReference : DatabaseReference{
            return Database.database().reference().child("profileImg")
        }
+    var nameIndexpath = String()
+    var descriptionIndexpath = String()
+    var musicStyleIndexpath = String()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -82,6 +91,34 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         }
     }
     
+    func getMusicStyleUser(){
+        let rootRef = Database.database().reference()
+        let query = rootRef.child("users").queryOrdered(byChild: "musicStyle")
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            let musicStyleArray = snapshot.children.allObjects as! [DataSnapshot]
+            for child in musicStyleArray{
+                let value = child.value as? NSDictionary
+                let child = value?["musicStyle"] as? String
+                self.musicStyleArray.append(child!)
+            }
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func getDescriptionUser(){
+        let rootRef = Database.database().reference()
+        let query = rootRef.child("users").queryOrdered(byChild: "description")
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            let musicStyleArray = snapshot.children.allObjects as! [DataSnapshot]
+            for child in musicStyleArray{
+                let value = child.value as? NSDictionary
+                let child = value?["description"] as? String
+                self.arrayDescription.append(child!)
+            }
+            self.collectionView.reloadData()
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrayName.count
     }
@@ -93,19 +130,18 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailUserVC") as? DetailUserVC
-//        detailVC?.name = arrayName[indexPath.row]
-//        detailVC?.musicStyle = musicianStyle[indexPath.row]
-//        self.navigationController?.pushViewController(detailVC!, animated: true)
-//    }
-    
-   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? DetailUserVC{
+            destination.name = nameIndexpath
+            destination.userDescription = descriptionIndexpath
+            destination.musicStyle = musicStyleIndexpath
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //performSegue(withIdentifier: "show", sender: self)
-        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailUserVC") as? DetailUserVC else {return}
-        present(detailVC, animated: true, completion: nil)
-        detailVC.name = arrayName[indexPath.row]
+        nameIndexpath = arrayName[indexPath.row]
+        descriptionIndexpath = arrayDescription[indexPath.row]
+        //musicStyleIndexpath = musicStyleArray[indexPath.row]
+        performSegue(withIdentifier: "showDetail", sender: self)
     }
 }

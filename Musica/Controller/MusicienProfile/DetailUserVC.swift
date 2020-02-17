@@ -9,17 +9,21 @@
 import UIKit
 
 class DetailUserVC: UIViewController {
-
+    
+    var musicStyle = String()
+    var name = String()
+    var userDescription = String()
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         nameUser.text = name
+        musicStyleUser.text = musicStyle
+        descriptionUser.text = userDescription
         //imageProfile.image = UIImage(named: name)
-        //musicStyleUser.text = musicStyle
+        musicStyleUser.text = musicStyle
     }
     
-    var name = ""
-    var musicStyle = ""
-    
+    @IBOutlet weak var descriptionUser: UITextView!
     @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var nameUser: UILabel!
     @IBOutlet weak var musicStyleUser: UILabel!
@@ -30,5 +34,6 @@ class DetailUserVC: UIViewController {
         let ChatVC = storyboard?.instantiateViewController(withIdentifier: "ChatVC")
         present(ChatVC!, animated: true, completion: nil)
     }
+    
 
 }
