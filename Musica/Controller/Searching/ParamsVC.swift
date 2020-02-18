@@ -12,33 +12,106 @@ import UIKit
 class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     var genderArray : Array = ["Hommes", "Femmes", "Pas d'importance"]
+    let rockMusicien = ["Guitariste", "Batteur"]
+    let jazzMusicien = ["Contre-Bassiste"]
+    let hiphopMusicien = ["Break-Dance"]
+    let sections = ["Rock", "Jazz", "Hip-Hop"]
+    var musicStyle = [String]()
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var genderTableView: UITableView!
+    @IBOutlet weak var musicStyleTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
+        genderTableView.dataSource = self
+        genderTableView.delegate = self
+        musicStyleTableView.delegate = self
+        musicStyleTableView.dataSource = self
     }
     
     @IBAction func closeBtnTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func chooseMusicStyle(_ sender: Any) {
-        let chooseMusicStyleVC = storyboard?.instantiateViewController(withIdentifier: "ChooseMusicienVC")
-        present(chooseMusicStyleVC!, animated: true, completion: nil)
+    
+    @IBAction func searchBtn(_ sender: Any) {
+        //Filtrer les resultats de la recherche sur firebase
+        print("Test")
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        var numberSection = 0
+        if tableView == musicStyleTableView{
+            numberSection = 3
+        } else if tableView == genderTableView{
+            numberSection = 1
+        }
+        return numberSection
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return genderArray.count
+        var numberOfRow = 1
+        switch tableView {
+        case genderTableView:
+            numberOfRow = genderArray.count
+        case musicStyleTableView:
+            switch section {
+            case 0:
+                numberOfRow = rockMusicien.count
+            case 1:
+                numberOfRow = jazzMusicien.count
+            case 2:
+                numberOfRow = hiphopMusicien.count
+            default:
+                return 0
+            }
+        default:
+            print("Problem with table view")
+        }
+        return numberOfRow
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "genderCell", for: indexPath)
-        cell.textLabel?.text = genderArray[indexPath.row]
+        
+        var cell = UITableViewCell()
+        switch tableView {
+        case genderTableView:
+            cell = tableView.dequeueReusableCell(withIdentifier: "genderCell", for: indexPath)
+            cell.textLabel?.text = genderArray[indexPath.row]
+            cell.textLabel?.font = UIFont(name: "Avenir Next", size: 17)
+            cell.textLabel?.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        case musicStyleTableView:
+            cell = tableView.dequeueReusableCell(withIdentifier: "musicStyleCell", for: indexPath)
+            switch indexPath.section {
+            case 0:
+                cell.textLabel?.text = rockMusicien[indexPath.row]
+                break
+            case 1:
+                cell.textLabel?.text = jazzMusicien[indexPath.row]
+                break
+            case 2:
+                cell.textLabel?.text = hiphopMusicien[indexPath.row]
+                break
+            default:
+                break
+            }
+            cell.textLabel?.font = UIFont(name: "Avenir Next", size: 17)
+            cell.textLabel?.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        default:
+            print("Error")
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let lasection = sections[section]
+        switch tableView {
+        case musicStyleTableView:
+            return lasection
+        default:
+            break
+        }
+        return "A vous de choisir"
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
