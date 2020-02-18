@@ -39,7 +39,6 @@ class MyProfileVC: UIViewController {
             self.nameAcc.text = user.name
             self.ageAcc.text = user.age
             self.descriptionAcc.text = user.description
-            print(user.description)
             
             let imageUrlString = user.profileImageUrl
             let imageUrl = URL(string: imageUrlString)
