@@ -20,7 +20,7 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         getMusicStyleUser()
         getDescriptionUser()
     }
-    
+    var img = UIImage()
     var arrayName = [String]()
     var arrayProfilImage = [String]()
     var musicStyleArray = [String]()
@@ -31,6 +31,8 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     var nameIndexpath = String()
     var descriptionIndexpath = String()
     var musicStyleIndexpath = [String]()
+    var imgIndexpath = String()
+    private var dispatchQueue: DispatchQueue = DispatchQueue(label: "image")
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -100,6 +102,17 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         }
     }
     
+    func loadingImg(){
+        let arrayImg = arrayProfilImage
+        for i in arrayImg{
+            dispatchQueue.async {
+                let arrayUrl = URL(string: i)!
+                let arrayData = try! Data(contentsOf: arrayUrl)
+                self.img = UIImage(data: arrayData)!
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrayName.count
     }
@@ -107,7 +120,16 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "musicaCell", for: indexPath) as! CollectionCell
         cell.userNameLbl.text = arrayName[indexPath.row]
-        //cell.profilUsersImage.image = userImage[indexPath.row]
+        //        loadingImg()
+        //        cell.profilUsersImage.image = img
+        dispatchQueue.async {
+            let arrayUrl = URL(string: self.arrayProfilImage[indexPath.row])!
+            let arrayData = try! Data(contentsOf: arrayUrl)
+            let img = UIImage(data: arrayData)
+            DispatchQueue.main.async {
+                cell.profilUsersImage.image = img!
+                }
+        }
         return cell
     }
     
@@ -116,10 +138,13 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
             destination.name = nameIndexpath
             destination.userDescription = descriptionIndexpath
             destination.musicStyle = musicStyleIndexpath.joined(separator: ", ")
+            destination.stringImg = imgIndexpath
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(arrayProfilImage[indexPath.row])
+        imgIndexpath = arrayProfilImage[indexPath.row]
         nameIndexpath = arrayName[indexPath.row]
         descriptionIndexpath = arrayDescription[indexPath.row]
         musicStyleIndexpath = musicStyleArray
