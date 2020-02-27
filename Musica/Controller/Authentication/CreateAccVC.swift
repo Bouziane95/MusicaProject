@@ -33,6 +33,7 @@ class CreateAccVC: UIViewController {
     let sections = ["Rock", "Jazz", "Hip-Hop"]
     var musicStyle = [String]()
     var genderArray = [String]()
+    var image = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,8 +82,7 @@ class CreateAccVC: UIViewController {
                         return
                     }
                     let urlString = url!.absoluteString
-                    let userData = ["profileImg" : urlString]
-                    DataServices.instance.createDBUsers(unikID: Auth.auth().currentUser!.uid, userData: userData)
+                    self.image = urlString
                 }
             }
         }
@@ -94,23 +94,21 @@ class CreateAccVC: UIViewController {
             let male = "Homme"
             genderArray.removeAll()
             genderArray.append(male)
-            print(genderArray)
         } else if(genderSegmentedControl.selectedSegmentIndex == 1) {
             let female = "Femme"
             genderArray.removeAll()
             genderArray.append(female)
-            print(genderArray)
         } else if(genderSegmentedControl.selectedSegmentIndex == 2) {
             let nc = "N.C."
             genderArray.removeAll()
             genderArray.append(nc)
-            print(genderArray)
         }
     }
     
     @IBAction func createAccPressed(_ sender: Any) {
+        uploadPhoto()
         if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
-            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, gender: genderArray, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle, userDescription: self.userDescription.text!) { (success, registrationError)
+            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, gender: genderArray, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle, userDescription: self.userDescription.text!, profilImage: image) { (success, registrationError)
                 in
                 if success{
                     self.uploadPhoto()
