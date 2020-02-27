@@ -82,7 +82,8 @@ class CreateAccVC: UIViewController {
                         return
                     }
                     let urlString = url!.absoluteString
-                    self.image = urlString
+                    let userImg = ["profileImg": urlString]
+                    DataServices.instance.createDBUsers(unikID: Auth.auth().currentUser!.uid, userData: userImg)
                 }
             }
         }
@@ -106,9 +107,8 @@ class CreateAccVC: UIViewController {
     }
     
     @IBAction func createAccPressed(_ sender: Any) {
-        uploadPhoto()
         if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
-            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, gender: genderArray, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle, userDescription: self.userDescription.text!, profilImage: image) { (success, registrationError)
+            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, gender: genderArray, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle, userDescription: self.userDescription.text!) { (success, registrationError)
                 in
                 if success{
                     self.uploadPhoto()
