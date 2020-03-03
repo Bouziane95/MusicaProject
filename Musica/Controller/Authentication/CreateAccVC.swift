@@ -23,10 +23,6 @@ class CreateAccVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var imagePicker : UIImagePickerController!
-    var imageReference : StorageReference{
-        return Storage.storage().reference().child("profileImg")
-    }
-    
     let rockMusicien = ["Guitariste", "Batteur"]
     let jazzMusicien = ["Contre-Bassiste"]
     let hiphopMusicien = ["Break-Dance"]
@@ -42,8 +38,6 @@ class CreateAccVC: UIViewController {
         tapImage()
         imagePicker.delegate = self
         hideKeyBoardWhenTappedAround()
-        userDescription.text = "Une brève description de vous, ce que vous aimez... de quel instrument vous jouez... vos disponibilités..."
-        userDescription.textColor = UIColor.lightGray
     }
     
     func tapImage(){
@@ -68,27 +62,26 @@ class CreateAccVC: UIViewController {
     }
     
     func uploadPhoto(){
-        let storageRef = imageReference
-        if let uploadData = self.defaultProfileImg.image?.pngData(){
-            
-            storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                storageRef.downloadURL { (url, error) in
-                    if error != nil {
-                        print(error!)
-                        return
-                    }
-                    let urlString = url!.absoluteString
-                    let userImg = ["profileImg": urlString]
+        guard let imageData = self.defaultProfileImg.image?.jpegData(compressionQuality: 0.4) else {
+            return
+        }
+        let storageRef = Storage.storage().reference(forURL: "gs://musicap-aec73.appspot.com/")
+        let storageProfileRef = storageRef.child("profile").child(Auth.auth().currentUser!.uid)
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        storageProfileRef.putData(imageData, metadata: metadata) { (storageMetaData, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+                return
+            }
+            storageProfileRef.downloadURL { (url, error) in
+                if let metaImgUrl = url?.absoluteString{
+                    let userImg = ["profileImgURL": metaImgUrl]
                     DataServices.instance.createDBUsers(unikID: Auth.auth().currentUser!.uid, userData: userImg)
                 }
             }
         }
     }
-    
     
     @IBAction func SCchanged(_ sender: Any) {
         if(genderSegmentedControl.selectedSegmentIndex == 0){
@@ -113,8 +106,7 @@ class CreateAccVC: UIViewController {
                 if success{
                     self.uploadPhoto()
                     print("Succes registration")
-                    let LoginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
-                    self.present(LoginVc!, animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "showLogin", sender: self)
                 } else {
                     self.displayAlertMessage(title: "Error",msg: "\(registrationError!.localizedDescription)")
                     print(String(describing: registrationError?.localizedDescription))

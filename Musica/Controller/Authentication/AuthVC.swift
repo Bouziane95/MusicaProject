@@ -19,13 +19,11 @@ class AuthVC: UIViewController {
     }
     
     @IBAction func signInEmailBtnPressed(_ sender: Any) {
-        let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC")
-        present(loginVC!, animated: true, completion: nil)
+        performSegue(withIdentifier: "showLogin", sender: self)
     }
     
     @IBAction func createAccBtnPressed(_ sender: Any) {
-        let createAccVC = storyboard?.instantiateViewController(withIdentifier: "CreateAccVC")
-        present(createAccVC!, animated: true, completion: nil)
+        performSegue(withIdentifier: "showCreate", sender: self)
     }
     
 }

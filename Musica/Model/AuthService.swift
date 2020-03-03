@@ -20,7 +20,7 @@ class AuthService {
                 return
             }
             
-            let userData = ["email": email, "name" : name, "age" : age, "musicStyle" : musicStyle, "sex" : gender, "description" : userDescription] as [String : Any]
+            let userData = ["email": email, "name" : name, "age" : age, "musicStyle" : musicStyle, "sex" : gender, "description" : userDescription, "timeStamp" : ServerValue.timestamp()] as [String : Any]
             
             DataServices.instance.createDBUsers(unikID: Auth.auth().currentUser!.uid, userData: userData)
             userCreationComplete(true, nil)

@@ -24,8 +24,7 @@ class LoginVC: UIViewController{
             AuthService.instance.loginUser(withEmail: emailField.text!, andPassword: passwordField.text!) { (success, loginError) in
                 if success{
                     print("Success Login")
-                    let MainVC = self.storyboard?.instantiateViewController(withIdentifier: "Main")
-                    self.present(MainVC!, animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "showHome", sender: self)
                 } else {
                     print(String(describing: loginError?.localizedDescription))
                 }

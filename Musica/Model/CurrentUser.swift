@@ -24,7 +24,7 @@ struct CurrentUser{
         self.name = dictionnary["name"] as? String ?? ""
         self.age = dictionnary["age"] as? String ?? ""
         self.email = dictionnary["email"] as? String ?? ""
-        self.profileImageUrl = dictionnary["profileImg"] as? String ?? ""
+        self.profileImageUrl = dictionnary["profileImgURL"] as? String ?? ""
         self.userMusicStyle = dictionnary["musicStyle"] as? [String] ?? [""]
         self.userGender = dictionnary["sex"] as? [String] ?? [""]
         self.description = dictionnary["description"] as? String ?? ""

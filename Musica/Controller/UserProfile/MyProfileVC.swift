@@ -64,8 +64,7 @@ class MyProfileVC: UIViewController {
         let logoutAction = UIAlertAction(title: "Déconnexion", style: .destructive) { (buttonTapped) in
             do{
                 try Auth.auth().signOut()
-                let authVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthVC") as? AuthVC
-                self.present(authVC!, animated: true, completion: nil)
+                self.performSegue(withIdentifier: "showAuth", sender: self)
             } catch {
                 print(error)
             }

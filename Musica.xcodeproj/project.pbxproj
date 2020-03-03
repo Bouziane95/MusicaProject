@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1E11870C23E9AB150079A29D /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11870B23E9AB150079A29D /* CurrentUser.swift */; };
-		1E178E2823E0B7130057638E /* Purple_Haze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E178E2723E0B7130057638E /* Purple_Haze.mp3 */; };
 		1E750D0F23840A2F00103DEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D0E23840A2F00103DEF /* AppDelegate.swift */; };
 		1E750D1423840A2F00103DEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E750D1223840A2F00103DEF /* Main.storyboard */; };
 		1E750D1723840A2F00103DEF /* Musica.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D1523840A2F00103DEF /* Musica.xcdatamodeld */; };
@@ -22,13 +21,10 @@
 		1E750D3A23844B2800103DEF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D3923844B2800103DEF /* LoginVC.swift */; };
 		1E750D3C23844D6300103DEF /* CreateAccVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D3B23844D6300103DEF /* CreateAccVC.swift */; };
 		1E750D3E2384587000103DEF /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D3D2384587000103DEF /* MyProfileVC.swift */; };
-		1E76163723AA4D7A0064C9D7 /* MusicSampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E76163623AA4D7A0064C9D7 /* MusicSampleVC.swift */; };
-		1E76163923AA4DAB0064C9D7 /* MusicSampleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E76163823AA4DAB0064C9D7 /* MusicSampleCell.swift */; };
 		1E7F9E4B2386CD830075826C /* ParamsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E4A2386CD830075826C /* ParamsVC.swift */; };
 		1E7F9E512386DEFA0075826C /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E502386DEFA0075826C /* CollectionVC.swift */; };
 		1E7F9E532386E03E0075826C /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E522386E03E0075826C /* CollectionCell.swift */; };
 		1E7F9E552386E5CD0075826C /* DetailUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E542386E5CD0075826C /* DetailUserVC.swift */; };
-		1E7F9E572386EC8C0075826C /* SoundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E562386EC8C0075826C /* SoundVC.swift */; };
 		1E9C7F9123E863CC006D9F99 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C7F9023E863CC006D9F99 /* ChatVC.swift */; };
 		1E9C7F9323E87A43006D9F99 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C7F9223E87A43006D9F99 /* Message.swift */; };
 		1EDD414A23E1C1D60044DA29 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD414923E1C1D60044DA29 /* RoundButton.swift */; };
@@ -50,7 +46,6 @@
 /* Begin PBXFileReference section */
 		0236D6A25CB6EA64DC202EA6 /* Pods-MusicaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicaTests.debug.xcconfig"; path = "Target Support Files/Pods-MusicaTests/Pods-MusicaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1E11870B23E9AB150079A29D /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
-		1E178E2723E0B7130057638E /* Purple_Haze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Purple_Haze.mp3; sourceTree = "<group>"; };
 		1E750D0B23840A2F00103DEF /* Musica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E750D0E23840A2F00103DEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E750D1323840A2F00103DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,13 +63,10 @@
 		1E750D3923844B2800103DEF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		1E750D3B23844D6300103DEF /* CreateAccVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccVC.swift; sourceTree = "<group>"; };
 		1E750D3D2384587000103DEF /* MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
-		1E76163623AA4D7A0064C9D7 /* MusicSampleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSampleVC.swift; sourceTree = "<group>"; };
-		1E76163823AA4DAB0064C9D7 /* MusicSampleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSampleCell.swift; sourceTree = "<group>"; };
 		1E7F9E4A2386CD830075826C /* ParamsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParamsVC.swift; sourceTree = "<group>"; };
 		1E7F9E502386DEFA0075826C /* CollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
 		1E7F9E522386E03E0075826C /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		1E7F9E542386E5CD0075826C /* DetailUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserVC.swift; sourceTree = "<group>"; };
-		1E7F9E562386EC8C0075826C /* SoundVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundVC.swift; sourceTree = "<group>"; };
 		1E9C7F9023E863CC006D9F99 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		1E9C7F9223E87A43006D9F99 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		1EDD414923E1C1D60044DA29 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
@@ -138,9 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				1E7F9E542386E5CD0075826C /* DetailUserVC.swift */,
-				1E7F9E562386EC8C0075826C /* SoundVC.swift */,
-				1E76163623AA4D7A0064C9D7 /* MusicSampleVC.swift */,
-				1E76163823AA4DAB0064C9D7 /* MusicSampleCell.swift */,
 				1E9C7F9023E863CC006D9F99 /* ChatVC.swift */,
 			);
 			path = MusicienProfile;
@@ -169,7 +158,6 @@
 		1E750D0D23840A2F00103DEF /* Musica */ = {
 			isa = PBXGroup;
 			children = (
-				1E7F9E582386F26D0075826C /* Sounds */,
 				1E750D4223845B0A00103DEF /* Supporting files */,
 				1E750D3F23845AE800103DEF /* Model */,
 				1E750D4023845AEF00103DEF /* View */,
@@ -230,14 +218,6 @@
 				1E750D1A23840A3100103DEF /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting files";
-			sourceTree = "<group>";
-		};
-		1E7F9E582386F26D0075826C /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				1E178E2723E0B7130057638E /* Purple_Haze.mp3 */,
-			);
-			path = Sounds;
 			sourceTree = "<group>";
 		};
 		432C6486F79B792B2AA08E3E /* Pods */ = {
@@ -346,7 +326,6 @@
 			files = (
 				1E750D1C23840A3100103DEF /* LaunchScreen.storyboard in Resources */,
 				1E750D342384443F00103DEF /* GoogleService-Info.plist in Resources */,
-				1E178E2823E0B7130057638E /* Purple_Haze.mp3 in Resources */,
 				1E750D1923840A3100103DEF /* Assets.xcassets in Resources */,
 				1E750D1423840A2F00103DEF /* Main.storyboard in Resources */,
 			);
@@ -452,13 +431,10 @@
 				1E750D3E2384587000103DEF /* MyProfileVC.swift in Sources */,
 				1E750D38238446DC00103DEF /* AuthService.swift in Sources */,
 				1E750D0F23840A2F00103DEF /* AppDelegate.swift in Sources */,
-				1E76163923AA4DAB0064C9D7 /* MusicSampleCell.swift in Sources */,
-				1E76163723AA4D7A0064C9D7 /* MusicSampleVC.swift in Sources */,
 				1E750D36238445DC00103DEF /* DataServices.swift in Sources */,
 				1E7F9E512386DEFA0075826C /* CollectionVC.swift in Sources */,
 				1E7F9E552386E5CD0075826C /* DetailUserVC.swift in Sources */,
 				1E9C7F9323E87A43006D9F99 /* Message.swift in Sources */,
-				1E7F9E572386EC8C0075826C /* SoundVC.swift in Sources */,
 				1E11870C23E9AB150079A29D /* CurrentUser.swift in Sources */,
 				1E7F9E4B2386CD830075826C /* ParamsVC.swift in Sources */,
 			);

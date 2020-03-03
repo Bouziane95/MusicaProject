@@ -20,22 +20,19 @@ class DetailUserVC: UIViewController {
     @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var nameUser: UILabel!
     @IBOutlet weak var musicStyleUser: UILabel!
-    @IBOutlet weak var mySoundsBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         nameUser.text = name
         musicStyleUser.text = musicStyle
         descriptionUser.text = userDescription
-        musicStyleUser.text = musicStyle
         dispatchQueue.async {
             self.showUsersImg()
         }
     }
     
     func showUsersImg(){
-        print(stringImg)
-        let imageUrl = URL(string: stringImg)
+        let imageUrl = URL(string: self.stringImg)
         let imagedata = try! Data(contentsOf: imageUrl!)
         let imageProfil = UIImage(data: imagedata)
         DispatchQueue.main.async {
@@ -44,8 +41,7 @@ class DetailUserVC: UIViewController {
     }
     
     @IBAction func sendMsgBtnPressed(_ sender: Any) {
-        let ChatVC = storyboard?.instantiateViewController(withIdentifier: "ChatVC")
-        present(ChatVC!, animated: true, completion: nil)
+        performSegue(withIdentifier: "showChat", sender: self)
     }
     
 
