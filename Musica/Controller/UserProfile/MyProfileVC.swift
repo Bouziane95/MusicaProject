@@ -39,6 +39,7 @@ class MyProfileVC: UIViewController {
             self.nameAcc.text = user.name
             self.ageAcc.text = user.age
             self.descriptionAcc.text = user.description
+            self.userGender.text = user.userGender
             
             let imageUrlString = user.profileImageUrl
             let imageUrl = URL(string: imageUrlString)
@@ -47,13 +48,10 @@ class MyProfileVC: UIViewController {
             
             let userMusicStyleArray = user.userMusicStyle
             let userMusicStyle = userMusicStyleArray.joined(separator: ", ")
-            
-            let userGenderArray = user.userGender
-            let userGenderString = userGenderArray.joined(separator: ",")
-            
+
             self.profileImg.image = imageProfil
             self.musicStyle.text = userMusicStyle
-            self.userGender.text = userGenderString
+       
         }
     }
     

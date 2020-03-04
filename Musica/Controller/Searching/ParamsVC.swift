@@ -12,12 +12,14 @@ import Firebase
 
 class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    var genderArray : Array = ["Hommes", "Femmes", "Pas d'importance"]
+    var genderArray : Array = ["Homme", "Femme", "N.C."]
     let rockMusicien = ["Guitariste", "Batteur"]
     let jazzMusicien = ["Contre-Bassiste"]
     let hiphopMusicien = ["Break-Dance"]
     let sections = ["Rock", "Jazz", "Hip-Hop"]
-    var musicStyle = [String]()
+    var userQuery : [DataSnapshot] = []
+    var gender = String()
+    var style = [String]()
     
     @IBOutlet weak var genderTableView: UITableView!
     @IBOutlet weak var musicStyleTableView: UITableView!
@@ -35,23 +37,28 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     }
     
     func searchingGender(){
-        let ref = Database.database().reference().child("users")
-        let query = ref.queryOrdered(byChild: "sex").queryEqual(toValue: "0")
+        let rootRef = Database.database().reference()
+        let query = rootRef.child("users").queryOrdered(byChild: "gender").queryEqual(toValue: gender).queryEqual(toValue: style)
         query.observeSingleEvent(of: .value) { (snapshot) in
-            let gender = snapshot.children.allObjects as! [DataSnapshot]
-            for child in gender{
-                let value = child.value as? NSDictionary
-                let child = value?["sex"] as? [String]
-                print("i'm here")
-                print(child!)
+            self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? CollectionVC{
+            let rootRef = Database.database().reference()
+            let query = rootRef.child("users").queryOrdered(byChild: "gender").queryEqual(toValue: gender)
+            query.observeSingleEvent(of: .value) { (snapshot) in
+                self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
+                destination.queryUser = self.userQuery
             }
         }
     }
     
-    
     @IBAction func searchBtn(_ sender: Any) {
         //Filtrer les resultats de la recherche sur firebase
-        searchingGender()
+        //searchingGender()
+        performSegue(withIdentifier: "backToCollectionVC", sender: self)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -87,7 +94,6 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         var cell = UITableViewCell()
         switch tableView {
         case genderTableView:
@@ -133,7 +139,9 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
                   tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
               } else {
+            gender = genderArray[indexPath.row]
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+
               }
               tableView.deselectRow(at: indexPath, animated: true)
           }

@@ -16,18 +16,20 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         collectionView.delegate = self
         collectionView.dataSource = self
         getUsers()
+        let seconds = 2.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds){
+            print(self.queryUser)
+        }
     }
-    
+        
     private var dispatchQueue: DispatchQueue = DispatchQueue(label: "CollectionView")
-    var arrayName = [String]()
-    var timeStamp = [Int]()
-    var arrayDescription = [String]()
-    var arrayProfilImage = [String]()
     var nameIndexpath = String()
     var imgIndexpath = String()
     var descriptionIndexpath = String()
+    var musicStyleIndexpath = [String]()
     var musicienArray : [DataSnapshot] = []
-   
+    var queryUser : [DataSnapshot]?
+
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBAction func settingsBtnPressed(_ sender: Any) {
@@ -48,36 +50,65 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return musicienArray.count
+        if queryUser != nil {
+            return queryUser?.count ?? 0
+        } else {
+            return musicienArray.count
+        }
     }
             
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "musicaCell", for: indexPath) as! CollectionCell
         let musicien = musicienArray[indexPath.row].value as? NSDictionary
-        
+        if let queryMusicien = queryUser?[indexPath.row].value as? NSDictionary {
+            cell.userNameLbl.text = queryMusicien["name"] as? String
+            dispatchQueue.async {
+                let arrayUrl = URL(string: queryMusicien["profileImgURL"] as! String)
+                let arrayData = try! Data(contentsOf: arrayUrl!)
+                let img = UIImage(data: arrayData)
+                
+                DispatchQueue.main.async {
+                    cell.profilUsersImage.image = img!
+                } 
+            }
+        }
+        else {
         cell.userNameLbl.text = musicien?["name"] as? String
-        DispatchQueue.main.async {
+        dispatchQueue.async {
             let arrayUrl = URL(string: musicien?["profileImgURL"] as! String)!
             let arrayData = try! Data(contentsOf: arrayUrl)
             let img = UIImage(data: arrayData)
-            cell.profilUsersImage.image = img!
+            
+            DispatchQueue.main.async {
+                cell.profilUsersImage.image = img!
+            }
         }
-        return cell
     }
+        return cell
+}
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? DetailUserVC{
             destination.name = nameIndexpath
             destination.stringImg = imgIndexpath
             destination.userDescription = descriptionIndexpath
+            destination.userStyle = musicStyleIndexpath
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let musicienParams = musicienArray[indexPath.row].value as? NSDictionary
+        if let queryMusicien = queryUser?[indexPath.row].value as? NSDictionary{
+            nameIndexpath = (queryMusicien["name"] as? String)!
+            imgIndexpath = (queryMusicien["profileImgURL"] as? String)!
+            descriptionIndexpath = (queryMusicien["description"] as? String)!
+            musicStyleIndexpath = (queryMusicien["musicStyle"] as? [String])!
+        } else {
         nameIndexpath = (musicienParams?["name"] as? String)!
         imgIndexpath = (musicienParams?["profileImgURL"] as? String)!
         descriptionIndexpath = (musicienParams?["description"] as? String)!
+        musicStyleIndexpath = (musicienParams?["musicStyle"] as? [String])!
+    }
         performSegue(withIdentifier: "showDetail", sender: self)
     }
 }

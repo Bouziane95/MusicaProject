@@ -28,7 +28,7 @@ class CreateAccVC: UIViewController {
     let hiphopMusicien = ["Break-Dance"]
     let sections = ["Rock", "Jazz", "Hip-Hop"]
     var musicStyle = [String]()
-    var genderArray = [String]()
+    var gender = String()
     var image = String()
     
     override func viewDidLoad() {
@@ -86,22 +86,19 @@ class CreateAccVC: UIViewController {
     @IBAction func SCchanged(_ sender: Any) {
         if(genderSegmentedControl.selectedSegmentIndex == 0){
             let male = "Homme"
-            genderArray.removeAll()
-            genderArray.append(male)
+            gender = male
         } else if(genderSegmentedControl.selectedSegmentIndex == 1) {
             let female = "Femme"
-            genderArray.removeAll()
-            genderArray.append(female)
+            gender = female
         } else if(genderSegmentedControl.selectedSegmentIndex == 2) {
             let nc = "N.C."
-            genderArray.removeAll()
-            genderArray.append(nc)
+            gender = nc
         }
     }
     
     @IBAction func createAccPressed(_ sender: Any) {
         if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
-            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, gender: genderArray, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle, userDescription: self.userDescription.text!) { (success, registrationError)
+            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, gender: gender, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle, userDescription: self.userDescription.text!) { (success, registrationError)
                 in
                 if success{
                     self.uploadPhoto()

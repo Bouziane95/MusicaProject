@@ -10,7 +10,7 @@ import UIKit
 
 class DetailUserVC: UIViewController {
     
-    var musicStyle = String()
+    var userStyle = [String]()
     var name = String()
     var userDescription = String()
     var stringImg = String()
@@ -24,7 +24,8 @@ class DetailUserVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nameUser.text = name
-        musicStyleUser.text = musicStyle
+        let stringUserStyle = userStyle.joined(separator: ", ")
+        musicStyleUser.text = stringUserStyle
         descriptionUser.text = userDescription
         dispatchQueue.async {
             self.showUsersImg()
