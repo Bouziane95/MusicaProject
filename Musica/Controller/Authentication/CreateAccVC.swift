@@ -71,7 +71,7 @@ class CreateAccVC: UIViewController {
         metadata.contentType = "image/jpg"
         storageProfileRef.putData(imageData, metadata: metadata) { (storageMetaData, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!)
                 return
             }
             storageProfileRef.downloadURL { (url, error) in

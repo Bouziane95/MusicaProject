@@ -384,6 +384,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4WR-Jo-GKN">
                                         <rect key="frame" x="10" y="1061" width="394" height="199"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="199" id="PHC-Ic-hgS"/>
                                         </constraints>
@@ -1206,6 +1207,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="LaT-xW-VVM"/>
-        <segue reference="vky-A6-vY8"/>
+        <segue reference="0eY-sc-jAk"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
@@ -33,10 +34,24 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         dismiss(animated: true, completion: nil)
     }
     
+    func searchingGender(){
+        let ref = Database.database().reference().child("users")
+        let query = ref.queryOrdered(byChild: "sex").queryEqual(toValue: "0")
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            let gender = snapshot.children.allObjects as! [DataSnapshot]
+            for child in gender{
+                let value = child.value as? NSDictionary
+                let child = value?["sex"] as? [String]
+                print("i'm here")
+                print(child!)
+            }
+        }
+    }
+    
     
     @IBAction func searchBtn(_ sender: Any) {
         //Filtrer les resultats de la recherche sur firebase
-        print("Test")
+        searchingGender()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

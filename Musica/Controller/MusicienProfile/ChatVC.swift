@@ -22,7 +22,6 @@ class ChatVC: UIViewController {
         //handleSend()
     }
     
-    
     func handleSend(){
         let ref = Database.database().reference().child("messages")
         let childRef = ref.childByAutoId()
