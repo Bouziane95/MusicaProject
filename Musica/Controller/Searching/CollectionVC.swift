@@ -16,10 +16,6 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         collectionView.delegate = self
         collectionView.dataSource = self
         getUsers()
-        let seconds = 2.0
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds){
-            print(self.queryUser)
-        }
     }
         
     private var dispatchQueue: DispatchQueue = DispatchQueue(label: "CollectionView")

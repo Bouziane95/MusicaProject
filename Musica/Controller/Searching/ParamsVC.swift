@@ -12,7 +12,7 @@ import Firebase
 
 class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    var genderArray : Array = ["Homme", "Femme", "N.C."]
+    var genderArray : Array = ["Homme", "Femme", "Pas d'importance"]
     let rockMusicien = ["Guitariste", "Batteur"]
     let jazzMusicien = ["Contre-Bassiste"]
     let hiphopMusicien = ["Break-Dance"]
@@ -20,6 +20,7 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var userQuery : [DataSnapshot] = []
     var gender = String()
     var style = [String]()
+    var genderNumber : Int?
     
     @IBOutlet weak var genderTableView: UITableView!
     @IBOutlet weak var musicStyleTableView: UITableView!
@@ -36,29 +37,39 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         dismiss(animated: true, completion: nil)
     }
     
-    func searchingGender(){
-        let rootRef = Database.database().reference()
-        let query = rootRef.child("users").queryOrdered(byChild: "gender").queryEqual(toValue: gender).queryEqual(toValue: style)
-        query.observeSingleEvent(of: .value) { (snapshot) in
-            self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? CollectionVC{
+            if genderNumber == 0{
+                let rootRef = Database.database().reference()
+                let query = rootRef.child("users").queryOrdered(byChild: "gender").queryEqual(toValue: "Homme")
+                query.observeSingleEvent(of: .value) { (snapshot) in
+                    self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
+                    destination.queryUser = self.userQuery
+                }
+            } else if genderNumber == 1{
             let rootRef = Database.database().reference()
-            let query = rootRef.child("users").queryOrdered(byChild: "gender").queryEqual(toValue: gender)
+            let query = rootRef.child("users").queryOrdered(byChild: "gender").queryEqual(toValue: "Femme")
             query.observeSingleEvent(of: .value) { (snapshot) in
                 self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
                 destination.queryUser = self.userQuery
             }
-        }
+            } else {
+                let rootRef = Database.database().reference()
+                let query = rootRef.child("users").queryOrdered(byChild: "gender")
+                query.observeSingleEvent(of: .value) { (snapshot) in
+                    self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
+                    destination.queryUser = self.userQuery
+                }
+            }
     }
+}
     
     @IBAction func searchBtn(_ sender: Any) {
-        //Filtrer les resultats de la recherche sur firebase
-        //searchingGender()
+        if genderNumber == nil {
+            dismiss(animated: true, completion: nil)
+        } else {
         performSegue(withIdentifier: "backToCollectionVC", sender: self)
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -125,25 +136,69 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let lasection = sections[section]
+        let section = sections[section]
         switch tableView {
         case musicStyleTableView:
-            return lasection
+            return section
         default:
             break
         }
         return "A vous de choisir"
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
-                  tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
-              } else {
+        switch tableView{
+        case genderTableView:
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
             gender = genderArray[indexPath.row]
-            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+            genderNumber = indexPath.row
+        case musicStyleTableView:
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        default:
+            break
 
-              }
-              tableView.deselectRow(at: indexPath, animated: true)
-          }
+        }
     }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        switch tableView{
+        case genderTableView:
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        case musicStyleTableView:
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        default:
+            break
+
+        }
+    }
+    
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //
+    //        switch tableView{
+    //        case genderTableView:
+    //            if tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark {
+    //                  tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+    //              } else {
+    //            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+    //            gender = genderArray[indexPath.row]
+    //            genderNumber = indexPath.row
+    //              }
+    //              tableView.deselectRow(at: indexPath, animated: true)
+    //        case musicStyleTableView:
+    //            if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
+    //                  tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+    //              } else {
+    //            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+    //
+    //              }
+    //              tableView.deselectRow(at: indexPath, animated: true)
+    //        default:
+    //            break
+    //        }
+    //    }
+}
+
+
+
 
