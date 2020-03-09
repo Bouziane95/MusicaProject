@@ -19,13 +19,14 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     }
         
     private var dispatchQueue: DispatchQueue = DispatchQueue(label: "CollectionView")
+    var uidIndexpath = String()
     var nameIndexpath = String()
     var imgIndexpath = String()
     var descriptionIndexpath = String()
     var musicStyleIndexpath = [String]()
     var musicienArray : [DataSnapshot] = []
     var queryUser : [DataSnapshot]?
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBAction func settingsBtnPressed(_ sender: Any) {
@@ -35,6 +36,11 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     @IBAction func searchBtnPressed(_ sender: Any) {
         performSegue(withIdentifier: "searchingSegue", sender: self)
     }
+    
+    @IBAction func chatBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: "showChat", sender: self)
+    }
+    
     
     func getUsers(){
         let rootRef = Database.database().reference()
@@ -85,6 +91,7 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? DetailUserVC{
+            destination.id = uidIndexpath
             destination.name = nameIndexpath
             destination.stringImg = imgIndexpath
             destination.userDescription = descriptionIndexpath
@@ -95,11 +102,13 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let musicienParams = musicienArray[indexPath.row].value as? NSDictionary
         if let queryMusicien = queryUser?[indexPath.row].value as? NSDictionary{
+            uidIndexpath = (queryMusicien["uid"] as? String)!
             nameIndexpath = (queryMusicien["name"] as? String)!
             imgIndexpath = (queryMusicien["profileImgURL"] as? String)!
             descriptionIndexpath = (queryMusicien["description"] as? String)!
             musicStyleIndexpath = (queryMusicien["musicStyle"] as? [String])!
         } else {
+        uidIndexpath = (musicienParams?["uid"] as? String)!
         nameIndexpath = (musicienParams?["name"] as? String)!
         imgIndexpath = (musicienParams?["profileImgURL"] as? String)!
         descriptionIndexpath = (musicienParams?["description"] as? String)!

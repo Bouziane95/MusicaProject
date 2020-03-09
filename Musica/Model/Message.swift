@@ -2,26 +2,23 @@
 //  Message.swift
 //  Musica
 //
-//  Created by Bouziane Bey on 03/02/2020.
+//  Created by Bouziane Bey on 09/03/2020.
 //  Copyright © 2020 Bouziane Bey. All rights reserved.
 //
 
 import Foundation
+class Message: NSObject {
 
-class Message {
-    private var _content: String
-    private var _senderID: String
+    var fromId: String?
+    var text: String?
+    var timestamp: NSNumber?
+    var toId: String?
     
-    var content: String{
-        return _content
+    init(dictionary: [String: Any]) {
+        self.fromId = dictionary["FromID"] as? String
+        self.text = dictionary["text"] as? String
+        self.toId = dictionary["toId"] as? String
+        self.timestamp = dictionary["timestamp"] as? NSNumber
     }
     
-    var senderID: String{
-        return _senderID
-    }
-    
-    init(content: String, senderID: String) {
-        self._content = content
-        self._senderID = senderID
-    }
 }

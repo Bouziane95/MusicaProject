@@ -11,6 +11,7 @@ import UIKit
 class DetailUserVC: UIViewController {
     
     var userStyle = [String]()
+    var id = String()
     var name = String()
     var userDescription = String()
     var stringImg = String()
@@ -39,6 +40,13 @@ class DetailUserVC: UIViewController {
         DispatchQueue.main.async {
             self.imageProfile.image = imageProfil
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination  = segue.destination as? ChatVC{
+            destination.toID = id
+        }
+        
     }
     
     @IBAction func sendMsgBtnPressed(_ sender: Any) {

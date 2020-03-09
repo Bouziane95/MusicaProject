@@ -12,6 +12,7 @@ import Firebase
 
 class ChatVC: UIViewController {
     
+    var toID: String?
     @IBOutlet weak var inputTextField: UITextField!
     
     override func viewDidLoad() {
@@ -19,13 +20,15 @@ class ChatVC: UIViewController {
     }
     
     @IBAction func sendBtnPressed(_ sender: Any) {
-        //handleSend()
+        handleSend()
     }
-    
+
     func handleSend(){
         let ref = Database.database().reference().child("messages")
         let childRef = ref.childByAutoId()
-        let values = ["text": inputTextField.text!]
+        let timestamp = ServerValue.timestamp()
+        let toId = toID!
+        let values = ["text": inputTextField.text!, "fromId": Auth.auth().currentUser!.uid, "toId" : toId, "timestamp": timestamp] as [String : Any]
         childRef.updateChildValues(values)
     }
     

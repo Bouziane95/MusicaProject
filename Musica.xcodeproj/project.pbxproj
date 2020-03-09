@@ -27,7 +27,7 @@
 		1E7F9E532386E03E0075826C /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E522386E03E0075826C /* CollectionCell.swift */; };
 		1E7F9E552386E5CD0075826C /* DetailUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E542386E5CD0075826C /* DetailUserVC.swift */; };
 		1E9C7F9123E863CC006D9F99 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C7F9023E863CC006D9F99 /* ChatVC.swift */; };
-		1E9C7F9323E87A43006D9F99 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C7F9223E87A43006D9F99 /* Message.swift */; };
+		1EB2DFAB2416C67F000C263B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2DFAA2416C67F000C263B /* Message.swift */; };
 		1EDD414A23E1C1D60044DA29 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD414923E1C1D60044DA29 /* RoundButton.swift */; };
 		1EDD414C23E1DCA90044DA29 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD414B23E1DCA90044DA29 /* GradientView.swift */; };
 		4CE6316B2262F83B3EBCD38F /* Pods_MusicaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EF5A3480767F8AB2F68A21D /* Pods_MusicaTests.framework */; };
@@ -70,7 +70,7 @@
 		1E7F9E522386E03E0075826C /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		1E7F9E542386E5CD0075826C /* DetailUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserVC.swift; sourceTree = "<group>"; };
 		1E9C7F9023E863CC006D9F99 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
-		1E9C7F9223E87A43006D9F99 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		1EB2DFAA2416C67F000C263B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		1EDD414923E1C1D60044DA29 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		1EDD414B23E1DCA90044DA29 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		3A7A8E34C020CBC951D4684F /* Pods-Musica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Musica.debug.xcconfig"; path = "Target Support Files/Pods-Musica/Pods-Musica.debug.xcconfig"; sourceTree = "<group>"; };
@@ -193,8 +193,8 @@
 				1E750D1523840A2F00103DEF /* Musica.xcdatamodeld */,
 				1E750D35238445DC00103DEF /* DataServices.swift */,
 				1E750D37238446DC00103DEF /* AuthService.swift */,
-				1E9C7F9223E87A43006D9F99 /* Message.swift */,
 				1E11870B23E9AB150079A29D /* CurrentUser.swift */,
+				1EB2DFAA2416C67F000C263B /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -438,6 +438,7 @@
 				1E750D1723840A2F00103DEF /* Musica.xcdatamodeld in Sources */,
 				1E7F9E532386E03E0075826C /* CollectionCell.swift in Sources */,
 				1E750D3C23844D6300103DEF /* CreateAccVC.swift in Sources */,
+				1EB2DFAB2416C67F000C263B /* Message.swift in Sources */,
 				1E750D3A23844B2800103DEF /* LoginVC.swift in Sources */,
 				1E750D3E2384587000103DEF /* MyProfileVC.swift in Sources */,
 				1E750D38238446DC00103DEF /* AuthService.swift in Sources */,
@@ -445,7 +446,6 @@
 				1E750D36238445DC00103DEF /* DataServices.swift in Sources */,
 				1E7F9E512386DEFA0075826C /* CollectionVC.swift in Sources */,
 				1E7F9E552386E5CD0075826C /* DetailUserVC.swift in Sources */,
-				1E9C7F9323E87A43006D9F99 /* Message.swift in Sources */,
 				1E33EE9A2411716B005973EF /* ChatTableView.swift in Sources */,
 				1E11870C23E9AB150079A29D /* CurrentUser.swift in Sources */,
 				1E7F9E4B2386CD830075826C /* ParamsVC.swift in Sources */,
