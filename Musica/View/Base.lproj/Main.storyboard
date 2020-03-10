@@ -106,12 +106,23 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b8u-HN-cOv">
                                                 <rect key="frame" x="158" y="85.5" width="98" height="111"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rXZ-hp-NJy">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rXZ-hp-NJy" customClass="RoundImage" customModule="Musica" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.5" width="98" height="69"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="70" id="iZg-1B-kbo"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="35"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appuyez pour changer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hY2-f7-UGo">
                                                         <rect key="frame" x="0.0" y="70" width="98" height="41"/>
@@ -785,13 +796,24 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="QNy-jf-VaI">
                                 <rect key="frame" x="100" y="94" width="214" height="197.5"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="v8a-T9-lMV">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="v8a-T9-lMV" customClass="RoundImage" customModule="Musica" customModuleProvider="target">
                                         <rect key="frame" x="37" y="0.5" width="140" height="139"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="140" id="Mnj-Cm-uUM"/>
                                             <constraint firstAttribute="height" constant="140" id="dbr-cz-7UK"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="35"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgp-b5-iIt">
                                         <rect key="frame" x="7" y="170" width="200" height="27.5"/>
@@ -1254,16 +1276,16 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DHP-53-U4U">
-                                            <rect key="frame" x="120" y="11" width="254" height="78"/>
+                                            <rect key="frame" x="120" y="11" width="214" height="78"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lan-l2-GH1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="254" height="40.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="214" height="40.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyP-nm-aF0">
-                                                    <rect key="frame" x="0.0" y="35" width="254" height="43"/>
+                                                    <rect key="frame" x="0.0" y="35" width="214" height="43"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -1273,14 +1295,23 @@
                                                 <constraint firstItem="XyP-nm-aF0" firstAttribute="top" secondItem="DHP-53-U4U" secondAttribute="top" constant="35" id="G99-jx-0TU"/>
                                             </constraints>
                                         </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mx-Ew-r7g">
+                                            <rect key="frame" x="362.5" y="40" width="41.5" height="20"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="9mx-Ew-r7g" secondAttribute="bottom" constant="40" id="AsE-Od-Bwd"/>
                                         <constraint firstAttribute="bottom" secondItem="JVH-wg-2Bi" secondAttribute="bottom" constant="10" id="G4Q-wR-rcj"/>
                                         <constraint firstItem="JVH-wg-2Bi" firstAttribute="leading" secondItem="oab-L1-Duh" secondAttribute="leading" constant="10" id="Rw5-Jo-Dmf"/>
+                                        <constraint firstAttribute="trailing" secondItem="9mx-Ew-r7g" secondAttribute="trailing" constant="10" id="akG-Tv-yfg"/>
+                                        <constraint firstItem="9mx-Ew-r7g" firstAttribute="top" secondItem="oab-L1-Duh" secondAttribute="top" constant="40" id="hEP-Kr-yLF"/>
                                         <constraint firstItem="JVH-wg-2Bi" firstAttribute="top" secondItem="oab-L1-Duh" secondAttribute="top" constant="10" id="oTx-QB-Ke1"/>
                                         <constraint firstItem="DHP-53-U4U" firstAttribute="top" secondItem="oab-L1-Duh" secondAttribute="topMargin" id="rzY-7b-pg2"/>
                                         <constraint firstItem="DHP-53-U4U" firstAttribute="bottom" secondItem="oab-L1-Duh" secondAttribute="bottomMargin" id="t2D-sL-cZu"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="DHP-53-U4U" secondAttribute="trailing" constant="20" id="uqS-vJ-tjq"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="DHP-53-U4U" secondAttribute="trailing" constant="60" id="uqS-vJ-tjq"/>
                                         <constraint firstItem="DHP-53-U4U" firstAttribute="leading" secondItem="JVH-wg-2Bi" secondAttribute="trailing" constant="20" id="vrA-ub-uEV"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1288,6 +1319,7 @@
                                     <outlet property="imageProfil" destination="JVH-wg-2Bi" id="V8m-0D-PQS"/>
                                     <outlet property="msgProfil" destination="XyP-nm-aF0" id="Vtw-we-FAJ"/>
                                     <outlet property="nameProfil" destination="Lan-l2-GH1" id="xP8-eM-4c4"/>
+                                    <outlet property="timeLbl" destination="9mx-Ew-r7g" id="zv1-jh-1Ya"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1333,6 +1365,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="B0W-Bm-d5C"/>
         <segue reference="nDG-2y-BRL"/>
-        <segue reference="vky-A6-vY8"/>
+        <segue reference="0eY-sc-jAk"/>
     </inferredMetricsTieBreakers>
 </document>

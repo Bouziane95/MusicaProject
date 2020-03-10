@@ -12,23 +12,37 @@ import Firebase
 class ChatTableView: UITableViewController {
     
     var messages = [Message]()
+    var messagesDictionnary = [String: Message]()
     private var dispatchQueue: DispatchQueue = DispatchQueue(label: "ChatTableview")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        observeMessages()
+        observeUserMessages()
         navigationItem.title = "Chat"
     }
     
-    func observeMessages(){
-        let ref = Database.database().reference().child("messages")
+    func observeUserMessages(){
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let ref = Database.database().reference().child("userMessages").child(uid)
         ref.observe(.childAdded) { (snapshot) in
-            if let dictionnary = snapshot.value as? [String: AnyObject]{
-                let message = Message(dictionary: dictionnary)
-                self.messages.append(message)
-                DispatchQueue.main.async(execute: {
-                    self.tableView.reloadData()
-                })
+            let messageId = snapshot.key
+            let messageReference = Database.database().reference().child("messages").child(messageId)
+            messageReference.observeSingleEvent(of: .value) { (snapshot) in
+                if let dictionnary = snapshot.value as? [String: AnyObject]{
+                    let message = Message(dictionary: dictionnary)
+                    //To load all messages of a conversation into one cell
+                    if let toID = message.toId{
+                        self.messagesDictionnary[toID] = message
+                        self.messages = Array(self.messagesDictionnary.values)
+                            //To sort all messages by time (Newest to the Oldest)
+                        self.messages.sort { (message1, message2) -> Bool in
+                            return message1.timestamp.int32Value > message2.timestamp.int32Value
+                        }
+                    }
+                    DispatchQueue.main.async(execute: {
+                        self.tableView.reloadData()
+                    })
+                }
             }
         }
     }
@@ -59,6 +73,14 @@ class ChatTableView: UITableViewController {
                 }
             }
         }
+        if let seconds = message.timestamp?.doubleValue{
+            let timestampDate = NSDate(timeIntervalSince1970: seconds)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "hh:mm:ss a"
+            cell.timeLbl.text = dateFormatter.string(from: timestampDate as Date)
+        }
+       
+        
         cell.msgProfil.text = message.text
         return cell
         

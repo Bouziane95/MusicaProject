@@ -11,7 +11,7 @@ class Message: NSObject {
 
     var fromId: String?
     var text: String?
-    var timestamp: NSNumber?
+    var timestamp: NSNumber!
     var toId: String?
     
     init(dictionary: [String: Any]) {

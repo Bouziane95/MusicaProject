@@ -26,10 +26,22 @@ class ChatVC: UIViewController {
     func handleSend(){
         let ref = Database.database().reference().child("messages")
         let childRef = ref.childByAutoId()
-        let timestamp = ServerValue.timestamp()
+        let timestamp = Int(Date().timeIntervalSince1970)
+        let fromId = Auth.auth().currentUser!.uid
         let toId = toID!
-        let values = ["text": inputTextField.text!, "fromId": Auth.auth().currentUser!.uid, "toId" : toId, "timestamp": timestamp] as [String : Any]
-        childRef.updateChildValues(values)
+        let values = ["text": inputTextField.text!, "fromId": fromId, "toId" : toId, "timestamp": timestamp] as [String : Any]
+        childRef.updateChildValues(values) { (error, ref) in
+            if error != nil {
+                print(error ?? "")
+                return
+            }
+            guard let messageId = childRef.key else {return}
+            let userMessagesRef = Database.database().reference().child("userMessages").child(fromId).child(messageId)
+            userMessagesRef.setValue(1)
+            
+            let dataUserMessagesRef = Database.database().reference().child("userMessages").child(toId).child(messageId)
+            dataUserMessagesRef.setValue(1)
+        }
     }
     
 }
