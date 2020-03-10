@@ -12,6 +12,7 @@ import Firebase
 class ChatTableView: UITableViewController {
     
     var messages = [Message]()
+    private var dispatchQueue: DispatchQueue = DispatchQueue(label: "ChatTableview")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,17 +38,28 @@ class ChatTableView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! ChatTableviewCell
         let message = messages[indexPath.row]
         if let toId = message.toId {
             let ref = Database.database().reference().child("users").child(toId)
             ref.observeSingleEvent(of: .value) { (snapshot) in
                 if let dictionnary = snapshot.value as? [String: AnyObject]{
-                    cell.textLabel?.text = dictionnary["name"] as? String
+                    cell.nameProfil.text = dictionnary["name"] as? String
+                }
+                self.dispatchQueue.async {
+                    if let dictionnary = snapshot.value as? [String: AnyObject]{
+                        let arrayUrl = URL(string: dictionnary["profileImgURL"] as! String)!
+                        let arrayData = try! Data(contentsOf: arrayUrl)
+                        let img = UIImage(data: arrayData)
+                        
+                        DispatchQueue.main.async {
+                            cell.imageProfil.image = img!
+                        }
+                    }
                 }
             }
         }
-        cell.detailTextLabel?.text = message.text
+        cell.msgProfil.text = message.text
         return cell
         
     }
