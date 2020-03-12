@@ -13,6 +13,7 @@ import Firebase
 class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
    
     var nameFromChatTV: String?
+    var imgFromChatTV: String?
     var toID: String?
     var messages = [Message]()
     var idIndexpath : String?
@@ -76,12 +77,14 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             }
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var height: CGFloat = 80
+        let width: CGFloat = view.frame.width
         if let text = messages[indexPath.item].text{
             height = frameMsgTxt(text: text).height + 35
         }
-        return CGSize(width: view.frame.width, height: height)
+        return CGSize(width: width, height: height)
     }
     
     func frameMsgTxt(text: String) -> CGRect{
@@ -93,11 +96,31 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         return messages.count
        }
     
-       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    private func setupChatCell(cell: ChatMessageCell, message: Message){
+        let url = URL(string: imgFromChatTV!)
+        let data = try! Data(contentsOf: url!)
+        let img = UIImage(data: data)
+        DispatchQueue.main.async {
+            cell.userImg.image = img
+        }
+        if message.fromId == Auth.auth().currentUser?.uid{
+            cell.txtView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+            cell.txtView.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            cell.userImg.isHidden = true
+        } else {
+            cell.txtView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            cell.txtView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.userImg.isHidden = false
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ChatMessageCell
         let message = messages[indexPath.item]
+        cell.txtView.layer.cornerRadius = 16
         cell.txtView.text = message.text
-        cell.widthAnchor.constraint(equalToConstant: frameMsgTxt(text: message.text!).width + 40).isActive = true
+        setupChatCell(cell: cell, message: message)
+        cell.widthAnchor.constraint(equalToConstant: frameMsgTxt(text: message.text!).width + 100).isActive = true
         return cell
        }
     

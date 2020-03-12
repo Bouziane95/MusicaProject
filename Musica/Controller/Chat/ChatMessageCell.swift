@@ -10,4 +10,5 @@ import UIKit
 
 class ChatMessageCell: UICollectionViewCell {
     @IBOutlet weak var txtView: UITextView!
+    @IBOutlet weak var userImg: RoundImage!
 }

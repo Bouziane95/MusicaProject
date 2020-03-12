@@ -14,8 +14,10 @@ class ChatTableView: UITableViewController {
     var messages = [Message]()
     var messagesDictionnary = [String: Message]()
     var nameChat : String?
+    var imgChat: String?
     private var dispatchQueue: DispatchQueue = DispatchQueue(label: "ChatTableview")
     var idToPass: String?
+     var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +43,13 @@ class ChatTableView: UITableViewController {
                             return message1.timestamp.int32Value > message2.timestamp.int32Value
                         }
                     }
-                    DispatchQueue.main.async(execute: {
-                        self.tableView.reloadData()
-                    })
+                    //invalidate = stop the reloadData at each messages coming from firebase until the last msg loaded from firebase then we reloadData
+                    self.timer?.invalidate()
+                    self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (timer) in
+                        DispatchQueue.main.async(execute: {
+                            self.tableView.reloadData()
+                        })
+                    }
                 }
             }
         }
@@ -69,7 +75,7 @@ class ChatTableView: UITableViewController {
                         let arrayUrl = URL(string: dictionnary["profileImgURL"] as! String)!
                         let arrayData = try! Data(contentsOf: arrayUrl)
                         let img = UIImage(data: arrayData)
-                        
+
                         DispatchQueue.main.async {
                             cell.imageProfil.image = img!
                         }
@@ -84,7 +90,6 @@ class ChatTableView: UITableViewController {
             dateFormatter.dateFormat = "hh:mm:ss a"
             cell.timeLbl.text = dateFormatter.string(from: timestampDate as Date)
         }
-        
         cell.msgProfil.text = message.text
         return cell
         
@@ -94,6 +99,7 @@ class ChatTableView: UITableViewController {
         if let destination = segue.destination as? ChatVC{
             destination.nameFromChatTV = nameChat
             destination.idIndexpath = idToPass
+            destination.imgFromChatTV = imgChat
         }
     }
     
@@ -105,6 +111,7 @@ class ChatTableView: UITableViewController {
             if let dictionnary = snapshot.value as? [String: AnyObject]{
                 self.nameChat = dictionnary["name"] as? String
                 self.idToPass = dictionnary["uid"] as? String
+                self.imgChat = dictionnary["profileImgURL"] as? String
                 self.performSegue(withIdentifier: "showChatVC", sender: self)
             }
         }
