@@ -14,12 +14,12 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
    
     var nameFromChatTV: String?
     var imgFromChatTV: String?
-    var toID: String?
     var messages = [Message]()
     var idIndexpath : String?
     
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var viewTxtfield: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,18 +29,36 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         collectionView.alwaysBounceVertical = true
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         observeMessages()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @IBAction func sendBtnPressed(_ sender: Any) {
         handleSend()
     }
-
+    
+    @objc func keyboardWillShow(notification: NSNotification){
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect){
+            print(self.viewTxtfield.frame.origin.y)
+            if self.viewTxtfield.frame.origin.y == 818.0 {
+                self.viewTxtfield.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification){
+        print(self.viewTxtfield.frame.origin.y)
+        if self.viewTxtfield.frame.origin.y != 0 {
+            self.viewTxtfield.frame.origin.y = 0
+        }
+    }
+    
     func handleSend(){
         let ref = Database.database().reference().child("messages")
         let childRef = ref.childByAutoId()
         let timestamp = Int(Date().timeIntervalSince1970)
         let fromId = Auth.auth().currentUser!.uid
-        let toId = idIndexpath!
+        guard let toId = idIndexpath else {return}
         let values = ["text": inputTextField.text!, "fromId": fromId, "toId" : toId, "timestamp": timestamp] as [String : Any]
         childRef.updateChildValues(values) { (error, ref) in
             if error != nil {
@@ -49,10 +67,11 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             }
             self.inputTextField.text = nil
             guard let messageId = childRef.key else {return}
-            let userMessagesRef = Database.database().reference().child("userMessages").child(fromId).child(messageId)
+            
+            let userMessagesRef = Database.database().reference().child("userMessages").child(fromId).child(messageId).child(toId)
             userMessagesRef.setValue(1)
             
-            let dataUserMessagesRef = Database.database().reference().child("userMessages").child(toId).child(messageId)
+            let dataUserMessagesRef = Database.database().reference().child("userMessages").child(toId).child(messageId).child(fromId)
             dataUserMessagesRef.setValue(1)
         }
     }
@@ -87,6 +106,7 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         return CGSize(width: width, height: height)
     }
     
+    //func to change the width and height of a message based on how long is it
     func frameMsgTxt(text: String) -> CGRect{
         let size = CGSize(width: 200, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
@@ -97,12 +117,6 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
        }
     
     private func setupChatCell(cell: ChatMessageCell, message: Message){
-        let url = URL(string: imgFromChatTV!)
-        let data = try! Data(contentsOf: url!)
-        let img = UIImage(data: data)
-        DispatchQueue.main.async {
-            cell.userImg.image = img
-        }
         if message.fromId == Auth.auth().currentUser?.uid{
             cell.txtView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
             cell.txtView.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -111,6 +125,13 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             cell.txtView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             cell.txtView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             cell.userImg.isHidden = false
+        }
+        
+        let url = URL(string: imgFromChatTV!)
+        let data = try! Data(contentsOf: url!)
+        let img = UIImage(data: data)
+        DispatchQueue.main.async {
+            cell.userImg.image = img
         }
     }
     

@@ -44,7 +44,8 @@ class DetailUserVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination  = segue.destination as? ChatVC{
-            destination.toID = id
+            destination.idIndexpath = id
+            destination.imgFromChatTV = stringImg
         }
         
     }
