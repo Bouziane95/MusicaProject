@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 import Firebase
 
-class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
    
     var nameFromChatTV: String?
     var imgFromChatTV: String?
     var messages = [Message]()
     var idIndexpath : String?
+    private var dispatchQueue: DispatchQueue = DispatchQueue(label: "messageImg")
     
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -36,6 +37,9 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     @IBAction func sendBtnPressed(_ sender: Any) {
         handleSend()
     }
+    @IBAction func sendImgBtnPressed(_ sender: Any) {
+        handleUploadImg()
+    }
     
     @objc func keyboardWillShow(notification: NSNotification){
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect){
@@ -53,6 +57,66 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         }
     }
     
+    func handleUploadImg(){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+            uploadToFirebaseImage(imageSelected: pickedImage)
+        }
+    }
+    
+    private func uploadToFirebaseImage(imageSelected: UIImage){
+        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else {return}
+        let storageRef = Storage.storage().reference(forURL: "gs://musicap-aec73.appspot.com/")
+        let storageProfileRef = storageRef.child("imgFromChat").child(Auth.auth().currentUser!.uid)
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        storageProfileRef.putData(imageData, metadata: metadata) { (storageMetaData, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            storageProfileRef.downloadURL { (url, error) in
+                if let metaImgUrl = url?.absoluteString{
+                    self.sendMessageWithImageUrl(imageUrl: metaImgUrl)
+                }
+            }
+        }
+    }
+    
+    private func sendMessageWithImageUrl(imageUrl: String){
+        let ref = Database.database().reference().child("messages")
+        let childRef = ref.childByAutoId()
+        let timestamp = Int(Date().timeIntervalSince1970)
+        let fromId = Auth.auth().currentUser!.uid
+        guard let toId = idIndexpath else {return}
+        let values = ["imageUrl": imageUrl, "fromId": fromId, "toId" : toId, "timestamp": timestamp] as [String : Any]
+        
+        childRef.updateChildValues(values) { (error, ref) in
+            if error != nil {
+                print(error ?? "")
+                return
+            }
+            self.inputTextField.text = nil
+            guard let messageId = childRef.key else {return}
+            
+            let userMessagesRef = Database.database().reference().child("userMessages").child(fromId).child(messageId).child(toId)
+            userMessagesRef.setValue(1)
+            
+            let dataUserMessagesRef = Database.database().reference().child("userMessages").child(toId).child(messageId).child(fromId)
+            dataUserMessagesRef.setValue(1)
+        }
+    }
+    
     func handleSend(){
         let ref = Database.database().reference().child("messages")
         let childRef = ref.childByAutoId()
@@ -60,6 +124,7 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         let fromId = Auth.auth().currentUser!.uid
         guard let toId = idIndexpath else {return}
         let values = ["text": inputTextField.text!, "fromId": fromId, "toId" : toId, "timestamp": timestamp] as [String : Any]
+        
         childRef.updateChildValues(values) { (error, ref) in
             if error != nil {
                 print(error ?? "")
@@ -117,6 +182,23 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
        }
     
     private func setupChatCell(cell: ChatMessageCell, message: Message){
+        if message.text != nil {
+            cell.txtView.text = message.text
+            cell.imgMessage.isHidden = true
+            cell.txtView.isHidden = false
+        } else {
+            cell.txtView.isHidden = true
+            cell.imgMessage.isHidden = false
+            dispatchQueue.async {
+                let url = URL(string: message.imageUrl!)
+                let data = try! Data(contentsOf: url!)
+                let img = UIImage(data: data)
+                DispatchQueue.main.async {
+                    cell.userImg.image = img!
+                }
+            }
+        }
+        
         if message.fromId == Auth.auth().currentUser?.uid{
             cell.txtView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
             cell.txtView.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -126,22 +208,17 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             cell.txtView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             cell.userImg.isHidden = false
         }
-        
-        let url = URL(string: imgFromChatTV!)
-        let data = try! Data(contentsOf: url!)
-        let img = UIImage(data: data)
-        DispatchQueue.main.async {
-            cell.userImg.image = img
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ChatMessageCell
         let message = messages[indexPath.item]
         cell.txtView.layer.cornerRadius = 16
-        cell.txtView.text = message.text
+        
         setupChatCell(cell: cell, message: message)
-        cell.widthAnchor.constraint(equalToConstant: frameMsgTxt(text: message.text!).width + 100).isActive = true
+        if let text = message.text{
+            cell.widthAnchor.constraint(equalToConstant: frameMsgTxt(text: text).width + 100).isActive = true
+        }
         return cell
        }
     
