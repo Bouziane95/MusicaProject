@@ -72,22 +72,24 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
             uploadToFirebaseImage(imageSelected: pickedImage)
         }
+        picker.dismiss(animated: true, completion: nil)
     }
     
     private func uploadToFirebaseImage(imageSelected: UIImage){
-        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else {return}
-        let storageRef = Storage.storage().reference(forURL: "gs://musicap-aec73.appspot.com/")
-        let storageProfileRef = storageRef.child("imgFromChat").child(Auth.auth().currentUser!.uid)
-        let metadata = StorageMetadata()
-        metadata.contentType = "image/jpg"
-        storageProfileRef.putData(imageData, metadata: metadata) { (storageMetaData, error) in
-            if error != nil {
-                print(error!)
-                return
-            }
-            storageProfileRef.downloadURL { (url, error) in
-                if let metaImgUrl = url?.absoluteString{
-                    self.sendMessageWithImageUrl(imageUrl: metaImgUrl)
+        let imageName = UUID().uuidString
+        let ref = Storage.storage().reference().child("messageImages").child(imageName)
+        if let uploadData = imageSelected.jpegData(compressionQuality: 0.2){
+            ref.putData(uploadData, metadata: nil) { (metadata, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                ref.downloadURL { (url, error) in
+                    if let err = error{
+                        print(err)
+                        return
+                    }
+                    self.sendMessageWithImageUrl(imageUrl: url?.absoluteString ?? "")
                 }
             }
         }
@@ -182,6 +184,25 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
        }
     
     private func setupChatCell(cell: ChatMessageCell, message: Message){
+        
+        //if else statement to get the userImg next to the grey bubble chat
+        if message.fromId == Auth.auth().currentUser?.uid{
+            cell.txtView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+            cell.txtView.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            cell.userImg.isHidden = true
+        } else {
+            cell.txtView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            cell.txtView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            dispatchQueue.async {
+                let url = URL(string: self.imgFromChatTV!)
+                let data = try! Data(contentsOf: url!)
+                let img = UIImage(data: data)
+                DispatchQueue.main.async {
+                    cell.userImg.image = img!
+                }
+            }
+        }
+        
         if message.text != nil {
             cell.txtView.text = message.text
             cell.imgMessage.isHidden = true
@@ -194,19 +215,9 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                 let data = try! Data(contentsOf: url!)
                 let img = UIImage(data: data)
                 DispatchQueue.main.async {
-                    cell.userImg.image = img!
+                    cell.imgMessage.image = img!
                 }
             }
-        }
-        
-        if message.fromId == Auth.auth().currentUser?.uid{
-            cell.txtView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-            cell.txtView.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            cell.userImg.isHidden = true
-        } else {
-            cell.txtView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-            cell.txtView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            cell.userImg.isHidden = false
         }
     }
     
