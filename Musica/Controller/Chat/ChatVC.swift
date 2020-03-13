@@ -43,7 +43,6 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     @objc func keyboardWillShow(notification: NSNotification){
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect){
-            print(self.viewTxtfield.frame.origin.y)
             if self.viewTxtfield.frame.origin.y == 818.0 {
                 self.viewTxtfield.frame.origin.y -= keyboardSize.height
             }
@@ -51,7 +50,6 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     @objc func keyboardWillHide(notification: NSNotification){
-        print(self.viewTxtfield.frame.origin.y)
         if self.viewTxtfield.frame.origin.y != 0 {
             self.viewTxtfield.frame.origin.y = 0
         }
@@ -89,19 +87,19 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                         print(err)
                         return
                     }
-                    self.sendMessageWithImageUrl(imageUrl: url?.absoluteString ?? "")
+                    self.sendMessageWithImageUrl(imageUrl: url?.absoluteString ?? "", image: imageSelected)
                 }
             }
         }
     }
     
-    private func sendMessageWithImageUrl(imageUrl: String){
+    private func sendMessageWithImageUrl(imageUrl: String, image: UIImage){
         let ref = Database.database().reference().child("messages")
         let childRef = ref.childByAutoId()
         let timestamp = Int(Date().timeIntervalSince1970)
         let fromId = Auth.auth().currentUser!.uid
         guard let toId = idIndexpath else {return}
-        let values = ["imageUrl": imageUrl, "fromId": fromId, "toId" : toId, "timestamp": timestamp] as [String : Any]
+        let values = ["imageUrl": imageUrl, "fromId": fromId, "toId" : toId, "timestamp": timestamp, "imageWidth": image.size.width, "imageHeight": image.size.height] as [String : Any]
         
         childRef.updateChildValues(values) { (error, ref) in
             if error != nil {
@@ -158,6 +156,9 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                         self.messages.append(message)
                         DispatchQueue.main.async(execute: {
                             self.collectionView.reloadData()
+                            //scrolling to the last message
+                            let indexpath = NSIndexPath(item: self.messages.count - 1, section: 0)
+                            self.collectionView.scrollToItem(at: indexpath as IndexPath, at: .bottom, animated: true)
                         })
                     }
             }
@@ -167,8 +168,12 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var height: CGFloat = 80
         let width: CGFloat = view.frame.width
-        if let text = messages[indexPath.item].text{
-            height = frameMsgTxt(text: text).height + 35
+        let message = messages[indexPath.item]
+        
+        if messages[indexPath.item].text != nil{
+            height = frameMsgTxt(text: messages[indexPath.item].text!).height + 35
+        } else if let imageWidth = message.imageWidth?.floatValue, let imageHeight = message.imageHeight?.floatValue{
+            height = CGFloat(imageHeight / imageWidth * 300)
         }
         return CGSize(width: width, height: height)
     }
@@ -191,6 +196,7 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             cell.txtView.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             cell.userImg.isHidden = true
         } else {
+            //cell.userImg.isHidden = false
             cell.txtView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             cell.txtView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             dispatchQueue.async {
@@ -225,6 +231,7 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ChatMessageCell
         let message = messages[indexPath.item]
         cell.txtView.layer.cornerRadius = 16
+        cell.imgMessage.layer.cornerRadius = 16
         
         setupChatCell(cell: cell, message: message)
         if let text = message.text{

@@ -461,32 +461,17 @@
             <objects>
                 <viewController id="lYE-BR-h6x" customClass="ParamsVC" customModule="Musica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sGh-hd-py4" customClass="GradientView" customModule="Musica" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeO-XY-INj">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <navigationItem title="Je recherche" id="TwK-ob-HsS">
-                                        <barButtonItem key="leftBarButtonItem" title="Fermer" id="BEI-PH-qQW">
-                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <connections>
-                                                <action selector="closeBtnTapped:" destination="lYE-BR-h6x" id="vfN-92-wTH"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tu trouveras ici tes paramètres de recherche" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLY-eh-W0A">
-                                <rect key="frame" x="35" y="103" width="344" height="46"/>
+                                <rect key="frame" x="35" y="20" width="344" height="46"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UAb-Qe-wNS">
-                                <rect key="frame" x="0.0" y="159" width="414" height="194"/>
+                                <rect key="frame" x="0.0" y="81" width="414" height="194"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -511,7 +496,7 @@
                                 </connections>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p2D-7h-2tG">
-                                <rect key="frame" x="0.0" y="492" width="414" height="282"/>
+                                <rect key="frame" x="0.0" y="414" width="414" height="306"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -533,13 +518,13 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choisir le genre musical" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ok-q6-CtV">
-                                <rect key="frame" x="108" y="420" width="198" height="46"/>
+                                <rect key="frame" x="108" y="342" width="198" height="46"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zs-dd-YtB" customClass="RoundButton" customModule="Musica" customModuleProvider="target">
-                                <rect key="frame" x="70" y="807" width="274" height="45"/>
+                                <rect key="frame" x="70" y="753" width="274" height="45"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="21"/>
                                 <state key="normal" title="Chercher">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -563,12 +548,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dLY-eh-W0A" firstAttribute="leading" secondItem="jav-ZI-dVU" secondAttribute="leading" constant="35" id="0JU-oR-w9W"/>
-                            <constraint firstItem="dLY-eh-W0A" firstAttribute="centerX" secondItem="IeO-XY-INj" secondAttribute="centerX" id="38z-KT-DsN"/>
-                            <constraint firstItem="IeO-XY-INj" firstAttribute="leading" secondItem="jav-ZI-dVU" secondAttribute="leading" id="3ix-WG-GlF"/>
-                            <constraint firstItem="IeO-XY-INj" firstAttribute="top" secondItem="jav-ZI-dVU" secondAttribute="top" id="4NW-HM-C7N"/>
-                            <constraint firstItem="dLY-eh-W0A" firstAttribute="top" secondItem="IeO-XY-INj" secondAttribute="bottom" constant="15" id="5DM-p2-KlO"/>
+                            <constraint firstItem="dLY-eh-W0A" firstAttribute="top" secondItem="jav-ZI-dVU" secondAttribute="top" constant="20" id="BAA-5n-RJy"/>
                             <constraint firstItem="UAb-Qe-wNS" firstAttribute="trailing" secondItem="jav-ZI-dVU" secondAttribute="trailing" id="BCY-ib-dNy"/>
-                            <constraint firstItem="IeO-XY-INj" firstAttribute="trailing" secondItem="jav-ZI-dVU" secondAttribute="trailing" id="CTf-IY-nxC"/>
                             <constraint firstItem="8zs-dd-YtB" firstAttribute="leading" secondItem="jav-ZI-dVU" secondAttribute="leading" constant="70" id="JZR-n2-ddR"/>
                             <constraint firstItem="3ok-q6-CtV" firstAttribute="top" secondItem="UAb-Qe-wNS" secondAttribute="bottom" constant="67" id="O3P-Zb-REx"/>
                             <constraint firstItem="3ok-q6-CtV" firstAttribute="leading" secondItem="jav-ZI-dVU" secondAttribute="leading" constant="108" id="Prz-mv-2hG"/>
@@ -577,10 +558,9 @@
                             <constraint firstItem="UAb-Qe-wNS" firstAttribute="centerX" secondItem="sGh-hd-py4" secondAttribute="centerX" id="Y3s-u7-GnO"/>
                             <constraint firstItem="p2D-7h-2tG" firstAttribute="centerX" secondItem="sGh-hd-py4" secondAttribute="centerX" id="bQG-wc-FVv"/>
                             <constraint firstItem="UAb-Qe-wNS" firstAttribute="leading" secondItem="jav-ZI-dVU" secondAttribute="leading" id="bip-S8-oQI"/>
-                            <constraint firstItem="IeO-XY-INj" firstAttribute="centerX" secondItem="sGh-hd-py4" secondAttribute="centerX" id="d8u-Eo-blG"/>
                             <constraint firstItem="jav-ZI-dVU" firstAttribute="bottom" secondItem="8zs-dd-YtB" secondAttribute="bottom" constant="10" id="hO8-ia-tJB"/>
                             <constraint firstItem="3ok-q6-CtV" firstAttribute="centerX" secondItem="sGh-hd-py4" secondAttribute="centerX" id="i2c-EL-sTB"/>
-                            <constraint firstItem="UAb-Qe-wNS" firstAttribute="top" secondItem="dLY-eh-W0A" secondAttribute="bottom" constant="10" id="iS2-ZR-9Sa"/>
+                            <constraint firstItem="UAb-Qe-wNS" firstAttribute="top" secondItem="dLY-eh-W0A" secondAttribute="bottom" constant="15" id="iS2-ZR-9Sa"/>
                             <constraint firstItem="p2D-7h-2tG" firstAttribute="top" secondItem="3ok-q6-CtV" secondAttribute="bottom" constant="26" id="j2L-N2-dZD"/>
                             <constraint firstItem="p2D-7h-2tG" firstAttribute="trailing" secondItem="jav-ZI-dVU" secondAttribute="trailing" id="jGQ-NX-VyU"/>
                             <constraint firstItem="8zs-dd-YtB" firstAttribute="centerX" secondItem="p2D-7h-2tG" secondAttribute="centerX" id="kbN-CD-kAj"/>
@@ -601,7 +581,7 @@
                     <connections>
                         <outlet property="genderTableView" destination="UAb-Qe-wNS" id="xA5-Ly-ghV"/>
                         <outlet property="musicStyleTableView" destination="p2D-7h-2tG" id="8Ay-zM-oti"/>
-                        <segue destination="cab-1L-m3k" kind="presentation" identifier="backToCollectionVC" modalPresentationStyle="fullScreen" id="VQf-sv-wnW"/>
+                        <segue destination="cab-1L-m3k" kind="show" identifier="backToCollectionVC" id="EWZ-54-A6D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhO-o9-53r" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -927,11 +907,11 @@
             <objects>
                 <viewController storyboardIdentifier="Main" id="cab-1L-m3k" customClass="CollectionVC" customModule="Musica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NES-ti-Mdm" customClass="GradientView" customModule="Musica" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFd-IH-JCT">
-                                <rect key="frame" x="374" y="98" width="30" height="30"/>
+                                <rect key="frame" x="374" y="10" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="DT4-OH-h04"/>
                                     <constraint firstAttribute="height" constant="30" id="GkL-ls-HNR"/>
@@ -942,7 +922,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cJT-Pk-EEj">
-                                <rect key="frame" x="20" y="168" width="374" height="694"/>
+                                <rect key="frame" x="20" y="80" width="374" height="728"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IVd-id-G7G">
                                     <size key="itemSize" width="110" height="99"/>
@@ -990,7 +970,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2L-d5-icu">
-                                <rect key="frame" x="10" y="98" width="30" height="30"/>
+                                <rect key="frame" x="10" y="10" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ZW3-Ev-lqr"/>
                                     <constraint firstAttribute="width" constant="30" id="z1e-7I-XTL"/>
@@ -1001,7 +981,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OjA-GR-fsd">
-                                <rect key="frame" x="192" y="98" width="30" height="30"/>
+                                <rect key="frame" x="192" y="10" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Dd7-fq-CXA"/>
                                     <constraint firstAttribute="width" constant="30" id="QBL-TR-2oT"/>
@@ -1041,7 +1021,7 @@
                         <outlet property="collectionView" destination="cJT-Pk-EEj" id="v97-yE-tsf"/>
                         <segue destination="enT-J4-iqp" kind="presentation" identifier="showParameter" modalPresentationStyle="fullScreen" id="jy4-oM-sg3"/>
                         <segue destination="IA6-S7-dRP" kind="show" identifier="showDetail" id="B0W-Bm-d5C"/>
-                        <segue destination="lYE-BR-h6x" kind="presentation" identifier="searchingSegue" modalPresentationStyle="fullScreen" id="ouF-6M-zmJ"/>
+                        <segue destination="lYE-BR-h6x" kind="show" identifier="searchingSegue" id="ouF-6M-zmJ"/>
                         <segue destination="1DW-tY-tA4" kind="show" identifier="showChat" id="jDp-f1-cD4"/>
                     </connections>
                 </viewController>
@@ -1054,26 +1034,26 @@
             <objects>
                 <viewController storyboardIdentifier="DetailUserVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IA6-S7-dRP" customClass="DetailUserVC" customModule="Musica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="atW-Vu-m3l" customClass="GradientView" customModule="Musica" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EbN-Bu-vHz">
-                                <rect key="frame" x="15" y="98" width="384" height="246"/>
+                                <rect key="frame" x="15" y="10" width="384" height="246"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="246" id="i6Q-gR-hhG"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="CD0-ib-KW0">
-                                <rect key="frame" x="15" y="444" width="382" height="400"/>
+                                <rect key="frame" x="15" y="372.5" width="382" height="417.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Présentation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x31-LB-K1i">
-                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="17.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-MediumOblique" family="Avenir" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IiY-oe-45p">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="400"/>
+                                        <rect key="frame" x="0.0" y="17.5" width="382" height="400"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1086,7 +1066,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHD-Vc-8VC">
-                                <rect key="frame" x="240" y="349" width="159" height="36"/>
+                                <rect key="frame" x="240" y="261" width="159" height="36"/>
                                 <fontDescription key="fontDescription" name="Avenir-MediumOblique" family="Avenir" pointSize="17"/>
                                 <state key="normal" title="Envoyer un message">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1096,16 +1076,16 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="5NR-9v-3Ue">
-                                <rect key="frame" x="15" y="354" width="92.5" height="62"/>
+                                <rect key="frame" x="15" y="266" width="92.5" height="78.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="bQy-bI-mCu">
-                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="22"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="38.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music Style" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y68-qH-mhU">
-                                        <rect key="frame" x="0.0" y="37" width="92.5" height="25"/>
+                                        <rect key="frame" x="0.0" y="53.5" width="92.5" height="25"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1192,11 +1172,11 @@
             <objects>
                 <viewController storyboardIdentifier="ChatVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cJJ-dH-TDP" customClass="ChatVC" customModule="Musica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x6n-xo-75g" customClass="GradientView" customModule="Musica" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nVk-yo-uFO">
-                                <rect key="frame" x="0.0" y="818" width="414" height="78"/>
+                                <rect key="frame" x="0.0" y="818" width="414" height="24"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a message here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RP3-7D-ObA">
                                         <rect key="frame" x="61" y="8" width="297" height="34"/>
@@ -1243,7 +1223,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fBN-I6-DDV">
-                                <rect key="frame" x="0.0" y="88" width="414" height="730"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1x9-65-Q3G">
                                     <size key="itemSize" width="199" height="50"/>
@@ -1311,7 +1291,6 @@
                                                 <constraint firstAttribute="bottom" secondItem="Xae-ah-EeX" secondAttribute="bottom" constant="8" id="qgd-EC-0oj"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="199" height="50"/>
                                         <connections>
                                             <outlet property="imgMessage" destination="Xae-ah-EeX" id="Gj2-Nf-860"/>
                                             <outlet property="txtView" destination="Qp3-cy-Ocz" id="KZd-Fp-bqD"/>
@@ -1362,7 +1341,7 @@
             <objects>
                 <tableViewController id="1DW-tY-tA4" customClass="ChatTableView" customModule="Musica" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="z7Q-sK-mP7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1471,7 +1450,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="IOw-SO-z7O"/>
         <segue reference="B0W-Bm-d5C"/>
-        <segue reference="nDG-2y-BRL"/>
+        <segue reference="EWZ-54-A6D"/>
         <segue reference="0eY-sc-jAk"/>
     </inferredMetricsTieBreakers>
 </document>

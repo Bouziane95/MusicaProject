@@ -43,18 +43,19 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     
     
     func getUsers(){
+        
         let rootRef = Database.database().reference()
         let query = rootRef.child("users")
         query.observeSingleEvent(of: .value) { (snapshot) in
-            self.musicienArray = snapshot.children.allObjects as! [DataSnapshot]
-            self.collectionView.reloadData()
+        self.musicienArray = snapshot.children.allObjects as! [DataSnapshot]
+        self.collectionView.reloadData()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if queryUser != nil {
             return queryUser?.count ?? 0
-        } else {
+        } else{
             return musicienArray.count
         }
     }
@@ -74,20 +75,22 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
                 } 
             }
         }
-        else {
-        cell.userNameLbl.text = musicien?["name"] as? String
-        dispatchQueue.async {
-            let arrayUrl = URL(string: musicien?["profileImgURL"] as! String)!
-            let arrayData = try! Data(contentsOf: arrayUrl)
-            let img = UIImage(data: arrayData)
+        else if musicien?["uid"] as? String != Auth.auth().currentUser?.uid {
+            cell.userNameLbl.text = musicien?["name"] as? String
+            dispatchQueue.async {
+                let arrayUrl = URL(string: musicien?["profileImgURL"] as! String)!
+                let arrayData = try! Data(contentsOf: arrayUrl)
+                let img = UIImage(data: arrayData)
             
-            DispatchQueue.main.async {
-                cell.profilUsersImage.image = img!
+                DispatchQueue.main.async {
+                    cell.profilUsersImage.image = img!
+                }
             }
+        } else if musicien?["uid"] as? String == Auth.auth().currentUser?.uid {
+            cell.isHidden = true
         }
+            return cell
     }
-        return cell
-}
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? DetailUserVC{

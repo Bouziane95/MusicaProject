@@ -43,15 +43,19 @@ class ChatTableView: UITableViewController {
                             return message1.timestamp.int32Value > message2.timestamp.int32Value
                         }
                     }
-                    //invalidate = stop the reloadData at each messages coming from firebase until the last msg loaded from firebase then we reloadData
-                    self.timer?.invalidate()
-                    self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (timer) in
-                        DispatchQueue.main.async(execute: {
-                            self.tableView.reloadData()
-                        })
-                    }
+                    self.reloadTable()
                 }
             }
+        }
+    }
+    
+    func reloadTable(){
+        //invalidate = stop the reloadData at each messages coming from firebase until the last msg loaded from firebase then we reloadData
+        self.timer?.invalidate()
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (timer) in
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
+            })
         }
     }
     
@@ -113,6 +117,24 @@ class ChatTableView: UITableViewController {
                 self.idToPass = dictionnary["uid"] as? String
                 self.imgChat = dictionnary["profileImgURL"] as? String
                 self.performSegue(withIdentifier: "showChatVC", sender: self)
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let message = self.messages[indexPath.row]
+        
+        if let chatPartnerId = message.chatPartnerID(){
+            Database.database().reference().child("userMessages").child(uid).child(chatPartnerId).removeValue { (error, ref) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                print(self.messagesDictionnary)
+                self.messagesDictionnary.removeValue(forKey: chatPartnerId)
+                print(self.messagesDictionnary)
+                self.reloadTable()
             }
         }
     }
