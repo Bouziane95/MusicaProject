@@ -87,7 +87,6 @@ class ChatTableView: UITableViewController {
                 }
             }
         
-    
         if let seconds = message.timestamp?.doubleValue{
             let timestampDate = NSDate(timeIntervalSince1970: seconds)
             let dateFormatter = DateFormatter()
@@ -95,6 +94,9 @@ class ChatTableView: UITableViewController {
             cell.timeLbl.text = dateFormatter.string(from: timestampDate as Date)
         }
         cell.msgProfil.text = message.text
+        if cell.msgProfil.text == nil {
+            cell.msgProfil.text = "Vous avez reçu une image !"
+        }
         return cell
         
     }

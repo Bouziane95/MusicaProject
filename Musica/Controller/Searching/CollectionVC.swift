@@ -59,11 +59,13 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
             return musicienArray.count
         }
     }
-            
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "musicaCell", for: indexPath) as! CollectionCell
         let musicien = musicienArray[indexPath.row].value as? NSDictionary
+        
         if let queryMusicien = queryUser?[indexPath.row].value as? NSDictionary {
+            if queryMusicien["uid"] as? String != Auth.auth().currentUser?.uid{
             cell.userNameLbl.text = queryMusicien["name"] as? String
             dispatchQueue.async {
                 let arrayUrl = URL(string: queryMusicien["profileImgURL"] as! String)
@@ -74,7 +76,10 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
                     cell.profilUsersImage.image = img!
                 } 
             }
-        }
+            } else if queryMusicien["uid"] as? String == Auth.auth().currentUser?.uid{
+                cell.isHidden = true
+            }
+    }
         else if musicien?["uid"] as? String != Auth.auth().currentUser?.uid {
             cell.userNameLbl.text = musicien?["name"] as? String
             dispatchQueue.async {

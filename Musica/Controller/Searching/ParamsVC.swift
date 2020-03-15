@@ -21,6 +21,7 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var gender = String()
     var style = [String]()
     var genderNumber : Int?
+    var musicNumber : Int?
     
     @IBOutlet weak var genderTableView: UITableView!
     @IBOutlet weak var musicStyleTableView: UITableView!
@@ -61,15 +62,33 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                     destination.queryUser = self.userQuery
                 }
             }
-    }
+            if musicNumber == 0{
+                let rootRef = Database.database().reference()
+                let query = rootRef.child("users").queryOrdered(byChild: "musicStyle").queryEqual(toValue: "Guitariste")
+                query.observeSingleEvent(of: .value) { (snapshot) in
+                    self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
+                    destination.queryUser = self.userQuery
+                }
+            } else if musicNumber == 1{
+                let rootRef = Database.database().reference()
+                let query = rootRef.child("users").queryOrdered(byChild: "musicStyle").queryEqual(toValue: "Batteur")
+                query.observeSingleEvent(of: .value) { (snapshot) in
+                    self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
+                    destination.queryUser = self.userQuery
+                }
+            } else {
+                let rootRef = Database.database().reference()
+                let query = rootRef.child("users").queryOrdered(byChild: "musicStyle")
+                query.observeSingleEvent(of: .value) { (snapshot) in
+                    self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
+                    destination.queryUser = self.userQuery
+                }
+            }
+        }
 }
     
     @IBAction func searchBtn(_ sender: Any) {
-        if genderNumber == nil {
-            dismiss(animated: true, completion: nil)
-        } else {
         performSegue(withIdentifier: "backToCollectionVC", sender: self)
-        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -151,13 +170,18 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         switch tableView{
         case genderTableView:
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-            gender = genderArray[indexPath.row]
             genderNumber = indexPath.row
         case musicStyleTableView:
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark{
+                tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+            } else {
+                tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+                musicNumber = indexPath.row
+                print(musicNumber!)
+            }
+            tableView.deselectRow(at: indexPath, animated: true)
         default:
             break
-
         }
     }
 
@@ -165,38 +189,11 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         switch tableView{
         case genderTableView:
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        case musicStyleTableView:
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
         default:
             break
 
         }
     }
-    
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //
-    //        switch tableView{
-    //        case genderTableView:
-    //            if tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark {
-    //                  tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
-    //              } else {
-    //            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
-    //            gender = genderArray[indexPath.row]
-    //            genderNumber = indexPath.row
-    //              }
-    //              tableView.deselectRow(at: indexPath, animated: true)
-    //        case musicStyleTableView:
-    //            if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
-    //                  tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
-    //              } else {
-    //            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
-    //
-    //              }
-    //              tableView.deselectRow(at: indexPath, animated: true)
-    //        default:
-    //            break
-    //        }
-    //    }
 }
 
 
