@@ -17,12 +17,23 @@ class ChatTableView: UITableViewController {
     var imgChat: String?
     private var dispatchQueue: DispatchQueue = DispatchQueue(label: "ChatTableview")
     var idToPass: String?
-     var timer: Timer?
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         observeUserMessages()
-        navigationItem.title = "Chat"
+        getTitle()
+    }
+    
+    func getTitle(){
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            guard let dict = snapshot.value as? [String: Any] else {return}
+            let user = CurrentUser(uid: uid, dictionnary: dict)
+            let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!]
+            self.navigationController?.navigationBar.titleTextAttributes = attributes
+            self.navigationItem.title = "\(user.name)"
+        }
     }
     
     func observeUserMessages(){

@@ -16,6 +16,9 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         collectionView.delegate = self
         collectionView.dataSource = self
         getUsers()
+        let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes
+        self.navigationItem.title = "Musiciens"
     }
         
     private var dispatchQueue: DispatchQueue = DispatchQueue(label: "CollectionView")

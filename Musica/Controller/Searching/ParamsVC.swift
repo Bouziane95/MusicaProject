@@ -32,6 +32,9 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         genderTableView.delegate = self
         musicStyleTableView.delegate = self
         musicStyleTableView.dataSource = self
+        let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes
+        self.navigationItem.title = "Ma recherche"
     }
     
     @IBAction func closeBtnTapped(_ sender: Any) {
@@ -57,28 +60,6 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
             } else {
                 let rootRef = Database.database().reference()
                 let query = rootRef.child("users").queryOrdered(byChild: "gender")
-                query.observeSingleEvent(of: .value) { (snapshot) in
-                    self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
-                    destination.queryUser = self.userQuery
-                }
-            }
-            if musicNumber == 0{
-                let rootRef = Database.database().reference()
-                let query = rootRef.child("users").queryOrdered(byChild: "musicStyle").queryEqual(toValue: "Guitariste")
-                query.observeSingleEvent(of: .value) { (snapshot) in
-                    self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
-                    destination.queryUser = self.userQuery
-                }
-            } else if musicNumber == 1{
-                let rootRef = Database.database().reference()
-                let query = rootRef.child("users").queryOrdered(byChild: "musicStyle").queryEqual(toValue: "Batteur")
-                query.observeSingleEvent(of: .value) { (snapshot) in
-                    self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
-                    destination.queryUser = self.userQuery
-                }
-            } else {
-                let rootRef = Database.database().reference()
-                let query = rootRef.child("users").queryOrdered(byChild: "musicStyle")
                 query.observeSingleEvent(of: .value) { (snapshot) in
                     self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
                     destination.queryUser = self.userQuery
@@ -176,8 +157,6 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
             } else {
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
-                musicNumber = indexPath.row
-                print(musicNumber!)
             }
             tableView.deselectRow(at: indexPath, animated: true)
         default:

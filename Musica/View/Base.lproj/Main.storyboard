@@ -740,11 +740,11 @@
             <objects>
                 <viewController storyboardIdentifier="ProfileVC" id="enT-J4-iqp" customClass="MyProfileVC" customModule="Musica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bx1-zz-4Lm" customClass="GradientView" customModule="Musica" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="B37-ZN-ZPu">
-                                <rect key="frame" x="135" y="311.5" width="144" height="142.5"/>
+                                <rect key="frame" x="135" y="267.5" width="144" height="142.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVT-lq-9l2">
                                         <rect key="frame" x="50" y="0.0" width="44.5" height="27.5"/>
@@ -767,7 +767,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FiL-wQ-0hi">
-                                <rect key="frame" x="15" y="59" width="25" height="25"/>
+                                <rect key="frame" x="15" y="15" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="jLK-a5-hiX"/>
                                     <constraint firstAttribute="width" constant="25" id="pax-JT-OZ3"/>
@@ -775,7 +775,7 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="QNy-jf-VaI">
-                                <rect key="frame" x="100" y="94" width="214" height="197.5"/>
+                                <rect key="frame" x="100" y="50" width="214" height="197.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="v8a-T9-lMV" customClass="RoundImage" customModule="Musica" customModuleProvider="target">
                                         <rect key="frame" x="37" y="0.5" width="140" height="139"/>
@@ -808,7 +808,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lu-ci-ZtL">
-                                <rect key="frame" x="374" y="54" width="30" height="30"/>
+                                <rect key="frame" x="374" y="10" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="4HT-hD-L0I"/>
                                     <constraint firstAttribute="height" constant="30" id="XLc-ka-p3D"/>
@@ -818,33 +818,21 @@
                                     <action selector="signOutBtnPressed:" destination="enT-J4-iqp" eventType="touchUpInside" id="m4I-fj-lc3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTK-iL-yth">
-                                <rect key="frame" x="10" y="54" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="j3f-Am-v8h"/>
-                                    <constraint firstAttribute="width" constant="30" id="zOw-aS-yoz"/>
-                                </constraints>
-                                <state key="normal" image="back"/>
-                                <connections>
-                                    <action selector="btnDismissedPressed:" destination="enT-J4-iqp" eventType="touchUpInside" id="7pc-kC-XmF"/>
-                                    <action selector="signOutBtnPressed:" destination="enT-J4-iqp" eventType="touchUpInside" id="gpr-zh-LvG"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music Style" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0s-vq-qG2">
-                                <rect key="frame" x="40" y="474" width="334" height="26.5"/>
+                                <rect key="frame" x="40" y="430" width="334" height="26.5"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QWB-Bu-TMf">
-                                <rect key="frame" x="20" y="644" width="374" height="193"/>
+                                <rect key="frame" x="20" y="600" width="374" height="183"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ma description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r82-RT-rcf">
-                                <rect key="frame" x="128" y="584" width="158" height="27.5"/>
+                                <rect key="frame" x="128" y="540" width="158" height="27.5"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -853,7 +841,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="n0s-vq-qG2" firstAttribute="leading" secondItem="u56-ET-xNd" secondAttribute="leading" constant="40" id="1g3-O4-8Pi"/>
-                            <constraint firstItem="vTK-iL-yth" firstAttribute="top" secondItem="u56-ET-xNd" secondAttribute="top" constant="10" id="20x-As-KTj"/>
                             <constraint firstItem="r82-RT-rcf" firstAttribute="leading" secondItem="u56-ET-xNd" secondAttribute="leading" constant="128" id="3Mq-mY-Uy6"/>
                             <constraint firstItem="u56-ET-xNd" firstAttribute="trailing" secondItem="QNy-jf-VaI" secondAttribute="trailing" constant="100" id="5YB-ws-Aw8"/>
                             <constraint firstItem="u56-ET-xNd" firstAttribute="trailing" secondItem="n0s-vq-qG2" secondAttribute="trailing" constant="40" id="5bN-dj-439"/>
@@ -866,7 +853,6 @@
                             <constraint firstItem="3lu-ci-ZtL" firstAttribute="top" secondItem="u56-ET-xNd" secondAttribute="top" constant="10" id="IK5-Ap-OMS"/>
                             <constraint firstItem="u56-ET-xNd" firstAttribute="trailing" secondItem="B37-ZN-ZPu" secondAttribute="trailing" constant="135" id="NWQ-13-DKd"/>
                             <constraint firstItem="u56-ET-xNd" firstAttribute="bottom" secondItem="QWB-Bu-TMf" secondAttribute="bottom" constant="25" id="PXa-ro-Rap"/>
-                            <constraint firstItem="vTK-iL-yth" firstAttribute="leading" secondItem="u56-ET-xNd" secondAttribute="leading" constant="10" id="Z6C-lf-wFL"/>
                             <constraint firstItem="B37-ZN-ZPu" firstAttribute="centerX" secondItem="Bx1-zz-4Lm" secondAttribute="centerX" id="eC7-Gw-75Q"/>
                             <constraint firstItem="QWB-Bu-TMf" firstAttribute="leading" secondItem="u56-ET-xNd" secondAttribute="leading" constant="20" id="eO1-Ro-cd8"/>
                             <constraint firstItem="QWB-Bu-TMf" firstAttribute="top" secondItem="B37-ZN-ZPu" secondAttribute="bottom" constant="190" id="eSs-GZ-3a2"/>
@@ -887,6 +873,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <navigationItem key="navigationItem" id="5ad-2V-jKH"/>
                     <connections>
                         <outlet property="ageAcc" destination="r62-HH-MkH" id="YXw-PV-Pic"/>
                         <outlet property="descriptionAcc" destination="QWB-Bu-TMf" id="uOf-Fb-oZH"/>
@@ -1019,7 +1006,7 @@
                     <navigationItem key="navigationItem" title="Musiciens" id="qHI-Vx-yiJ"/>
                     <connections>
                         <outlet property="collectionView" destination="cJT-Pk-EEj" id="v97-yE-tsf"/>
-                        <segue destination="enT-J4-iqp" kind="presentation" identifier="showParameter" modalPresentationStyle="fullScreen" id="jy4-oM-sg3"/>
+                        <segue destination="enT-J4-iqp" kind="show" identifier="showParameter" id="jy4-oM-sg3"/>
                         <segue destination="IA6-S7-dRP" kind="show" identifier="showDetail" id="B0W-Bm-d5C"/>
                         <segue destination="lYE-BR-h6x" kind="show" identifier="searchingSegue" id="ouF-6M-zmJ"/>
                         <segue destination="1DW-tY-tA4" kind="show" identifier="showChat" id="jDp-f1-cD4"/>
@@ -1448,6 +1435,7 @@
         <image name="settings" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ouF-6M-zmJ"/>
         <segue reference="IOw-SO-z7O"/>
         <segue reference="B0W-Bm-d5C"/>
         <segue reference="EWZ-54-A6D"/>
