@@ -18,6 +18,12 @@ class LoginVC: UIViewController{
         super.viewDidLoad()
     }
     
+    func displayAlertMessage(title: String, msg: String){
+             let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+             let okAction = UIAlertAction(title: "Ok",style: .default, handler: nil)
+             alert.addAction(okAction)
+             self.present(alert, animated: true, completion: nil)
+         }
     
     @IBAction func signInBtnPressed(_ sender: Any) {
         if emailField.text != nil && passwordField.text != nil {
@@ -26,6 +32,7 @@ class LoginVC: UIViewController{
                     print("Success Login")
                     self.performSegue(withIdentifier: "showHome", sender: self)
                 } else {
+                    self.displayAlertMessage(title: "Oups !", msg: "Votre identifiant ou mot de passe est incorrect")
                     print(String(describing: loginError?.localizedDescription))
                 }
             }

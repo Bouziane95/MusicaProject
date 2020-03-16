@@ -105,7 +105,7 @@ class CreateAccVC: UIViewController {
                     print("Succes registration")
                     self.performSegue(withIdentifier: "showLogin", sender: self)
                 } else {
-                    self.displayAlertMessage(title: "Error",msg: "\(registrationError!.localizedDescription)")
+                    self.displayAlertMessage(title: "Oups !",msg: "\(registrationError!.localizedDescription)")
                     print(String(describing: registrationError?.localizedDescription))
                 }
             }

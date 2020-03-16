@@ -70,6 +70,24 @@ class ChatTableView: UITableViewController {
         }
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        var sectionNumber : Int = 1
+        if messages.count > 0 {
+            self.tableView.backgroundView = nil
+            sectionNumber = 1
+        } else {
+            let noDataText : UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: self.tableView.bounds.size.height))
+            noDataText.text = "Aucun chat pour l'instant"
+            noDataText.font = UIFont(name: "Marker Felt", size: 28)
+            noDataText.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            noDataText.textAlignment = .center
+            noDataText.numberOfLines = 0
+            self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+            self.tableView.backgroundView = noDataText
+        }
+        return sectionNumber
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
@@ -77,10 +95,9 @@ class ChatTableView: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! ChatTableviewCell
         let message = messages[indexPath.row]
-        
-        
         let toId = message.chatPartnerID()
         let ref = Database.database().reference().child("users").child(toId!)
+        
             ref.observeSingleEvent(of: .value) { (snapshot) in
                 if let dictionnary = snapshot.value as? [String: AnyObject]{
                     cell.nameProfil.text = dictionnary["name"] as? String
@@ -134,22 +151,22 @@ class ChatTableView: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        let message = self.messages[indexPath.row]
-        
-        if let chatPartnerId = message.chatPartnerID(){
-            Database.database().reference().child("userMessages").child(uid).child(chatPartnerId).removeValue { (error, ref) in
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                print(self.messagesDictionnary)
-                self.messagesDictionnary.removeValue(forKey: chatPartnerId)
-                print(self.messagesDictionnary)
-                self.reloadTable()
-            }
-        }
-    }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        guard let uid = Auth.auth().currentUser?.uid else {return}
+//        let message = self.messages[indexPath.row]
+//
+//        if let chatPartnerId = message.chatPartnerID(){
+//            Database.database().reference().child("userMessages").child(uid).child(chatPartnerId).removeValue { (error, ref) in
+//                if error != nil {
+//                    print(error!)
+//                    return
+//                }
+//                print(self.messagesDictionnary)
+//                self.messagesDictionnary.removeValue(forKey: chatPartnerId)
+//                print(self.messagesDictionnary)
+//                self.reloadTable()
+//            }
+//        }
+//    }
 }
 

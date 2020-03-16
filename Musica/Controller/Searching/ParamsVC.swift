@@ -18,10 +18,7 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     let hiphopMusicien = ["Break-Dance"]
     let sections = ["Rock", "Jazz", "Hip-Hop"]
     var userQuery : [DataSnapshot] = []
-    var gender = String()
-    var style = [String]()
     var genderNumber : Int?
-    var musicNumber : Int?
     
     @IBOutlet weak var genderTableView: UITableView!
     @IBOutlet weak var musicStyleTableView: UITableView!
@@ -170,7 +167,6 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
         default:
             break
-
         }
     }
 }
