@@ -97,8 +97,10 @@ class CreateAccVC: UIViewController {
     }
     
     @IBAction func createAccPressed(_ sender: Any) {
+        let stringMusicStyle = musicStyle.joined(separator: "_")
+        
         if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
-            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, gender: gender, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: musicStyle, userDescription: self.userDescription.text!) { (success, registrationError)
+            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, gender: gender, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: stringMusicStyle, userDescription: self.userDescription.text!, filterParams: "\(gender)_\(stringMusicStyle)") { (success, registrationError)
                 in
                 if success{
                     self.uploadPhoto()

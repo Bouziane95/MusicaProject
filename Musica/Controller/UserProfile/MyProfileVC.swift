@@ -23,14 +23,18 @@ class MyProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!]
-        self.navigationController?.navigationBar.titleTextAttributes = attributes
-        self.navigationItem.title = "Mon profil"
+        navTitle()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         downloadUserData()
+    }
+    
+    func navTitle(){
+        let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes
+        self.navigationItem.title = "Mon profil"
     }
     
     func downloadUserData(){

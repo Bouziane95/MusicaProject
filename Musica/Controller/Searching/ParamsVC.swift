@@ -12,23 +12,28 @@ import Firebase
 
 class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    var genderArray : Array = ["Homme", "Femme", "Pas d'importance"]
+    var genderArray : Array = ["Homme", "Femme", "N.C."]
     let rockMusicien = ["Guitariste", "Batteur"]
     let jazzMusicien = ["Contre-Bassiste"]
     let hiphopMusicien = ["Break-Dance"]
     let sections = ["Rock", "Jazz", "Hip-Hop"]
     var userQuery : [DataSnapshot] = []
-    var genderNumber : Int?
+    var gender : String?
+    var style : [String]? = []
     
     @IBOutlet weak var genderTableView: UITableView!
     @IBOutlet weak var musicStyleTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navTitle()
         genderTableView.dataSource = self
         genderTableView.delegate = self
         musicStyleTableView.delegate = self
         musicStyleTableView.dataSource = self
+    }
+    
+    func navTitle(){
         let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!]
         self.navigationController?.navigationBar.titleTextAttributes = attributes
         self.navigationItem.title = "Ma recherche"
@@ -40,23 +45,26 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? CollectionVC{
-            if genderNumber == 0{
+            if gender != nil && style != [] {
+                guard let stringStyle = style?.joined(separator: "_") else {return}
                 let rootRef = Database.database().reference()
-                let query = rootRef.child("users").queryOrdered(byChild: "gender").queryEqual(toValue: "Homme")
+                let query = rootRef.child("users").queryOrdered(byChild: "filterParameters").queryEqual(toValue: "\(gender!)_\(stringStyle)")
                 query.observeSingleEvent(of: .value) { (snapshot) in
                     self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
                     destination.queryUser = self.userQuery
                 }
-            } else if genderNumber == 1{
-            let rootRef = Database.database().reference()
-            let query = rootRef.child("users").queryOrdered(byChild: "gender").queryEqual(toValue: "Femme")
-            query.observeSingleEvent(of: .value) { (snapshot) in
-                self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
-                destination.queryUser = self.userQuery
-            }
-            } else {
+            } else if gender != nil && style == [] {
                 let rootRef = Database.database().reference()
-                let query = rootRef.child("users").queryOrdered(byChild: "gender")
+                let query = rootRef.child("users").queryOrdered(byChild: "gender").queryEqual(toValue: "\(gender!)")
+                query.observeSingleEvent(of: .value) { (snapshot) in
+                    self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
+                    destination.queryUser = self.userQuery
+                }
+            } else if gender == nil && style != []{
+                guard let stringStyle = style?.joined(separator: "_") else {return}
+                print(stringStyle)
+                let rootRef = Database.database().reference()
+                let query = rootRef.child("users").queryOrdered(byChild: "musicStyle").queryEqual(toValue: "\(stringStyle)")
                 query.observeSingleEvent(of: .value) { (snapshot) in
                     self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
                     destination.queryUser = self.userQuery
@@ -148,13 +156,43 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         switch tableView{
         case genderTableView:
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-            genderNumber = indexPath.row
+            gender = genderArray[indexPath.row]
         case musicStyleTableView:
-            if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark{
-                tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
-            } else {
-                tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+            switch indexPath.section {
+            case 0:
+                if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark{
+                    tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+                    style?.remove(at: indexPath.row)
+                    print(style!)
+                } else {
+                    tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+                    style?.append(rockMusicien[indexPath.row])
+                    print(style!)
+                }
+            case 1:
+                if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark{
+                    tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+                    style?.remove(at: indexPath.row)
+                    print(style!)
+                } else {
+                    tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+                    style?.append(jazzMusicien[indexPath.row])
+                    print(style!)
+                }
+            case 2:
+                if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark{
+                    tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+                    style?.remove(at: indexPath.row)
+                    print(style!)
+                } else {
+                    tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+                    style?.append(hiphopMusicien[indexPath.row])
+                    print(style!)
+                }
+            default:
+                break
             }
+            
             tableView.deselectRow(at: indexPath, animated: true)
         default:
             break

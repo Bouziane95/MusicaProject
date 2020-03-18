@@ -13,14 +13,14 @@ class AuthService {
     
     static let instance = AuthService()
     
-    func registerUser(withEmail email: String, andPassword password: String, gender: String, name: String, age: String, musicStyle: [String], userDescription: String, userCreationComplete: @escaping(_ status: Bool, _ error: Error?) -> ()){
+    func registerUser(withEmail email: String, andPassword password: String, gender: String, name: String, age: String, musicStyle: String, userDescription: String, filterParams: String, userCreationComplete: @escaping(_ status: Bool, _ error: Error?) -> ()){
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             guard user != nil else {
                 userCreationComplete(false, error)
                 return
             }
             
-            let userData = ["email": email, "name" : name, "age" : age, "musicStyle" : musicStyle, "gender" : gender, "description" : userDescription, "uid": Auth.auth().currentUser!.uid] as [String : Any]
+            let userData = ["email": email, "name" : name, "age" : age, "musicStyle" : musicStyle, "gender" : gender, "description" : userDescription, "uid": Auth.auth().currentUser!.uid, "filterParameters" : filterParams] as [String : Any]
             
             DataServices.instance.createDBUsers(unikID: Auth.auth().currentUser!.uid, userData: userData)
             userCreationComplete(true, nil)

@@ -16,9 +16,7 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         collectionView.delegate = self
         collectionView.dataSource = self
         getUsers()
-        let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!]
-        self.navigationController?.navigationBar.titleTextAttributes = attributes
-        self.navigationItem.title = "Musiciens"
+        navTitle()
     }
         
     private var dispatchQueue: DispatchQueue = DispatchQueue(label: "CollectionView")
@@ -44,13 +42,24 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         performSegue(withIdentifier: "showChat", sender: self)
     }
     
+    func navTitle(){
+        let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes
+        self.navigationItem.title = "Musiciens"
+    }
+    
     
     func getUsers(){
-        
         let rootRef = Database.database().reference()
         let query = rootRef.child("users")
         query.observeSingleEvent(of: .value) { (snapshot) in
         self.musicienArray = snapshot.children.allObjects as! [DataSnapshot]
+            for index in self.musicienArray{
+                let musiciens = index.value as? NSDictionary
+                if musiciens?["uid"] as? String != Auth.auth().currentUser?.uid{
+                    //print(musiciens!)
+                }
+            }
         self.collectionView.reloadData()
         }
     }
@@ -66,9 +75,7 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "musicaCell", for: indexPath) as! CollectionCell
         let musicien = musicienArray[indexPath.row].value as? NSDictionary
-        
         if let queryMusicien = queryUser?[indexPath.row].value as? NSDictionary {
-            if queryMusicien["uid"] as? String != Auth.auth().currentUser?.uid{
             cell.userNameLbl.text = queryMusicien["name"] as? String
             dispatchQueue.async {
                 let arrayUrl = URL(string: queryMusicien["profileImgURL"] as! String)
@@ -79,11 +86,8 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
                     cell.profilUsersImage.image = img!
                 } 
             }
-            } else if queryMusicien["uid"] as? String == Auth.auth().currentUser?.uid{
-                cell.isHidden = true
-            }
-    }
-        else if musicien?["uid"] as? String != Auth.auth().currentUser?.uid {
+        } else {
+            
             cell.userNameLbl.text = musicien?["name"] as? String
             dispatchQueue.async {
                 let arrayUrl = URL(string: musicien?["profileImgURL"] as! String)!
@@ -94,10 +98,8 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
                     cell.profilUsersImage.image = img!
                 }
             }
-        } else if musicien?["uid"] as? String == Auth.auth().currentUser?.uid {
-            cell.isHidden = true
         }
-            return cell
+        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
