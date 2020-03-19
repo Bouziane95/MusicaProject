@@ -12,7 +12,7 @@ import Firebase
 
 class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    var genderArray : Array = ["Homme", "Femme", "N.C."]
+    var genderArray : Array = ["Homme", "Femme", "Aucune importance"]
     let rockMusicien = ["Guitariste", "Batteur"]
     let jazzMusicien = ["Contre-Bassiste"]
     let hiphopMusicien = ["Break-Dance"]
@@ -20,6 +20,7 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var userQuery : [DataSnapshot] = []
     var gender : String?
     var style : [String]? = []
+    var genderNumber: Int?
     
     @IBOutlet weak var genderTableView: UITableView!
     @IBOutlet weak var musicStyleTableView: UITableView!
@@ -45,28 +46,84 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? CollectionVC{
+            //If the user selected a gender + musicStyle
             if gender != nil && style != [] {
+                //If the user selected "Aucune importance"
+                if genderNumber == 2 {
+                    guard let stringStyle = style?.joined(separator: "_") else {return}
+                    let rootRef = Database.database().reference()
+                    let query = rootRef.child("users").queryOrdered(byChild: "musicStyle").queryEqual(toValue: "\(stringStyle)")
+                    query.observeSingleEvent(of: .value) { (snapshot) in
+                        self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
+                        for index in 0...self.userQuery.count - 1{
+                            let queryMusiciens = self.userQuery[index].value as? NSDictionary
+                            if queryMusiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
+                                self.userQuery.remove(at: index)
+                            }
+                        }
+                        destination.queryUser = self.userQuery
+                    }
+                    //If a gender is selected (Homme or Femme)
+                } else {
                 guard let stringStyle = style?.joined(separator: "_") else {return}
                 let rootRef = Database.database().reference()
                 let query = rootRef.child("users").queryOrdered(byChild: "filterParameters").queryEqual(toValue: "\(gender!)_\(stringStyle)")
                 query.observeSingleEvent(of: .value) { (snapshot) in
                     self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
+                    for index in 0...self.userQuery.count - 1{
+                        let queryMusiciens = self.userQuery[index].value as? NSDictionary
+                        if queryMusiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
+                            self.userQuery.remove(at: index)
+                        }
+                    }
                     destination.queryUser = self.userQuery
                 }
+            }
+                //If the user selected only a gender
             } else if gender != nil && style == [] {
+                //If the user selected "Aucune importance"
+                if genderNumber == 2{
+                    let rootRef = Database.database().reference()
+                    let query = rootRef.child("users").queryOrdered(byChild: "gender")
+                    query.observeSingleEvent(of: .value) { (snapshot) in
+                        self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
+                        for index in 0...self.userQuery.count - 1{
+                            let queryMusiciens = self.userQuery[index].value as? NSDictionary
+                            if queryMusiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
+                                self.userQuery.remove(at: index)
+                            }
+                        }
+                        destination.queryUser = self.userQuery
+                    }
+                    //If the user selected a gender (Homme or Femme)
+                } else {
                 let rootRef = Database.database().reference()
                 let query = rootRef.child("users").queryOrdered(byChild: "gender").queryEqual(toValue: "\(gender!)")
                 query.observeSingleEvent(of: .value) { (snapshot) in
                     self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
+                    for index in 0...self.userQuery.count - 1{
+                        let queryMusiciens = self.userQuery[index].value as? NSDictionary
+                        if queryMusiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
+                            self.userQuery.remove(at: index)
+                        }
+                    }
                     destination.queryUser = self.userQuery
                 }
-            } else if gender == nil && style != []{
+            }
+                //if the user selected only a music style
+        } else if gender == nil && style != []{
                 guard let stringStyle = style?.joined(separator: "_") else {return}
                 print(stringStyle)
                 let rootRef = Database.database().reference()
                 let query = rootRef.child("users").queryOrdered(byChild: "musicStyle").queryEqual(toValue: "\(stringStyle)")
                 query.observeSingleEvent(of: .value) { (snapshot) in
                     self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
+                    for index in 0...self.userQuery.count - 1{
+                        let queryMusiciens = self.userQuery[index].value as? NSDictionary
+                        if queryMusiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
+                            self.userQuery.remove(at: index)
+                        }
+                    }
                     destination.queryUser = self.userQuery
                 }
             }
@@ -157,6 +214,7 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         case genderTableView:
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
             gender = genderArray[indexPath.row]
+            genderNumber = indexPath.row
         case musicStyleTableView:
             switch indexPath.section {
             case 0:

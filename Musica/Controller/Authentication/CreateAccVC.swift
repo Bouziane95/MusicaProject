@@ -90,9 +90,6 @@ class CreateAccVC: UIViewController {
         } else if(genderSegmentedControl.selectedSegmentIndex == 1) {
             let female = "Femme"
             gender = female
-        } else if(genderSegmentedControl.selectedSegmentIndex == 2) {
-            let nc = "N.C."
-            gender = nc
         }
     }
     

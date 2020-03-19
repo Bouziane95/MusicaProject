@@ -259,7 +259,6 @@
                                                         <segments>
                                                             <segment title="Homme"/>
                                                             <segment title="Femme"/>
-                                                            <segment title="N.C."/>
                                                         </segments>
                                                         <connections>
                                                             <action selector="SCchanged:" destination="9hX-RT-DgD" eventType="valueChanged" id="iZa-ra-3MQ"/>
@@ -1438,6 +1437,6 @@
         <segue reference="IOw-SO-z7O"/>
         <segue reference="B0W-Bm-d5C"/>
         <segue reference="nDG-2y-BRL"/>
-        <segue reference="vky-A6-vY8"/>
+        <segue reference="0eY-sc-jAk"/>
     </inferredMetricsTieBreakers>
 </document>

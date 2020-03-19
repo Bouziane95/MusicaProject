@@ -54,10 +54,11 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         let query = rootRef.child("users")
         query.observeSingleEvent(of: .value) { (snapshot) in
         self.musicienArray = snapshot.children.allObjects as! [DataSnapshot]
-            for index in self.musicienArray{
-                let musiciens = index.value as? NSDictionary
-                if musiciens?["uid"] as? String != Auth.auth().currentUser?.uid{
-                    //print(musiciens!)
+            for index in 0...self.musicienArray.count - 1{
+                let musiciens = self.musicienArray[3].value as? NSDictionary
+                if musiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
+                    print(index)
+                    self.musicienArray.remove(at: 3)
                 }
             }
         self.collectionView.reloadData()
