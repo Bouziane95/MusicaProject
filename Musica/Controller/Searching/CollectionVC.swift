@@ -88,7 +88,6 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
                 } 
             }
         } else {
-            
             cell.userNameLbl.text = musicien?["name"] as? String
             dispatchQueue.async {
                 let arrayUrl = URL(string: musicien?["profileImgURL"] as! String)!

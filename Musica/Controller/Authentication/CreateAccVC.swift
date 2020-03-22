@@ -28,7 +28,7 @@ class CreateAccVC: UIViewController {
     let hiphopMusicien = ["Break-Dance"]
     let sections = ["Rock", "Jazz", "Hip-Hop"]
     var musicStyle = [String]()
-    var gender = String()
+    var gender : String?
     var image = String()
     
     override func viewDidLoad() {
@@ -87,29 +87,38 @@ class CreateAccVC: UIViewController {
         if(genderSegmentedControl.selectedSegmentIndex == 0){
             let male = "Homme"
             gender = male
-        } else if(genderSegmentedControl.selectedSegmentIndex == 1) {
+        } else if(genderSegmentedControl.selectedSegmentIndex == 2) {
             let female = "Femme"
             gender = female
         }
     }
     
     @IBAction func createAccPressed(_ sender: Any) {
+        
         let stringMusicStyle = musicStyle.joined(separator: "_")
         
-        if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil {
-            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, gender: gender, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: stringMusicStyle, userDescription: self.userDescription.text!, filterParams: "\(gender)_\(stringMusicStyle)") { (success, registrationError)
+        if stringMusicStyle == "" {
+            displayAlertMessage(title: "Oups !", msg: "Sélectionnez un style musical que vous pratiquez")
+        } else {
+        if (genderSegmentedControl.selectedSegmentIndex == 1) {
+            displayAlertMessage(title: "Oups !", msg: "Veuillez-nous indiquer si vous êtes un homme ou une femme")
+        } else {
+        if emailTxtField.text != nil && passwordTxtField.text != nil && nameTxtField.text != nil && ageTxtField.text != nil && userDescription.text != nil{
+            AuthService.instance.registerUser(withEmail: self.emailTxtField.text!, andPassword: passwordTxtField.text!, gender: gender!, name: self.nameTxtField.text!, age: self.ageTxtField.text!, musicStyle: stringMusicStyle, userDescription: self.userDescription.text!, filterParams: "\(gender!)_\(stringMusicStyle)") { (success, registrationError)
                 in
                 if success{
                     self.uploadPhoto()
                     print("Succes registration")
                     self.performSegue(withIdentifier: "showLogin", sender: self)
                 } else {
-                    self.displayAlertMessage(title: "Oups !",msg: "\(registrationError!.localizedDescription)")
+                    self.displayAlertMessage(title: "Oups !",msg: "Veuillez remplir tous les champs obligatoires")
                     print(String(describing: registrationError?.localizedDescription))
+                    }
                 }
             }
         }
     }
+}
 
     func displayAlertMessage(title: String, msg: String){
           let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
