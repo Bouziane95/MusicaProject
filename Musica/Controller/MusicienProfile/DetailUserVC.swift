@@ -10,7 +10,7 @@ import UIKit
 
 class DetailUserVC: UIViewController {
     
-    var userStyle = [String]()
+    var userStyle = String()
     var id = String()
     var name = String()
     var userDescription = String()
@@ -25,8 +25,8 @@ class DetailUserVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nameUser.text = name
-        let stringUserStyle = userStyle.joined(separator: ", ")
-        musicStyleUser.text = stringUserStyle
+        let occurencesUserStyle = userStyle.replacingOccurrences(of: "_", with: ", ")
+        musicStyleUser.text = occurencesUserStyle
         descriptionUser.text = userDescription
         dispatchQueue.async {
             self.showUsersImg()

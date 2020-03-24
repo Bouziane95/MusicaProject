@@ -14,7 +14,7 @@ struct CurrentUser{
     let age: String
     let email: String
     let profileImageUrl: String
-    let userMusicStyle : [String]
+    let userMusicStyle : String
     let userGender : String
     let description : String
     
@@ -25,7 +25,7 @@ struct CurrentUser{
         self.age = dictionnary["age"] as? String ?? ""
         self.email = dictionnary["email"] as? String ?? ""
         self.profileImageUrl = dictionnary["profileImgURL"] as? String ?? ""
-        self.userMusicStyle = dictionnary["musicStyle"] as? [String] ?? [""]
+        self.userMusicStyle = dictionnary["musicStyle"] as? String ?? ""
         self.userGender = dictionnary["gender"] as? String ?? ""
         self.description = dictionnary["description"] as? String ?? ""
     }

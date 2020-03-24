@@ -24,7 +24,7 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     var nameIndexpath = String()
     var imgIndexpath = String()
     var descriptionIndexpath = String()
-    var musicStyleIndexpath = [String]()
+    var musicStyleIndexpath = String()
     var musicienArray : [DataSnapshot] = []
     var queryUser : [DataSnapshot]?
     
@@ -119,13 +119,13 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
             nameIndexpath = (queryMusicien["name"] as? String)!
             imgIndexpath = (queryMusicien["profileImgURL"] as? String)!
             descriptionIndexpath = (queryMusicien["description"] as? String)!
-            musicStyleIndexpath = (queryMusicien["musicStyle"] as? [String])!
+            musicStyleIndexpath = (queryMusicien["musicStyle"] as? String)!
         } else {
         uidIndexpath = (musicienParams?["uid"] as? String)!
         nameIndexpath = (musicienParams?["name"] as? String)!
         imgIndexpath = (musicienParams?["profileImgURL"] as? String)!
         descriptionIndexpath = (musicienParams?["description"] as? String)!
-        musicStyleIndexpath = (musicienParams?["musicStyle"] as? [String])!
+        musicStyleIndexpath = (musicienParams?["musicStyle"] as? String)!
     }
         performSegue(withIdentifier: "showDetail", sender: self)
     }

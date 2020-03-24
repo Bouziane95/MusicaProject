@@ -53,11 +53,11 @@ class MyProfileVC: UIViewController {
             let imageData = try! Data(contentsOf: imageUrl!)
             let imageProfil = UIImage(data: imageData)
             
-            let userMusicStyleArray = user.userMusicStyle
-            let userMusicStyle = userMusicStyleArray.joined(separator: ", ")
-
+            let userMusicStyle = user.userMusicStyle
+            let concatenateUserMusicStyle = userMusicStyle.replacingOccurrences(of: "_", with: ", ")
+            
             self.profileImg.image = imageProfil
-            self.musicStyle.text = userMusicStyle
+            self.musicStyle.text = concatenateUserMusicStyle
        
         }
     }
