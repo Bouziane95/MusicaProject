@@ -26,6 +26,8 @@
 		1E7F9E512386DEFA0075826C /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E502386DEFA0075826C /* CollectionVC.swift */; };
 		1E7F9E532386E03E0075826C /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E522386E03E0075826C /* CollectionCell.swift */; };
 		1E7F9E552386E5CD0075826C /* DetailUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E542386E5CD0075826C /* DetailUserVC.swift */; };
+		1E8BA6B32432341900834466 /* AuthenticationErrorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8BA6B22432341900834466 /* AuthenticationErrorsTests.swift */; };
+		1E8BA6B7243234D500834466 /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8BA6B6243234D500834466 /* AuthenticationError.swift */; };
 		1E9C7F9123E863CC006D9F99 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C7F9023E863CC006D9F99 /* ChatVC.swift */; };
 		1EB2DFAB2416C67F000C263B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2DFAA2416C67F000C263B /* Message.swift */; };
 		1EDD414A23E1C1D60044DA29 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD414923E1C1D60044DA29 /* RoundButton.swift */; };
@@ -72,6 +74,8 @@
 		1E7F9E502386DEFA0075826C /* CollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
 		1E7F9E522386E03E0075826C /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		1E7F9E542386E5CD0075826C /* DetailUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserVC.swift; sourceTree = "<group>"; };
+		1E8BA6B22432341900834466 /* AuthenticationErrorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationErrorsTests.swift; sourceTree = "<group>"; };
+		1E8BA6B6243234D500834466 /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
 		1E9C7F9023E863CC006D9F99 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		1EB2DFAA2416C67F000C263B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		1EDD414923E1C1D60044DA29 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				1E750D2623840A3100103DEF /* MusicaTests.swift */,
+				1E8BA6B22432341900834466 /* AuthenticationErrorsTests.swift */,
 				1E750D2823840A3100103DEF /* Info.plist */,
 			);
 			path = MusicaTests;
@@ -203,6 +208,7 @@
 				1E750D37238446DC00103DEF /* AuthService.swift */,
 				1E11870B23E9AB150079A29D /* CurrentUser.swift */,
 				1EB2DFAA2416C67F000C263B /* Message.swift */,
+				1E8BA6B6243234D500834466 /* AuthenticationError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -450,6 +456,7 @@
 				1EB2DFAB2416C67F000C263B /* Message.swift in Sources */,
 				1EEA0B4D2417D6D300D59CB8 /* ChatTableviewCell.swift in Sources */,
 				1E750D3A23844B2800103DEF /* LoginVC.swift in Sources */,
+				1E8BA6B7243234D500834466 /* AuthenticationError.swift in Sources */,
 				1EEA0B4F2417DAFC00D59CB8 /* RoundImage.swift in Sources */,
 				1E750D3E2384587000103DEF /* MyProfileVC.swift in Sources */,
 				1EDE64972419137300D8AEAB /* ChatMessageCell.swift in Sources */,
@@ -468,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E8BA6B32432341900834466 /* AuthenticationErrorsTests.swift in Sources */,
 				1E750D2723840A3100103DEF /* MusicaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
