@@ -13,8 +13,6 @@
 		1E750D1423840A2F00103DEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E750D1223840A2F00103DEF /* Main.storyboard */; };
 		1E750D1723840A2F00103DEF /* Musica.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D1523840A2F00103DEF /* Musica.xcdatamodeld */; };
 		1E750D1923840A3100103DEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E750D1823840A3100103DEF /* Assets.xcassets */; };
-		1E750D1C23840A3100103DEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E750D1A23840A3100103DEF /* LaunchScreen.storyboard */; };
-		1E750D2723840A3100103DEF /* MusicaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D2623840A3100103DEF /* MusicaTests.swift */; };
 		1E750D322384437B00103DEF /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D312384437B00103DEF /* AuthVC.swift */; };
 		1E750D342384443F00103DEF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E750D332384443F00103DEF /* GoogleService-Info.plist */; };
 		1E750D36238445DC00103DEF /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D35238445DC00103DEF /* DataServices.swift */; };
@@ -26,8 +24,7 @@
 		1E7F9E512386DEFA0075826C /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E502386DEFA0075826C /* CollectionVC.swift */; };
 		1E7F9E532386E03E0075826C /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E522386E03E0075826C /* CollectionCell.swift */; };
 		1E7F9E552386E5CD0075826C /* DetailUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E542386E5CD0075826C /* DetailUserVC.swift */; };
-		1E8BA6B32432341900834466 /* AuthenticationErrorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8BA6B22432341900834466 /* AuthenticationErrorsTests.swift */; };
-		1E8BA6B7243234D500834466 /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8BA6B6243234D500834466 /* AuthenticationError.swift */; };
+		1E8BA6DF2433C2AC00834466 /* MusicaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8BA6DE2433C2AC00834466 /* MusicaTest.swift */; };
 		1E9C7F9123E863CC006D9F99 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C7F9023E863CC006D9F99 /* ChatVC.swift */; };
 		1EB2DFAB2416C67F000C263B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2DFAA2416C67F000C263B /* Message.swift */; };
 		1EDD414A23E1C1D60044DA29 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD414923E1C1D60044DA29 /* RoundButton.swift */; };
@@ -58,10 +55,8 @@
 		1E750D1323840A2F00103DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E750D1623840A2F00103DEF /* Musica.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Musica.xcdatamodel; sourceTree = "<group>"; };
 		1E750D1823840A3100103DEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1E750D1B23840A3100103DEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E750D1D23840A3100103DEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E750D2223840A3100103DEF /* MusicaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E750D2623840A3100103DEF /* MusicaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicaTests.swift; sourceTree = "<group>"; };
 		1E750D2823840A3100103DEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E750D312384437B00103DEF /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
 		1E750D332384443F00103DEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -74,8 +69,7 @@
 		1E7F9E502386DEFA0075826C /* CollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
 		1E7F9E522386E03E0075826C /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		1E7F9E542386E5CD0075826C /* DetailUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserVC.swift; sourceTree = "<group>"; };
-		1E8BA6B22432341900834466 /* AuthenticationErrorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationErrorsTests.swift; sourceTree = "<group>"; };
-		1E8BA6B6243234D500834466 /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
+		1E8BA6DE2433C2AC00834466 /* MusicaTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicaTest.swift; sourceTree = "<group>"; };
 		1E9C7F9023E863CC006D9F99 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		1EB2DFAA2416C67F000C263B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		1EDD414923E1C1D60044DA29 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
@@ -193,8 +187,7 @@
 		1E750D2523840A3100103DEF /* MusicaTests */ = {
 			isa = PBXGroup;
 			children = (
-				1E750D2623840A3100103DEF /* MusicaTests.swift */,
-				1E8BA6B22432341900834466 /* AuthenticationErrorsTests.swift */,
+				1E8BA6DE2433C2AC00834466 /* MusicaTest.swift */,
 				1E750D2823840A3100103DEF /* Info.plist */,
 			);
 			path = MusicaTests;
@@ -208,7 +201,6 @@
 				1E750D37238446DC00103DEF /* AuthService.swift */,
 				1E11870B23E9AB150079A29D /* CurrentUser.swift */,
 				1EB2DFAA2416C67F000C263B /* Message.swift */,
-				1E8BA6B6243234D500834466 /* AuthenticationError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -241,7 +233,6 @@
 			children = (
 				1E750D0E23840A2F00103DEF /* AppDelegate.swift */,
 				1E750D1823840A3100103DEF /* Assets.xcassets */,
-				1E750D1A23840A3100103DEF /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting files";
 			sourceTree = "<group>";
@@ -350,7 +341,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E750D1C23840A3100103DEF /* LaunchScreen.storyboard in Resources */,
 				1E750D342384443F00103DEF /* GoogleService-Info.plist in Resources */,
 				1E750D1923840A3100103DEF /* Assets.xcassets in Resources */,
 				1E750D1423840A2F00103DEF /* Main.storyboard in Resources */,
@@ -456,7 +446,6 @@
 				1EB2DFAB2416C67F000C263B /* Message.swift in Sources */,
 				1EEA0B4D2417D6D300D59CB8 /* ChatTableviewCell.swift in Sources */,
 				1E750D3A23844B2800103DEF /* LoginVC.swift in Sources */,
-				1E8BA6B7243234D500834466 /* AuthenticationError.swift in Sources */,
 				1EEA0B4F2417DAFC00D59CB8 /* RoundImage.swift in Sources */,
 				1E750D3E2384587000103DEF /* MyProfileVC.swift in Sources */,
 				1EDE64972419137300D8AEAB /* ChatMessageCell.swift in Sources */,
@@ -475,8 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E8BA6B32432341900834466 /* AuthenticationErrorsTests.swift in Sources */,
-				1E750D2723840A3100103DEF /* MusicaTests.swift in Sources */,
+				1E8BA6DF2433C2AC00834466 /* MusicaTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,14 +485,6 @@
 				1E750D1323840A2F00103DEF /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		1E750D1A23840A3100103DEF /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1E750D1B23840A3100103DEF /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

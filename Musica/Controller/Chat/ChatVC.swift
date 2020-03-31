@@ -93,7 +93,7 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         }
     }
     
-    private func sendMessageWithImageUrl(imageUrl: String, image: UIImage){
+     func sendMessageWithImageUrl(imageUrl: String, image: UIImage){
         let ref = Database.database().reference().child("messages")
         let childRef = ref.childByAutoId()
         let timestamp = Int(Date().timeIntervalSince1970)
