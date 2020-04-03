@@ -173,7 +173,7 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
             cell = tableView.dequeueReusableCell(withIdentifier: "genderCell", for: indexPath)
             cell.textLabel?.text = genderArray[indexPath.row]
             cell.textLabel?.font = UIFont(name: "Avenir Next", size: 17)
-            cell.textLabel?.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            cell.textLabel?.textColor = UIColor(named: "Color")
         case musicStyleTableView:
             cell = tableView.dequeueReusableCell(withIdentifier: "musicStyleCell", for: indexPath)
             switch indexPath.section {
@@ -190,7 +190,7 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                 break
             }
             cell.textLabel?.font = UIFont(name: "Avenir Next", size: 17)
-            cell.textLabel?.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            cell.textLabel?.textColor = UIColor(named: "Color")
         default:
             print("Error")
         }
