@@ -40,6 +40,13 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         self.navigationItem.title = "Ma recherche"
     }
     
+    func displayAlertMessage(title: String, msg: String){
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok",style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func closeBtnTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -55,13 +62,17 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                     let query = rootRef.child("users").queryOrdered(byChild: "musicStyle").queryEqual(toValue: "\(stringStyle)")
                     query.observeSingleEvent(of: .value) { (snapshot) in
                         self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
-                        for index in 0...self.userQuery.count - 1{
-                            let queryMusiciens = self.userQuery[index].value as? NSDictionary
-                            if queryMusiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
-                                self.userQuery.remove(at: index)
+                        if self.userQuery.count != 0 {
+                            for index in 0...self.userQuery.count - 1{
+                                let queryMusiciens = self.userQuery[index].value as? NSDictionary
+                                if queryMusiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
+                                    self.userQuery.remove(at: index)
+                                }
                             }
+                            destination.queryUser = self.userQuery
+                        } else {
+                            self.displayAlertMessage(title: "Désolé !", msg: "Aucun profil trouvé selon vos critères de recherche.")
                         }
-                        destination.queryUser = self.userQuery
                     }
                     //If a gender is selected (Homme or Femme)
                 } else {
@@ -70,13 +81,17 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                 let query = rootRef.child("users").queryOrdered(byChild: "filterParameters").queryEqual(toValue: "\(gender!)_\(stringStyle)")
                 query.observeSingleEvent(of: .value) { (snapshot) in
                     self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
-                    for index in 0...self.userQuery.count - 1{
-                        let queryMusiciens = self.userQuery[index].value as? NSDictionary
-                        if queryMusiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
-                            self.userQuery.remove(at: index)
+                    if self.userQuery.count != 0{
+                        for index in 0...self.userQuery.count - 1{
+                            let queryMusiciens = self.userQuery[index].value as? NSDictionary
+                            if queryMusiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
+                                self.userQuery.remove(at: index)
+                            }
                         }
+                        destination.queryUser = self.userQuery
+                    } else {
+                        self.displayAlertMessage(title: "Désolé !", msg: "Aucun profil trouvé selon vos critères de recherche.")
                     }
-                    destination.queryUser = self.userQuery
                 }
             }
                 //If the user selected only a gender
@@ -87,29 +102,37 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                     let query = rootRef.child("users").queryOrdered(byChild: "gender")
                     query.observeSingleEvent(of: .value) { (snapshot) in
                         self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
-                        for index in 0...self.userQuery.count - 1{
+                        if self.userQuery.count != 0 {
+                         for index in 0...self.userQuery.count - 1{
                             let queryMusiciens = self.userQuery[index].value as? NSDictionary
                             if queryMusiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
                                 self.userQuery.remove(at: index)
                             }
                         }
                         destination.queryUser = self.userQuery
+                    } else {
+                        self.displayAlertMessage(title: "Désolé !", msg: "Aucun profil trouvé selon vos critères de recherche.")
                     }
+                }
                     //If the user selected a gender (Homme or Femme)
                 } else {
                 let rootRef = Database.database().reference()
                 let query = rootRef.child("users").queryOrdered(byChild: "gender").queryEqual(toValue: "\(gender!)")
                 query.observeSingleEvent(of: .value) { (snapshot) in
                     self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
-                    for index in 0...self.userQuery.count - 1{
+                     if self.userQuery.count != 0 {
+                      for index in 0...self.userQuery.count - 1{
                         let queryMusiciens = self.userQuery[index].value as? NSDictionary
                         if queryMusiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
                             self.userQuery.remove(at: index)
                         }
                     }
                     destination.queryUser = self.userQuery
+                } else {
+                    self.displayAlertMessage(title: "Désolé !", msg: "Aucun profil trouvé selon vos critères de recherche.")
                 }
             }
+        }
                 //if the user selected only a music style
         } else if gender == nil && style != []{
                 guard let stringStyle = style?.joined(separator: "_") else {return}
@@ -118,13 +141,17 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                 let query = rootRef.child("users").queryOrdered(byChild: "musicStyle").queryEqual(toValue: "\(stringStyle)")
                 query.observeSingleEvent(of: .value) { (snapshot) in
                     self.userQuery = snapshot.children.allObjects as! [DataSnapshot]
-                    for index in 0...self.userQuery.count - 1{
-                        let queryMusiciens = self.userQuery[index].value as? NSDictionary
-                        if queryMusiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
-                            self.userQuery.remove(at: index)
+                    if self.userQuery.count != 0 {
+                        for index in 0...self.userQuery.count - 1{
+                            let queryMusiciens = self.userQuery[index].value as? NSDictionary
+                            if queryMusiciens?["uid"] as? String == Auth.auth().currentUser?.uid{
+                                self.userQuery.remove(at: index)
+                            }
                         }
+                        destination.queryUser = self.userQuery
+                    } else {
+                        self.displayAlertMessage(title: "Désolé !", msg: "Aucun profil trouvé selon vos critères de recherche.")
                     }
-                    destination.queryUser = self.userQuery
                 }
             }
         }
