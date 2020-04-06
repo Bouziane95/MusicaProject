@@ -42,16 +42,17 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     @objc func keyboardWillShow(notification: NSNotification){
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect){
-            if self.viewTxtfield.frame.origin.y == 818.0 {
-                self.viewTxtfield.frame.origin.y -= keyboardSize.height
-            }
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= keyboardFrame.height
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification){
-        if self.viewTxtfield.frame.origin.y != 0 {
-            self.viewTxtfield.frame.origin.y = 0
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
         }
     }
     
