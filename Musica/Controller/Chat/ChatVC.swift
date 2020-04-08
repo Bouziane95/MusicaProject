@@ -17,10 +17,10 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     var messages = [Message]()
     var idIndexpath : String?
     private var dispatchQueue: DispatchQueue = DispatchQueue(label: "messageImg")
-    
+
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var viewTxtfield: UIView!
+    @IBOutlet weak var mainView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,6 +167,7 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //Width and Height of the collection view Cell
         var height: CGFloat = 80
         let width: CGFloat = view.frame.width
         let message = messages[indexPath.item]
@@ -190,14 +191,18 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
        }
     
     private func setupChatCell(cell: ChatMessageCell, message: Message){
-        
         //if else statement to get the userImg next to the grey bubble chat
         if message.fromId == Auth.auth().currentUser?.uid{
+            
             cell.txtView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
             cell.txtView.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             cell.userImg.isHidden = true
+            cell.txtView.rightAnchor.constraint(equalTo: cell.mainView.rightAnchor , constant: 5).isActive = true
+            cell.txtView.leftAnchor.constraint(equalTo: cell.mainView.leftAnchor , constant: 250).isActive = true
+            cell.txtView.textAlignment = .center
         } else {
-            //cell.userImg.isHidden = false
+            cell.widthAnchor.constraint(equalToConstant: frameMsgTxt(text: message.text!).width + 100).isActive = true
+            cell.txtView.textAlignment = .center
             cell.txtView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             cell.txtView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             dispatchQueue.async {
@@ -233,11 +238,7 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         let message = messages[indexPath.item]
         cell.txtView.layer.cornerRadius = 16
         cell.imgMessage.layer.cornerRadius = 16
-        
         setupChatCell(cell: cell, message: message)
-        if let text = message.text{
-            cell.widthAnchor.constraint(equalToConstant: frameMsgTxt(text: text).width + 100).isActive = true
-        }
         return cell
        }
     
