@@ -237,42 +237,41 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch tableView{
+        let cell = self.musicStyleTableView.cellForRow(at: indexPath)
+        let removedStyle = cell?.textLabel!.text!
+        
+        switch tableView {
+            
         case genderTableView:
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
             gender = genderArray[indexPath.row]
             genderNumber = indexPath.row
+            
         case musicStyleTableView:
             switch indexPath.section {
             case 0:
                 if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark{
                     tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
-                    style?.remove(at: indexPath.row)
-                    print(style!)
+                    style?.removeAll {$0 == removedStyle!}
                 } else {
                     tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
                     style?.append(rockMusicien[indexPath.row])
-                    print(style!)
                 }
             case 1:
                 if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark{
                     tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
-                    style?.remove(at: indexPath.row)
-                    print(style!)
+                    style?.removeAll {$0 == removedStyle!}
                 } else {
                     tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
                     style?.append(jazzMusicien[indexPath.row])
-                    print(style!)
                 }
             case 2:
                 if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark{
                     tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
-                    style?.remove(at: indexPath.row)
-                    print(style!)
+                    style?.removeAll {$0 == removedStyle!}
                 } else {
                     tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
                     style?.append(hiphopMusicien[indexPath.row])
-                    print(style!)
                 }
             default:
                 break
