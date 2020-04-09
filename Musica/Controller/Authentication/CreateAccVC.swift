@@ -215,17 +215,20 @@ extension CreateAccVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = self.tableView.cellForRow(at: indexPath)
+        let removedStyle = cell?.textLabel!.text!
+        
         if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark{
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
             switch indexPath.section{
             case 0 :
-                musicStyle.remove(at: indexPath.row)
+                musicStyle.removeAll {$0 == removedStyle}
                 break
             case 1 :
-                musicStyle.remove(at: indexPath.row)
+                musicStyle.removeAll {$0 == removedStyle}
                 break
             case 2 :
-                musicStyle.remove(at: indexPath.row)
+                musicStyle.removeAll {$0 == removedStyle}
                 break
             default :
                 break

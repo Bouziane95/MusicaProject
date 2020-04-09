@@ -136,7 +136,6 @@ class ParamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                 //if the user selected only a music style
         } else if gender == nil && style != []{
                 guard let stringStyle = style?.joined(separator: "_") else {return}
-                print(stringStyle)
                 let rootRef = Database.database().reference()
                 let query = rootRef.child("users").queryOrdered(byChild: "musicStyle").queryEqual(toValue: "\(stringStyle)")
                 query.observeSingleEvent(of: .value) { (snapshot) in
