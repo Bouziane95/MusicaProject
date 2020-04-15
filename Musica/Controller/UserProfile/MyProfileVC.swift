@@ -29,10 +29,13 @@ class MyProfileVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         downloadUserData()
+        profileImg.layer.masksToBounds = false
+        profileImg.layer.cornerRadius = profileImg.frame.height / 2
+        profileImg.clipsToBounds = true
     }
     
     func navTitle(){
-        let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!]
+        let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!, NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = attributes
         self.navigationItem.title = "Mon profil"
     }

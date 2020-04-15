@@ -30,7 +30,7 @@ class ChatTableView: UITableViewController {
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
             guard let dict = snapshot.value as? [String: Any] else {return}
             let user = CurrentUser(uid: uid, dictionnary: dict)
-            let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!]
+            let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!, NSAttributedString.Key.foregroundColor : UIColor.white]
             self.navigationController?.navigationBar.titleTextAttributes = attributes
             self.navigationItem.title = "\(user.name)"
         }
@@ -79,7 +79,7 @@ class ChatTableView: UITableViewController {
             let noDataText : UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: self.tableView.bounds.size.height))
             noDataText.text = "Aucun chat pour l'instant"
             noDataText.font = UIFont(name: "Marker Felt", size: 28)
-            noDataText.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            noDataText.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             noDataText.textAlignment = .center
             noDataText.numberOfLines = 0
             self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -150,23 +150,5 @@ class ChatTableView: UITableViewController {
             }
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        guard let uid = Auth.auth().currentUser?.uid else {return}
-//        let message = self.messages[indexPath.row]
-//
-//        if let chatPartnerId = message.chatPartnerID(){
-//            Database.database().reference().child("userMessages").child(uid).child(chatPartnerId).removeValue { (error, ref) in
-//                if error != nil {
-//                    print(error!)
-//                    return
-//                }
-//                print(self.messagesDictionnary)
-//                self.messagesDictionnary.removeValue(forKey: chatPartnerId)
-//                print(self.messagesDictionnary)
-//                self.reloadTable()
-//            }
-//        }
-//    }
 }
 

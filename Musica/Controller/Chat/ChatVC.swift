@@ -25,6 +25,8 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = nameFromChatTV
+        let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!, NSAttributedString.Key.foregroundColor : UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = attributes
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.alwaysBounceVertical = true
@@ -194,7 +196,7 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         //if else statement to get the userImg next to the grey bubble chat
         if message.fromId == Auth.auth().currentUser?.uid{
             
-            cell.txtView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+            cell.txtView.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
             cell.txtView.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             cell.userImg.isHidden = true
             cell.txtView.rightAnchor.constraint(equalTo: cell.mainView.rightAnchor , constant: 5).isActive = true

@@ -43,7 +43,7 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     }
     
     func navTitle(){
-        let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!]
+        let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!, NSAttributedString.Key.foregroundColor : UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = attributes
         self.navigationItem.title = "Musiciens"
     }
