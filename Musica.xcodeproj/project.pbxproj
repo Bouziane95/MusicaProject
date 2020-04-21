@@ -20,6 +20,7 @@
 		1E750D3A23844B2800103DEF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D3923844B2800103DEF /* LoginVC.swift */; };
 		1E750D3C23844D6300103DEF /* CreateAccVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D3B23844D6300103DEF /* CreateAccVC.swift */; };
 		1E750D3E2384587000103DEF /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E750D3D2384587000103DEF /* MyProfileVC.swift */; };
+		1E7F0AD3244F633F00C533FD /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F0AD2244F633F00C533FD /* ForgotPasswordVC.swift */; };
 		1E7F9E4B2386CD830075826C /* ParamsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E4A2386CD830075826C /* ParamsVC.swift */; };
 		1E7F9E512386DEFA0075826C /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E502386DEFA0075826C /* CollectionVC.swift */; };
 		1E7F9E532386E03E0075826C /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F9E522386E03E0075826C /* CollectionCell.swift */; };
@@ -65,6 +66,7 @@
 		1E750D3923844B2800103DEF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		1E750D3B23844D6300103DEF /* CreateAccVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccVC.swift; sourceTree = "<group>"; };
 		1E750D3D2384587000103DEF /* MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
+		1E7F0AD2244F633F00C533FD /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		1E7F9E4A2386CD830075826C /* ParamsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParamsVC.swift; sourceTree = "<group>"; };
 		1E7F9E502386DEFA0075826C /* CollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
 		1E7F9E522386E03E0075826C /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				1E750D312384437B00103DEF /* AuthVC.swift */,
 				1E750D3923844B2800103DEF /* LoginVC.swift */,
 				1E750D3B23844D6300103DEF /* CreateAccVC.swift */,
+				1E7F0AD2244F633F00C533FD /* ForgotPasswordVC.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				1E750D3E2384587000103DEF /* MyProfileVC.swift in Sources */,
 				1EDE64972419137300D8AEAB /* ChatMessageCell.swift in Sources */,
 				1E750D38238446DC00103DEF /* AuthService.swift in Sources */,
+				1E7F0AD3244F633F00C533FD /* ForgotPasswordVC.swift in Sources */,
 				1E750D0F23840A2F00103DEF /* AppDelegate.swift in Sources */,
 				1E750D36238445DC00103DEF /* DataServices.swift in Sources */,
 				1E7F9E512386DEFA0075826C /* CollectionVC.swift in Sources */,

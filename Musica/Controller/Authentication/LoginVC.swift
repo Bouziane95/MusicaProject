@@ -39,6 +39,11 @@ class LoginVC: UIViewController{
         }
     }
     
+    @IBAction func passwordForgot(_ sender: Any) {
+        performSegue(withIdentifier: "showPassForgotVc", sender: self)
+    }
+    
+    
     @IBAction func closeBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

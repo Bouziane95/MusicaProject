@@ -154,24 +154,12 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b8u-HN-cOv">
                                                 <rect key="frame" x="158" y="105.5" width="98" height="111"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rXZ-hp-NJy" customClass="RoundImage" customModule="Musica" customModuleProvider="target">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rXZ-hp-NJy">
                                                         <rect key="frame" x="0.0" y="0.5" width="98" height="69"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="70" id="iZg-1B-kbo"/>
                                                         </constraints>
-                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="regular"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                <real key="value" value="0.0"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="15"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appuyez pour changer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hY2-f7-UGo">
                                                         <rect key="frame" x="0.0" y="70" width="98" height="41"/>
@@ -637,6 +625,90 @@
             </objects>
             <point key="canvasLocation" x="3670" y="116"/>
         </scene>
+        <!--Forgot PasswordVC-->
+        <scene sceneID="Cm3-BX-dOK">
+            <objects>
+                <viewController id="Ii6-Ef-R8j" customClass="ForgotPasswordVC" customModule="Musica" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gke-qx-Ot6" customClass="GradientView" customModule="Musica" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mot de passe oublié ? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCZ-d7-mXQ">
+                                <rect key="frame" x="67" y="30" width="280.5" height="35"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="32"/>
+                                <color key="textColor" name="Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="B7X-8i-a37">
+                                <rect key="frame" x="20" y="120" width="374" height="55.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entrez votre email :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ln1-E7-lTa">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="18.5"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                        <color key="textColor" name="Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zqI-VO-kyS">
+                                        <rect key="frame" x="0.0" y="23.5" width="374" height="25"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="hdJ-QO-YNC"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MHB-Xd-z20">
+                                        <rect key="frame" x="0.0" y="53.5" width="374" height="2"/>
+                                        <color key="backgroundColor" name="Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="kWi-HM-kgm"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sE-51-6Az">
+                                <rect key="frame" x="192" y="230.5" width="30" height="45"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="30"/>
+                                <state key="normal" title="Ok">
+                                    <color key="titleColor" name="Color"/>
+                                </state>
+                                <connections>
+                                    <action selector="BtnPressed:" destination="Ii6-Ef-R8j" eventType="touchUpInside" id="WkE-WJ-jqU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="B7X-8i-a37" firstAttribute="top" secondItem="aCZ-d7-mXQ" secondAttribute="bottom" constant="55" id="Akt-j7-IfI"/>
+                            <constraint firstItem="aCZ-d7-mXQ" firstAttribute="top" secondItem="YxP-Mi-eUH" secondAttribute="top" constant="30" id="Cj8-wW-pMr"/>
+                            <constraint firstItem="aCZ-d7-mXQ" firstAttribute="centerX" secondItem="Gke-qx-Ot6" secondAttribute="centerX" id="JjO-Hk-OfZ"/>
+                            <constraint firstItem="YxP-Mi-eUH" firstAttribute="trailing" secondItem="B7X-8i-a37" secondAttribute="trailing" constant="20" id="Mtb-qx-1QT"/>
+                            <constraint firstItem="B7X-8i-a37" firstAttribute="leading" secondItem="YxP-Mi-eUH" secondAttribute="leading" constant="20" id="XUw-fA-6WT"/>
+                            <constraint firstItem="B7X-8i-a37" firstAttribute="centerX" secondItem="Gke-qx-Ot6" secondAttribute="centerX" id="dgT-qq-rIQ"/>
+                            <constraint firstItem="3sE-51-6Az" firstAttribute="top" secondItem="B7X-8i-a37" secondAttribute="bottom" constant="55" id="eYX-r3-QRr"/>
+                            <constraint firstItem="3sE-51-6Az" firstAttribute="centerX" secondItem="Gke-qx-Ot6" secondAttribute="centerX" id="jK1-Ke-SYp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YxP-Mi-eUH"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" red="0.1418758631" green="0.43606337899999997" blue="0.98044294119999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                <color key="value" red="0.68007379769999998" green="0.29778519269999998" blue="0.87063282730000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <navigationItem key="navigationItem" id="mCd-n9-pAM"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="zqI-VO-kyS" id="RoQ-7p-jrP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Et5-Es-ATK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="798.55072463768124" y="-536.38392857142856"/>
+        </scene>
         <!--LoginVC-->
         <scene sceneID="wbl-0c-GaA">
             <objects>
@@ -747,13 +819,26 @@
                                     <action selector="signInBtnPressed:" destination="heg-GE-ICD" eventType="touchUpInside" id="rmK-Ps-Fmd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEt-pV-S3a">
+                                <rect key="frame" x="22" y="361.5" width="145" height="31"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                <state key="normal" title="Mot de passe oublié ?">
+                                    <color key="titleColor" name="Color"/>
+                                </state>
+                                <connections>
+                                    <action selector="passwordForgot:" destination="heg-GE-ICD" eventType="touchUpInside" id="QAP-uZ-FHj"/>
+                                    <segue destination="Ii6-Ef-R8j" kind="show" identifier="showPassForgotVc" id="ac3-Pt-OqV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="cMx-1o-s03" firstAttribute="trailing" secondItem="AQS-FT-Sa6" secondAttribute="trailing" id="4Fq-bL-PUV"/>
+                            <constraint firstItem="eEt-pV-S3a" firstAttribute="leading" secondItem="MRS-3W-HVb" secondAttribute="leading" id="4k8-lc-iNn"/>
                             <constraint firstItem="cMx-1o-s03" firstAttribute="leading" secondItem="13Q-yo-rOj" secondAttribute="leadingMargin" id="Aoo-7o-uSE"/>
                             <constraint firstItem="MRS-3W-HVb" firstAttribute="top" secondItem="IGy-Gt-QpB" secondAttribute="bottom" constant="46.5" id="F2e-Le-Bgh"/>
                             <constraint firstAttribute="trailing" secondItem="MRS-3W-HVb" secondAttribute="trailing" constant="22" id="HK3-Fu-woq"/>
+                            <constraint firstItem="eEt-pV-S3a" firstAttribute="top" secondItem="MRS-3W-HVb" secondAttribute="bottom" constant="25" id="RLf-BO-Bmn"/>
                             <constraint firstItem="qPW-Zo-eLE" firstAttribute="top" secondItem="ePm-4c-iNk" secondAttribute="top" constant="10" id="SOq-uD-XDy"/>
                             <constraint firstItem="ePm-4c-iNk" firstAttribute="bottom" secondItem="t4N-MQ-HvK" secondAttribute="bottom" constant="38" id="UHx-Eq-BKI"/>
                             <constraint firstItem="cMx-1o-s03" firstAttribute="top" secondItem="ePm-4c-iNk" secondAttribute="top" constant="60" id="YEf-mj-NNW"/>
@@ -1504,6 +1589,6 @@
         <segue reference="IOw-SO-z7O"/>
         <segue reference="B0W-Bm-d5C"/>
         <segue reference="nDG-2y-BRL"/>
-        <segue reference="vky-A6-vY8"/>
+        <segue reference="0eY-sc-jAk"/>
     </inferredMetricsTieBreakers>
 </document>

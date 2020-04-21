@@ -40,6 +40,13 @@ class CreateAccVC: UIViewController {
         hideKeyBoardWhenTappedAround()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        defaultProfileImg.layer.masksToBounds = false
+        defaultProfileImg.layer.cornerRadius = defaultProfileImg.frame.height / 2
+        defaultProfileImg.clipsToBounds = true
+    }
+    
     func tapImage(){
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
         defaultProfileImg.isUserInteractionEnabled = true
