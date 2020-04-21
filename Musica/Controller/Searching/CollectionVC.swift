@@ -32,6 +32,7 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
     private var dispatchQueue: DispatchQueue = DispatchQueue(label: "CollectionView")
     var uidIndexpath = String()
     var nameIndexpath = String()
+    var ageIndexpath = String()
     var imgIndexpath = String()
     var descriptionIndexpath = String()
     var musicStyleIndexpath = String()
@@ -116,6 +117,7 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         if let destination = segue.destination as? DetailUserVC{
             destination.id = uidIndexpath
             destination.name = nameIndexpath
+            destination.age = ageIndexpath
             destination.stringImg = imgIndexpath
             destination.userDescription = descriptionIndexpath
             destination.userStyle = musicStyleIndexpath
@@ -127,12 +129,14 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         if let queryMusicien = queryUser?[indexPath.row].value as? NSDictionary{
             uidIndexpath = (queryMusicien["uid"] as? String)!
             nameIndexpath = (queryMusicien["name"] as? String)!
+            ageIndexpath = (queryMusicien["age"] as? String)!
             imgIndexpath = (queryMusicien["profileImgURL"] as? String)!
             descriptionIndexpath = (queryMusicien["description"] as? String)!
             musicStyleIndexpath = (queryMusicien["musicStyle"] as? String)!
         } else {
         uidIndexpath = (musicienParams?["uid"] as? String)!
         nameIndexpath = (musicienParams?["name"] as? String)!
+        ageIndexpath = (musicienParams?["age"] as? String)!
         imgIndexpath = (musicienParams?["profileImgURL"] as? String)!
         descriptionIndexpath = (musicienParams?["description"] as? String)!
         musicStyleIndexpath = (musicienParams?["musicStyle"] as? String)!
