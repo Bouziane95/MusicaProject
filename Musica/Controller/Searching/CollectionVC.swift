@@ -18,6 +18,16 @@ class CollectionVC: UIViewController, UICollectionViewDelegate, UICollectionView
         getUsers()
         navTitle()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if Auth.auth().currentUser == nil{
+            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let authVC = storyboard.instantiateViewController(withIdentifier: "AuthVC") as! AuthVC
+            authVC.modalPresentationStyle = .fullScreen
+            self.present(authVC, animated: true, completion: nil)
+        }
+    }
         
     private var dispatchQueue: DispatchQueue = DispatchQueue(label: "CollectionView")
     var uidIndexpath = String()
