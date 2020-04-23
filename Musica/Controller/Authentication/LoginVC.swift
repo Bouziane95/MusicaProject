@@ -16,6 +16,17 @@ class LoginVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyBoardWhenTappedAround()
+    }
+    
+    func hideKeyBoardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
     }
     
     func displayAlertMessage(title: String, msg: String){
