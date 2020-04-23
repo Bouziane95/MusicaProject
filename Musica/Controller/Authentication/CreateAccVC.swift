@@ -170,8 +170,8 @@ extension CreateAccVC: UITextFieldDelegate{
 
         let limitNumber = Int(startString)
         
-        if let boum = limitNumber {
-            if boum > 99  {
+        if let unwrappedLimitNumber = limitNumber {
+            if unwrappedLimitNumber > 99  {
                 return false
             } else {
                 return true
