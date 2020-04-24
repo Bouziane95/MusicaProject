@@ -24,6 +24,7 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyBoardWhenTappedAround()
         navigationItem.title = nameFromChatTV
         let attributes = [NSAttributedString.Key.font: UIFont(name: "Avenir", size: 26)!, NSAttributedString.Key.foregroundColor : UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = attributes
@@ -36,11 +37,32 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    func displayAlertMessage(title: String, msg: String){
+             let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+             let okAction = UIAlertAction(title: "Ok",style: .default, handler: nil)
+             alert.addAction(okAction)
+             self.present(alert, animated: true, completion: nil)
+         }
+    
     @IBAction func sendBtnPressed(_ sender: Any) {
-        handleSend()
+        if inputTextField.text != ""{
+            handleSend()
+        } else {
+            displayAlertMessage(title: "Erreur", msg: "Veuillez écrire un message")
+        }
     }
     @IBAction func sendImgBtnPressed(_ sender: Any) {
         handleUploadImg()
+    }
+    
+    func hideKeyBoardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateAccVC.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
     }
     
     @objc func keyboardWillShow(notification: NSNotification){
@@ -170,12 +192,12 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         //Width and Height of the collection view Cell
-        var height: CGFloat = 80
+        var height: CGFloat = 100
         let width: CGFloat = view.frame.width
         let message = messages[indexPath.item]
         
         if messages[indexPath.item].text != nil{
-            height = frameMsgTxt(text: messages[indexPath.item].text!).height + 35
+            height = frameMsgTxt(text: messages[indexPath.item].text!).height + 57
         } else if let imageWidth = message.imageWidth?.floatValue, let imageHeight = message.imageHeight?.floatValue{
             height = CGFloat(imageHeight / imageWidth * 300)
         }
@@ -184,7 +206,7 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     //func to change the width and height of a message based on how long is it
     func frameMsgTxt(text: String) -> CGRect{
-        let size = CGSize(width: 200, height: 1000)
+        let size = CGSize(width: 200, height: 100000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], context: nil)
     }
@@ -203,7 +225,7 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             cell.txtView.leftAnchor.constraint(equalTo: cell.mainView.leftAnchor , constant: 250).isActive = true
             cell.txtView.textAlignment = .center
         } else {
-            cell.widthAnchor.constraint(equalToConstant: frameMsgTxt(text: message.text!).width + 100).isActive = true
+            cell.widthAnchor.constraint(equalToConstant: 300).isActive = true
             cell.txtView.textAlignment = .center
             cell.txtView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             cell.txtView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -239,6 +261,7 @@ class ChatVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ChatMessageCell
         let message = messages[indexPath.item]
         cell.txtView.layer.cornerRadius = 16
+        cell.txtView.layer.masksToBounds = true
         cell.imgMessage.layer.cornerRadius = 16
         setupChatCell(cell: cell, message: message)
         return cell
